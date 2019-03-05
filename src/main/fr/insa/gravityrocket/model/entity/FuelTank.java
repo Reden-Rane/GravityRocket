@@ -16,6 +16,7 @@ public class FuelTank
     public FuelTank(double capacity)
     {
         this.capacity = capacity;
+        this.fuelVolume = this.capacity;
     }
 
     public void removeFuel(double volume)

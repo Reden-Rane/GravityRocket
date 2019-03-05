@@ -4,14 +4,14 @@ import java.awt.*;
 
 public class Alien extends Entity implements IDestroyable
 {
-    public Alien(double mass)
+    public Alien()
     {
-        super(mass);
+        this(0, 0, 0);
     }
 
-    public Alien(double posX, double posY, double rotation, double mass)
+    public Alien(double posX, double posY, double rotation)
     {
-        super(posX, posY, rotation, mass);
+        super(posX, posY, 16, 16, rotation);
     }
 
     @Override
@@ -22,9 +22,16 @@ public class Alien extends Entity implements IDestroyable
     }
 
     @Override
-    public void render(Graphics g)
+    public void render(Graphics2D g2d)
     {
 
+    }
+
+    @Override
+    public double getMass()
+    {
+        //TODO
+        return 0;
     }
 
     @Override

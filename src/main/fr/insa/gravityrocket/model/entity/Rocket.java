@@ -1,9 +1,15 @@
 package fr.insa.gravityrocket.model.entity;
 
+import fr.insa.gravityrocket.ImageHelper;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Rocket extends Entity implements IDestroyable
 {
+    private static Image ROCKET_IMAGE = ImageHelper.loadImage("/rocket.png");
+    private static Image FLAME_IMAGE = ImageHelper.loadImage("/flame.png");
+
     private int life;
     private FuelTank tank;
     private Reactor reactor;
@@ -13,9 +19,16 @@ public class Rocket extends Entity implements IDestroyable
         this(0, 0, 0);
     }
 
+    public Rocket(FuelTank tank, Reactor reactor)
+    {
+        this(0, 0, 0);
+        this.tank = tank;
+        this.reactor = reactor;
+    }
+
     public Rocket(double posX, double posY, double rotation)
     {
-        super(posX, posY, rotation, 10000);
+        super(posX, posY, 150, 360, rotation);
         this.life = 10;
     }
 
@@ -26,10 +39,31 @@ public class Rocket extends Entity implements IDestroyable
 
     }
 
-    @Override
-    public void render(Graphics g)
+    public void keyPressed(KeyEvent e)
     {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE)
+        {
+            getReactor().setActive(true);
+        }
+    }
 
+    public void keyReleased(KeyEvent e)
+    {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE)
+        {
+            getReactor().setActive(false);
+        }
+    }
+
+    @Override
+    public void render(Graphics2D g2d)
+    {
+        g2d.drawImage(ROCKET_IMAGE, 0, 0, (int) getWidth(), (int) getHeight(), null);
+
+        if (getReactor().isActive() && !getTank().isEmpty())
+        {
+            g2d.drawImage(FLAME_IMAGE, (int) (getWidth() / 2.0), (int) getHeight(), (int) (getWidth() * 2 / 3.0), (int) (getHeight() * 2 / 3.0), null);
+        }
     }
 
     @Override
@@ -61,6 +95,6 @@ public class Rocket extends Entity implements IDestroyable
     @Override
     public double getMass()
     {
-        return super.getMass() + getTank().getMass() + getReactor().getMass();
+        return 10000 + getTank().getMass() + getReactor().getMass();
     }
 }

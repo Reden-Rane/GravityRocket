@@ -6,23 +6,25 @@ public abstract class Entity
 {
     private double posX;
     private double posY;
+    private final double width;
+    private final double height;
     private double rotation;
     private double velocityX;
     private double velocityY;
     private double velocityRotation;
-    private double mass;
 
-    public Entity(double mass)
+    public Entity(double width, double height)
     {
-        this(0, 0, 0, mass);
+        this(0, 0, width, height, 0);
     }
 
-    public Entity(double posX, double posY, double rotation, double mass)
+    public Entity(double posX, double posY, double width, double height, double rotation)
     {
         this.posX = posX;
         this.posY = posY;
+        this.width = width;
+        this.height = height;
         this.rotation = rotation;
-        this.mass = mass;
     }
 
     public void update(double dt)
@@ -50,7 +52,7 @@ public abstract class Entity
         }
 
         //Formule de Newton de la force gravitationnelle
-        return G * (entity.mass * this.mass) / squaredDistance;
+        return G * (entity.getMass() * this.getMass()) / squaredDistance;
     }
 
     /**
@@ -72,7 +74,7 @@ public abstract class Entity
      *
      * @param g L'objet Graphics permettant de réaliser le rendu
      */
-    public abstract void render(Graphics g);
+    public abstract void render(Graphics2D g2d);
 
     public double getPosX()
     {
@@ -92,6 +94,16 @@ public abstract class Entity
     public void setPosY(double posY)
     {
         this.posY = posY;
+    }
+
+    public double getWidth()
+    {
+        return width;
+    }
+
+    public double getHeight()
+    {
+        return height;
     }
 
     public double getRotation()
@@ -134,13 +146,5 @@ public abstract class Entity
         this.velocityRotation = velocityRotation;
     }
 
-    public double getMass()
-    {
-        return mass;
-    }
-
-    public void setMass(double mass)
-    {
-        this.mass = mass;
-    }
+    public abstract double getMass();
 }
