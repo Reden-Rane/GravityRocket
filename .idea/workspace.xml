@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82578299-4e14-4421-8ac7-a521b4eaa4bc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Projet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Alien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/FuelTank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/FuelTank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Reactor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Reactor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Rocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Rocket.java" afterDir="false" />
-    </list>
+    <list default="true" id="82578299-4e14-4421-8ac7-a521b4eaa4bc" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,40 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Level.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1344#1345#0" expanded="true" />
-                <element signature="e#1373#1374#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Reactor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-              <folding>
-                <element signature="e#677#678#0" expanded="true" />
-                <element signature="e#708#709#0" expanded="true" />
-                <element signature="e#757#758#0" expanded="true" />
-                <element signature="e#790#791#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+            <state relative-caret-position="820">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,52 +24,89 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Rocket.java">
+        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GameModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="294">
+              <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1688#1689#0" expanded="true" />
-                <element signature="e#1752#1753#0" expanded="true" />
-                <element signature="e#1830#1831#0" expanded="true" />
-                <element signature="e#1899#1900#0" expanded="true" />
-                <element signature="e#1988#1989#0" expanded="true" />
-                <element signature="e#2112#2113#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/LevelPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+            <state relative-caret-position="560">
+              <caret line="82" column="6" lean-forward="true" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#948#949#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#1008#1009#0" expanded="true" />
-                <element signature="e#1060#1061#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/GravityRocketWindow.java">
+        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Planet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+            <state relative-caret-position="280">
+              <caret line="14" column="84" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="84" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#561#562#0" expanded="true" />
-                <element signature="e#594#595#0" expanded="true" />
-                <element signature="e#853#854#0" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-                <element signature="e#951#952#0" expanded="true" />
-                <element signature="e#996#997#0" expanded="true" />
+                <element signature="e#130#131#0" expanded="true" />
+                <element signature="e#167#168#0" expanded="true" />
+                <element signature="e#517#518#0" expanded="true" />
+                <element signature="e#564#565#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/rocket/Rocket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2214#2215#0" expanded="true" />
+                <element signature="e#2241#2242#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Entity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="66" column="92" selection-start-line="66" selection-start-column="92" selection-end-line="66" selection-end-column="92" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1353#1354#0" expanded="true" />
+                <element signature="e#1372#1373#0" expanded="true" />
+                <element signature="e#4210#4211#0" expanded="true" />
+                <element signature="e#4550#4551#0" expanded="true" />
+                <element signature="e#4622#4623#0" expanded="true" />
+                <element signature="e#4680#4681#0" expanded="true" />
+                <element signature="e#4752#4753#0" expanded="true" />
+                <element signature="e#4812#4813#0" expanded="true" />
+                <element signature="e#4874#4875#0" expanded="true" />
+                <element signature="e#4940#4941#0" expanded="true" />
+                <element signature="e#5028#5029#0" expanded="true" />
+                <element signature="e#5090#5091#0" expanded="true" />
+                <element signature="e#5170#5171#0" expanded="true" />
+                <element signature="e#5232#5233#0" expanded="true" />
+                <element signature="e#5312#5313#0" expanded="true" />
+                <element signature="e#5388#5389#0" expanded="true" />
+                <element signature="e#5496#5497#0" expanded="true" />
+                <element signature="e#5572#5573#0" expanded="true" />
+                <element signature="e#5680#5681#0" expanded="true" />
+                <element signature="e#5756#5757#0" expanded="true" />
+                <element signature="e#5864#5865#0" expanded="true" />
+                <element signature="e#5954#5955#0" expanded="true" />
+                <element signature="e#6170#6171#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,25 +122,30 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>repaint</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Reden &lt;charles.javerliat@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/Alien.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Entite.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/Entite.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/EntityRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Alien.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/BoutonNiveau.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/LevelButton.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Asteroide.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/IDestroyable.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Niveau.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/EntityRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/IRenderable.java" />
@@ -153,25 +156,48 @@
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/LevelRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/Renderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/RocketEngine.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/FuelTank.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/ImageHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Alien.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Asteroid.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Planet.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Reactor.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/GravityRocketWindow.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/LevelPanel.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Rocket.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Asteroide.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Asteroid.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/FuelTank.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Reactor.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/rocket/Rocket.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Entity.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/IDestroyable.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/LevelCanvas.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/LevelPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/GravityRocketWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GameLoopThread.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/GameWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/input/KeyboardHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/input/MouseHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GameLoop.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/LevelCanvas.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GameModel.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/CollisionBox.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/rocket/Rocket.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/RectangularCollisionBox.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/SphericCollisionBox.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/CircularCollisionBox.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Planet.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Asteroid.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Level.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="896" />
+    <option name="y" value="44" />
+    <option name="width" value="967" />
+    <option name="height" value="1036" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -181,7 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -221,7 +246,24 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="gravityrocket" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="rocket" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="gravityrocket" type="462c0819:PsiDirectoryNode" />
+              <item name="graphics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="gravityrocket" type="462c0819:PsiDirectoryNode" />
+              <item name="input" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
@@ -233,16 +275,19 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551805193961" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Git/cmd/git.exe" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552933843203" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -266,7 +311,7 @@
       <module name="Projet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="fr.insa.gravityrocket.view.*" />
+          <option name="PATTERN" value="fr.insa.gravityrocket.graphics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -297,17 +342,33 @@
       <workItem from="1551798225252" duration="15000" />
       <workItem from="1551798470915" duration="1136000" />
       <workItem from="1551800504148" duration="4665000" />
+      <workItem from="1552730065461" duration="2256000" />
+      <workItem from="1552766639103" duration="680000" />
+      <workItem from="1552824257177" duration="2892000" />
+      <workItem from="1552845546435" duration="4912000" />
+      <workItem from="1552893942383" duration="3138000" />
+      <workItem from="1552911613855" duration="1532000" />
+      <workItem from="1552929822102" duration="1179000" />
+      <workItem from="1553007949075" duration="1526000" />
     </task>
+    <task id="LOCAL-00001" summary="+ Ajout du système de gravité&#10;+ Début des boites de collisions">
+      <created>1553008884661</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1553008884661</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13213000" />
+    <option name="totallyTimeSpent" value="31328000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13221477" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16602103" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -315,9 +376,9 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.11898017" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.28895184" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32829374" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2688985" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.28185746" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -326,7 +387,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.18696883" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.18682505" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -341,67 +402,64 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="+ Ajout du système de gravité&#10;+ Début des boites de collisions" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Ajout du système de gravité&#10;+ Début des boites de collisions" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="entity.gravitationalForce(otherEntity)" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>yAcceleration != 0</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entity.getRotation() != 0</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>keyboardHandler.isKeyPressed(KeyEvent.VK_LEFT)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="watch">
+      <expression>
+        <expression-string>entity.gravitationalForce(otherEntity)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>e.getKeyCode()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/PanelAccueil.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/PanelNiveau.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/LevelSelectionPanel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/LevelButton.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Asteroide.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/FenetreGravityRocket.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/MathHelper.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Vector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="85" column="13" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/HashSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
-          <caret line="104" column="11" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="11" />
-          <folding>
-            <element signature="e#3740#3741#0" expanded="true" />
-            <element signature="e#3777#3778#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Vector.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/HashSet.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/EntityRenderer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/IRenderable.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Set.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Set.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/RendererMapEntry.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/RendererEntry.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7596">
-          <caret line="489" column="62" selection-start-line="489" selection-start-column="62" selection-end-line="489" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/Class.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/RendererManager.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/LevelRenderer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/Renderer.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/IDestroyable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/FuelTank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/ImageHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -412,122 +470,243 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Entity.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/event/KeyEvent.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Timer.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/Timer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Alien.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="73" column="6" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Alien.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
+        <state relative-caret-position="360">
           <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Asteroid.java">
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/rocket/Reactor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        <state relative-caret-position="100">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Planet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/rocket/FuelTank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        <state relative-caret-position="240">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/event/KeyEvent.java">
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/IDestroyable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16721">
-          <caret line="1099" column="34" selection-start-line="1099" selection-start-column="34" selection-end-line="1099" selection-end-column="34" />
+        <state relative-caret-position="100">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/Graphics.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="160" column="25" selection-start-line="160" selection-start-column="25" selection-end-line="160" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/image/BufferStrategy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/LevelPanel.java" />
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/Container.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="144" column="45" lean-forward="true" selection-start-line="144" selection-start-column="45" selection-end-line="144" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/Runnable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/Component.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="1378" column="5" lean-forward="true" selection-start-line="1378" selection-start-column="5" selection-end-line="1378" selection-end-column="5" />
           <folding>
-            <element signature="e#39153#39154#0" expanded="true" />
-            <element signature="e#39183#39184#0" expanded="true" />
+            <element signature="e#42142#42143#0" expanded="true" />
+            <element signature="e#42174#42175#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Timer.java">
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/event/KeyEvent.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2195">
-          <caret line="136" column="45" lean-forward="true" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
+        <state relative-caret-position="400">
+          <caret line="213" column="53" lean-forward="true" selection-start-line="213" selection-start-column="53" selection-end-line="213" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/Timer.java">
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/event/MouseEvent.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="196" column="28" lean-forward="true" selection-start-line="196" selection-start-column="28" selection-end-line="196" selection-end-column="28" />
+        <state relative-caret-position="-360">
+          <caret line="21" column="48" lean-forward="true" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Reactor.java">
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/Thread.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="-370">
+          <caret line="102" column="53" selection-start-line="102" selection-start-column="49" selection-end-line="102" selection-end-column="53" />
           <folding>
-            <element signature="e#677#678#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#757#758#0" expanded="true" />
-            <element signature="e#790#791#0" expanded="true" />
+            <element signature="e#5637#5638#0" expanded="true" />
+            <element signature="e#5707#5708#0" expanded="true" />
+            <element signature="e#5741#5742#0" expanded="true" />
+            <element signature="e#5811#5812#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/GravityRocketWindow.java">
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/Canvas.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        <state relative-caret-position="120">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/event/KeyAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/input/MouseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#561#562#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#951#952#0" expanded="true" />
-            <element signature="e#996#997#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/view/LevelPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/input/KeyboardHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+        <state relative-caret-position="284">
+          <caret line="37" column="47" lean-forward="true" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#948#949#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#1008#1009#0" expanded="true" />
-            <element signature="e#1060#1061#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/model/entity/Rocket.java">
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/awt/Graphics2D.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="225">
+          <caret line="104" column="25" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/Math.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+          <folding>
+            <element signature="e#2374#2375#0" expanded="true" />
+            <element signature="e#2423#2424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GameLoop.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/LevelCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1688#1689#0" expanded="true" />
-            <element signature="e#1752#1753#0" expanded="true" />
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1899#1900#0" expanded="true" />
-            <element signature="e#1988#1989#0" expanded="true" />
-            <element signature="e#2112#2113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/GameWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="31" column="40" lean-forward="true" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1261#1262#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+        <state relative-caret-position="820">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/RectangularCollisionBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/CollisionBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Planet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="84" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#130#131#0" expanded="true" />
+            <element signature="e#167#168#0" expanded="true" />
+            <element signature="e#517#518#0" expanded="true" />
+            <element signature="e#564#565#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Asteroid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/rocket/Rocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#2241#2242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GameModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -536,12 +715,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/Level.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+        <state relative-caret-position="560">
+          <caret line="82" column="6" lean-forward="true" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1344#1345#0" expanded="true" />
-            <element signature="e#1373#1374#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/CircularCollisionBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+          <folding>
+            <element signature="e#207#208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/entity/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="66" column="92" selection-start-line="66" selection-start-column="92" selection-end-line="66" selection-end-column="92" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1353#1354#0" expanded="true" />
+            <element signature="e#1372#1373#0" expanded="true" />
+            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#4550#4551#0" expanded="true" />
+            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#4680#4681#0" expanded="true" />
+            <element signature="e#4752#4753#0" expanded="true" />
+            <element signature="e#4812#4813#0" expanded="true" />
+            <element signature="e#4874#4875#0" expanded="true" />
+            <element signature="e#4940#4941#0" expanded="true" />
+            <element signature="e#5028#5029#0" expanded="true" />
+            <element signature="e#5090#5091#0" expanded="true" />
+            <element signature="e#5170#5171#0" expanded="true" />
+            <element signature="e#5232#5233#0" expanded="true" />
+            <element signature="e#5312#5313#0" expanded="true" />
+            <element signature="e#5388#5389#0" expanded="true" />
+            <element signature="e#5496#5497#0" expanded="true" />
+            <element signature="e#5572#5573#0" expanded="true" />
+            <element signature="e#5680#5681#0" expanded="true" />
+            <element signature="e#5756#5757#0" expanded="true" />
+            <element signature="e#5864#5865#0" expanded="true" />
+            <element signature="e#5954#5955#0" expanded="true" />
+            <element signature="e#6170#6171#0" expanded="true" />
           </folding>
         </state>
       </provider>
