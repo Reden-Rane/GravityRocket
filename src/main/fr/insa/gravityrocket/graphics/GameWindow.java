@@ -1,8 +1,8 @@
 package fr.insa.gravityrocket.graphics;
 
 import fr.insa.gravityrocket.GravityRocket;
-import fr.insa.gravityrocket.input.KeyboardHandler;
-import fr.insa.gravityrocket.input.MouseHandler;
+import fr.insa.gravityrocket.logic.input.KeyboardHandler;
+import fr.insa.gravityrocket.logic.input.MouseHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,12 +17,10 @@ public class GameWindow extends JFrame
 
     public GameWindow(String title, int width, int height, KeyboardHandler keyboardHandler, MouseHandler mouseHandler) {
         super(title);
-        this.setSize(new Dimension(width, height));
-        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.levelCanvas = new LevelCanvas();
-        this.levelCanvas.setBounds(0, 0, width, height);
+        this.levelCanvas.setPreferredSize(new Dimension(width, height));
         this.levelCanvas.setIgnoreRepaint(true);
         this.add(this.levelCanvas);
 
@@ -31,6 +29,8 @@ public class GameWindow extends JFrame
         this.levelCanvas.setFocusable(true);
         this.levelCanvas.requestFocus();
 
+        this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

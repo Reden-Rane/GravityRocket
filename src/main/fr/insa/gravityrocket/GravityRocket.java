@@ -1,8 +1,12 @@
 package fr.insa.gravityrocket;
 
 import fr.insa.gravityrocket.graphics.GameWindow;
-import fr.insa.gravityrocket.input.KeyboardHandler;
-import fr.insa.gravityrocket.input.MouseHandler;
+import fr.insa.gravityrocket.logic.input.KeyboardHandler;
+import fr.insa.gravityrocket.logic.input.MouseHandler;
+import fr.insa.gravityrocket.sound.SoundHelper;
+import javafx.application.Application;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 
@@ -10,8 +14,12 @@ import javax.swing.*;
  * Classe principale du jeu depuis laquelle ce dernier est lancé. Elle contient l'instance de la fenêtre ainsi que la
  * référence au modèle (partie logique du jeu). Cette classe est un singleton, elle n'est instanciée qu'une fois
  */
-public class GravityRocket
+public class GravityRocket extends Application
 {
+
+    public static final int WINDOW_WIDTH  = 1500;
+    public static final int WINDOW_HEIGHT = 1000;
+
     private static final String GAME_TITLE       = "Gravity Rocket";
     private static final int    TICKS_PER_SECOND = 20;
 
@@ -23,16 +31,28 @@ public class GravityRocket
     private final KeyboardHandler keyboardHandler;
     private final MouseHandler    mouseHandler;
 
+    private final MediaPlayer musicPlayer;
+
     private GravityRocket() {
+        GravityRocket.instance = this;
+
         this.keyboardHandler = new KeyboardHandler();
         this.mouseHandler = new MouseHandler();
 
-        this.gameWindow = new GameWindow(GAME_TITLE, 1500, 1000, this.keyboardHandler, this.mouseHandler);
+        this.gameWindow = new GameWindow(GAME_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT, this.keyboardHandler, this.mouseHandler);
 
         this.gameModel = new GameModel();
         this.gameModel.setupDefaultLevel();
 
+        this.musicPlayer = SoundHelper.createPlayer("/sounds/music/music01.wav", true);
+        this.musicPlayer.play();
+
         startGameLoop();
+
+    }
+
+    public static void main(String[] args) {
+        new GravityRocket();
     }
 
     /**
@@ -66,16 +86,15 @@ public class GravityRocket
         return mouseHandler;
     }
 
-    public void setFPS(int fps) {
-        this.gameWindow.setTitle(String.format("%s | %d fps", GAME_TITLE, fps));
-    }
-
     public static GravityRocket getInstance() {
         return instance;
     }
 
-    public static void main(String[] args) {
-        GravityRocket.instance = new GravityRocket();
+    @Override
+    public void start(Stage stage) throws Exception {}
+
+    public MediaPlayer getMusicPlayer() {
+        return musicPlayer;
     }
 
 }
