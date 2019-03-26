@@ -9,17 +9,23 @@ import java.awt.*;
 public class Planet extends Entity
 {
 
+    private final String name;
     private final Image  texture;
     private final double density;
 
-    public Planet(Level level, Image texture, double density, double radius) {
-        this(level, texture, density, radius, 0, 0);
+    public Planet(Level level, String name, Image texture, double density, double radius) {
+        this(level, name, texture, density, radius, 0, 0);
     }
 
-    public Planet(Level level, Image texture, double density, double radius, double posX, double posY) {
+    public Planet(Level level, String name, Image texture, double density, double radius, double posX, double posY) {
         super(level, posX, posY, radius * 2, radius * 2, 0);
+        this.name = name;
         this.density = density;
         this.texture = texture;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Image getTexture() {

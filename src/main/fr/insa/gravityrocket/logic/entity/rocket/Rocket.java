@@ -61,11 +61,17 @@ public class Rocket extends Entity implements IDestroyable
 
             Planet planet = (Planet) entity;
 
+            this.boosterSoundPlayer.stop();
+            getBoosterReactor().setActive(false);
+            this.leftThrusterActivated = false;
+            this.rightThrusterActivated = false;
+
             if (canLandOnPlanet(planet)) {
 
                 if (getLevel().getTargetedPlanet() == planet) {
                     getLevel().setGameOver(true, EnumGameOverType.SUCCESS);
                 } else {
+                    getBoosterReactor().setActive(false);
                     getLevel().setGameOver(true, EnumGameOverType.WRONG_PLANET);
                 }
 
@@ -89,7 +95,7 @@ public class Rocket extends Entity implements IDestroyable
 
         double angle          = Math.acos(xPlanetNormal * xRocketDirection + yPlanetNormal * yRocketDirection);
         double speedMagnitude = Math.sqrt(getXSpeed() * getXSpeed() + getYSpeed() * getYSpeed());
-        return angle < 5 && speedMagnitude < 100;
+        return angle < Math.toRadians(20) && speedMagnitude < 100;
     }
 
     private void crashRocket() {

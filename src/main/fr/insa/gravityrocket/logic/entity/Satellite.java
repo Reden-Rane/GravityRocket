@@ -25,8 +25,8 @@ public class Satellite extends Planet
      */
     private       double orbitalAngle;
 
-    public Satellite(Level level, Image texture, Planet planet, double orbitalDistance, double orbitalSpeed, double density, double radius) {
-        super(level, texture, density, radius);
+    public Satellite(Level level, String name, Image texture, Planet planet, double orbitalDistance, double orbitalSpeed, double density, double radius) {
+        super(level, name, texture, density, radius);
         this.orbitalDistance = orbitalDistance;
         this.orbitalSpeed = orbitalSpeed;
         this.planet = planet;

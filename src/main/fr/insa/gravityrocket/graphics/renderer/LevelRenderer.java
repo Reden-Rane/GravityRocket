@@ -19,7 +19,7 @@ import static fr.insa.gravityrocket.graphics.GameView.WINDOW_WIDTH;
 public class LevelRenderer implements IRenderer<Level>
 {
 
-    private static final boolean DEBUG_MODE  = true;
+    private static final boolean DEBUG_MODE  = false;
     private static final Color   SPACE_COLOR = new Color(14, 21, 33);
     private final        Image   dangerImage;
 
@@ -35,6 +35,10 @@ public class LevelRenderer implements IRenderer<Level>
         AffineTransform prevTransform = g2d.getTransform();
         applyCameraTransform(level, g2d);
 
+        if (DEBUG_MODE) {
+            renderLevelBounds(level, g2d);
+        }
+
         for (Entity entity : level.getEntitySet()) {
             renderEntity(entity, g2d);
 
@@ -45,6 +49,12 @@ public class LevelRenderer implements IRenderer<Level>
         g2d.setTransform(prevTransform);
 
         renderHUD(level, g2d);
+    }
+
+    private void renderLevelBounds(Level level, Graphics2D g2d) {
+        g2d.setStroke(new BasicStroke(5));
+        g2d.setColor(Color.RED);
+        g2d.drawRect(level.getBounds().x, level.getBounds().y, level.getBounds().width, level.getBounds().height);
     }
 
     private void renderBackground(Level level, Graphics2D g2d) {
@@ -104,14 +114,17 @@ public class LevelRenderer implements IRenderer<Level>
 
         if (level.isGameOver()) {
 
-            float  fontHeight = 150;
-            Font   font       = FontHelper.BEBAS_NEUE_FONT.deriveFont(fontHeight).deriveFont(Font.BOLD);
-            double scale      = 0.9 + 0.1 * (Math.cos(System.currentTimeMillis() / 1000.0) + 1) / 2;
+            float  textFontHeight    = 150;
+            float  subTextFontHeight = 50;
+            Font   textFont          = FontHelper.BEBAS_NEUE_FONT.deriveFont(textFontHeight).deriveFont(Font.BOLD);
+            Font   subTextFont       = FontHelper.BEBAS_NEUE_FONT.deriveFont(subTextFontHeight).deriveFont(Font.PLAIN);
+            double scale             = 0.9 + 0.1 * (Math.cos(System.currentTimeMillis() / 1000.0) + 1) / 2;
 
             Color textStartColor;
             Color textEndColor;
+            Color subTextColor;
 
-            Color shadowColor  = shadowColor = new Color(42, 42, 42);
+            Color shadowColor  = new Color(42, 42, 42);
             Color outlineColor = new Color(75, 75, 75);
 
             String text;
@@ -122,16 +135,19 @@ public class LevelRenderer implements IRenderer<Level>
                 subText = "Vous vous êtes écrasé";
                 textStartColor = Color.RED;
                 textEndColor = Color.DARK_GRAY;
+                subTextColor = Color.RED;
             } else if (level.getGameOverType() == EnumGameOverType.WRONG_PLANET) {
                 text = "GAME OVER";
                 subText = "Vous n'avez pas atterri sur la bonne planète";
                 textStartColor = Color.RED;
                 textEndColor = Color.DARK_GRAY;
+                subTextColor = Color.RED;
             } else if (level.getGameOverType() == EnumGameOverType.OUT_OF_LEVEL) {
                 text = "GAME OVER";
                 subText = "Vous vous êtes trop éloigné de l'objectif";
                 textStartColor = Color.RED;
                 textEndColor = Color.DARK_GRAY;
+                subTextColor = Color.RED;
             } else {
                 text = "BRAVO !";
                 subText = "Vous avez atteint l'objectif";
@@ -139,24 +155,29 @@ public class LevelRenderer implements IRenderer<Level>
                 textEndColor = new Color(0, 102, 0);
                 shadowColor = new Color(42, 42, 42);
                 outlineColor = new Color(75, 75, 75);
+                subTextColor = Color.GREEN;
             }
 
-            Rectangle2D textBounds    = font.getStringBounds(text, g2d.getFontRenderContext());
-            Rectangle2D subTextBounds = font.getStringBounds(subText, g2d.getFontRenderContext());
+            Rectangle2D textBounds    = textFont.getStringBounds(text, g2d.getFontRenderContext());
+            Rectangle2D subTextBounds = subTextFont.getStringBounds(subText, g2d.getFontRenderContext());
             int         textX         = (int) ((WINDOW_WIDTH - textBounds.getWidth()) / 2);
             int         textY         = WINDOW_HEIGHT / 2;
             int         subTextX      = (int) ((WINDOW_WIDTH - subTextBounds.getWidth()) / 2);
-            int         subTextY      = (int) (WINDOW_HEIGHT / 2 + fontHeight);
+            int         subTextY      = WINDOW_HEIGHT / 2 + (int) subTextFontHeight + 10;
 
-            GlyphVector glyphVector = font.createGlyphVector(g2d.getFontRenderContext(), text);
+            g2d.setColor(subTextColor);
+            g2d.setFont(subTextFont);
+            g2d.drawString(subText, subTextX, subTextY);
+
+            GlyphVector glyphVector = textFont.createGlyphVector(g2d.getFontRenderContext(), text);
             Shape       textShape   = glyphVector.getOutline();
 
             AffineTransform prevTransform = g2d.getTransform();
             Stroke          prevStroke    = g2d.getStroke();
 
-            g2d.translate(textX + textBounds.getWidth() / 2, textY - fontHeight / 2);
+            g2d.translate(textX + textBounds.getWidth() / 2, textY - textFontHeight / 2);
             g2d.scale(scale, scale);
-            g2d.translate(-textBounds.getWidth() / 2, fontHeight / 2);
+            g2d.translate(-textBounds.getWidth() / 2, textFontHeight / 2);
 
             int shadowX = 8;
             int shadowY = 8;

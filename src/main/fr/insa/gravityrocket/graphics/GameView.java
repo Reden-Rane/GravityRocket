@@ -1,12 +1,12 @@
 package fr.insa.gravityrocket.graphics;
 
-import fr.insa.gravityrocket.GameModel;
 import fr.insa.gravityrocket.graphics.renderer.LevelRenderer;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 import fr.insa.gravityrocket.graphics.renderer.collision.CircularCollisionBoxRenderer;
 import fr.insa.gravityrocket.graphics.renderer.collision.RectangularCollisionBoxRenderer;
 import fr.insa.gravityrocket.graphics.renderer.entity.PlanetRenderer;
 import fr.insa.gravityrocket.graphics.renderer.entity.RocketRenderer;
+import fr.insa.gravityrocket.logic.GameModel;
 import fr.insa.gravityrocket.logic.Level;
 import fr.insa.gravityrocket.logic.collision.CircularCollisionBox;
 import fr.insa.gravityrocket.logic.collision.RectangularCollisionBox;

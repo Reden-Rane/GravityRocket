@@ -1,6 +1,7 @@
 package fr.insa.gravityrocket;
 
 import fr.insa.gravityrocket.graphics.GameView;
+import fr.insa.gravityrocket.logic.GameModel;
 import fr.insa.gravityrocket.logic.input.KeyboardHandler;
 import fr.insa.gravityrocket.logic.input.MouseHandler;
 import fr.insa.gravityrocket.sound.SoundHelper;

@@ -93,6 +93,7 @@ public class Level
                 this.outOfBoundsCountdown = Math.max(0, this.outOfBoundsCountdown - dt);
 
                 if (this.outOfBoundsCountdown == 0) {
+                    this.dangerSoundPlayer.stop();
                     setGameOver(true, EnumGameOverType.OUT_OF_LEVEL);
                 }
 
