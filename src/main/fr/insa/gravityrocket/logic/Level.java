@@ -17,6 +17,7 @@ public class Level
 {
 
     private final MediaPlayer dangerSoundPlayer;
+    private final MediaPlayer successSoundPlayer;
 
     /**
      * L'ensemble des entités présentes dans le niveau
@@ -43,6 +44,7 @@ public class Level
         this.bounds = bounds;
         this.dangerSoundPlayer = SoundHelper.createPlayer("/sounds/alarm.wav", true);
         this.dangerSoundPlayer.setVolume(0.5);
+        this.successSoundPlayer = SoundHelper.createPlayer("/sounds/success.wav", false);
         resetOutOfBoundsCountdown();
     }
 
@@ -117,6 +119,11 @@ public class Level
     public void setGameOver(boolean gameOver, EnumGameOverType enumGameOverType) {
         this.gameOver = gameOver;
         this.gameOverType = enumGameOverType;
+
+        if (this.gameOverType == EnumGameOverType.SUCCESS) {
+            this.successSoundPlayer.stop();
+            this.successSoundPlayer.play();
+        }
     }
 
     public Rectangle getBounds() {

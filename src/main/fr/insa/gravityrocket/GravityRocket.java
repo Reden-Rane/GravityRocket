@@ -43,7 +43,7 @@ public class GravityRocket extends Application
 
         this.gameView = new GameView(this.gameModel, this.keyboardHandler, this.mouseHandler);
 
-        this.musicPlayer = SoundHelper.createPlayer("/sounds/music/music01.wav", true);
+        this.musicPlayer = SoundHelper.createPlayer("/sounds/music/rayman_music.wav", true);
         this.musicPlayer.play();
 
         startGameLoop();

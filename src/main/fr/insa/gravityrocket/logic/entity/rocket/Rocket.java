@@ -16,6 +16,7 @@ public class Rocket extends Entity implements IDestroyable
 {
 
     private final MediaPlayer boosterSoundPlayer;
+    private final MediaPlayer nicoSoundPlayer;
 
     /**
      * Les points de vie de la fusée
@@ -31,6 +32,9 @@ public class Rocket extends Entity implements IDestroyable
      */
     private Reactor  boosterReactor;
 
+    private boolean wasLeftThrusterActivated;
+    private boolean wasRightThrusterActivated;
+
     private boolean leftThrusterActivated;
     private boolean rightThrusterActivated;
 
@@ -42,12 +46,16 @@ public class Rocket extends Entity implements IDestroyable
         super(level, posX, posY, 15, 36, rotation);
         this.tank = tank;
         this.boosterReactor = boosterReactor;
-        this.boosterSoundPlayer = SoundHelper.createPlayer("/sounds/rocket_booster.wav", true);
+        this.boosterSoundPlayer = SoundHelper.createPlayer("/sounds/shoosh.wav", true);
+        this.nicoSoundPlayer = SoundHelper.createPlayer("/sounds/nico.wav", false);
         this.life = 10;
     }
 
     @Override
     public void update(double dt) {
+        this.wasLeftThrusterActivated = this.leftThrusterActivated;
+        this.wasRightThrusterActivated = this.rightThrusterActivated;
+
         updateInputs();
         updateBooster();
         updateTank(dt);
@@ -143,6 +151,16 @@ public class Rocket extends Entity implements IDestroyable
             this.boosterSoundPlayer.play();
         } else {
             this.boosterSoundPlayer.stop();
+        }
+
+        if (!wasLeftThrusterActivated && leftThrusterActivated) {
+            this.nicoSoundPlayer.stop();
+            this.nicoSoundPlayer.play();
+        }
+
+        if (!wasRightThrusterActivated && rightThrusterActivated) {
+            this.nicoSoundPlayer.stop();
+            this.nicoSoundPlayer.play();
         }
     }
 

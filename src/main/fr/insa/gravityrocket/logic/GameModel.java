@@ -30,10 +30,10 @@ public class GameModel
         rocket.setXPos(1800);
         rocket.setYPos(200);
 
-        Image earthTexture  = ImageHelper.loadImage("/textures/star/earth.png", 200, 200);
-        Image venusTexture  = ImageHelper.loadImage("/textures/star/venus.png", 200, 200);
-        Image moonTexture   = ImageHelper.loadImage("/textures/star/moon.png", 40, 40);
-        Image uranusTexture = ImageHelper.loadImage("/textures/star/uranus.png", 200, 200);
+        Image earthTexture  = ImageHelper.loadImage("/textures/star/nico_planet.png", 200, 200);
+        Image venusTexture  = ImageHelper.loadImage("/textures/star/nico_planet.png", 200, 200);
+        Image moonTexture   = ImageHelper.loadImage("/textures/star/nico_planet.png", 40, 40);
+        Image uranusTexture = ImageHelper.loadImage("/textures/star/nico_planet.png", 200, 200);
 
         Planet    earth  = new Planet(this.currentLevel, "Terre", earthTexture, 2 * Math.pow(10, 9), 100, 0, 0);
         Satellite moon   = new Satellite(this.currentLevel, "Lune", moonTexture, earth, 50, Math.PI / 16, 2 * Math.pow(10, 10), 20);
