@@ -1,9 +1,8 @@
 package fr.insa.gravityrocket.logic.entity;
 
+import fr.insa.gravityrocket.logic.Level;
 import fr.insa.gravityrocket.logic.collision.CollisionBox;
 import fr.insa.gravityrocket.logic.collision.RectangularCollisionBox;
-
-import java.awt.*;
 
 /**
  * Classe abstraite d'une entité: objet positionnable dans l'espace, possédant une vitesse, une accélération, une
@@ -11,6 +10,8 @@ import java.awt.*;
  */
 public abstract class Entity
 {
+
+    private final Level level;
 
     /**
      * La position selon l'axe x en mètres
@@ -57,27 +58,24 @@ public abstract class Entity
      */
     private       double rotationAcceleration;
 
-    private final CollisionBox collisionBox;
+    private CollisionBox collisionBox;
 
-    public Entity(double width, double height) {
-        this(new RectangularCollisionBox(width, height), width, height);
+    public Entity(Level level, double width, double height) {
+        this(level, 0, 0, width, height, 0);
     }
 
-    public Entity(double xPos, double yPos, double width, double height, double rotation) {
-        this(new RectangularCollisionBox(width, height), xPos, yPos, width, height, rotation);
-    }
-
-    public Entity(CollisionBox collisionBox, double width, double height) {
-        this(collisionBox, 0, 0, width, height, 0);
-    }
-
-    public Entity(CollisionBox collisionBox, double xPos, double yPos, double width, double height, double rotation) {
-        this.collisionBox = collisionBox;
+    public Entity(Level level, double xPos, double yPos, double width, double height, double rotation) {
+        this.level = level;
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
         this.rotation = rotation;
+        this.collisionBox = computeCollisionBox();
+    }
+
+    public CollisionBox computeCollisionBox() {
+        return new RectangularCollisionBox(getXPos(), getYPos(), getWidth(), getHeight(), getRotation());
     }
 
     /**
@@ -86,12 +84,46 @@ public abstract class Entity
      * @param dt La petite variation de temps entre l'instant de la dernière mise à jour et le temps actuel
      */
     public void update(double dt) {
+
+        for (Entity otherEntity : getLevel().getEntitySet()) {
+
+            if (otherEntity == this) {
+                continue;
+            }
+
+            if (collidesWith(otherEntity)) {
+                onCollisionWith(otherEntity);
+            }
+
+            if (isAttractedBy(otherEntity)) {
+                applyGravitationalAcceleration(otherEntity);
+            }
+        }
+
         this.xSpeed += this.xAcceleration * dt;
         this.ySpeed += this.yAcceleration * dt;
         this.rotationSpeed += this.rotationAcceleration * dt;
         this.xPos += this.xSpeed * dt;
         this.yPos += this.ySpeed * dt;
         this.rotation += this.rotationSpeed * dt;
+        this.updateCollisionBox();
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public boolean collidesWith(Entity otherEntity) {
+        return getCollisionBox().collidesWith(otherEntity.getCollisionBox());
+    }
+
+    /**
+     * Méthode appelée quand l'entité rentre en collision avec une autre
+     *
+     * @param entity L'entité qui entre en collision avec l'entité actuelle
+     */
+    public void onCollisionWith(Entity entity) {
+
     }
 
     /**
@@ -119,50 +151,73 @@ public abstract class Entity
     }
 
     /**
-     * @param entity L'autre entité depuis laquelle on mesure la ditance avec l'entité actuelle
+     * @param entity L'autre entité qui pourrait attirer l'entité actuelle
      *
-     * @return Retourne le carré de la distance entre l'entité courante et une autre entité, permet d'alléger les
-     * calculs car Math.sqrt est gourmand en ressource CPU
+     * @return Vrai si l'entité peut être attirée par l'entité donnée
      */
-    public double squaredDistance(Entity entity) {
-        return (entity.xPos - this.xPos) * (entity.xPos - this.xPos) + (entity.yPos - this.yPos) * (entity.yPos - this.yPos);
+    public boolean isAttractedBy(Entity entity) {
+        return true;
     }
 
-    /**
-     * @param entity L'autre entité depuis laquelle on mesure la ditance avec l'entité actuelle
-     *
-     * @return Retourne la distance entre l'entité courante et une autre entité
-     */
-    public double distance(Entity entity) {
-        return Math.sqrt(squaredDistance(entity));
-    }
+    private void applyGravitationalAcceleration(Entity otherEntity) {
 
-    /**
-     * Dessine l'entité à l'écran
-     *
-     * @param g2d L'instance de Graphics2D permettant de réaliser le rendu
-     */
-    public abstract void render(Graphics2D g2d);
+        double forceX = 0;
+        double forceY = 0;
+
+        double distanceToOther = this.distanceTo(otherEntity);
+
+        if (distanceToOther != 0) {
+            forceX += this.gravitationalForce(otherEntity) * (otherEntity.getXPos() - this.getXPos()) / distanceToOther;
+            forceY += this.gravitationalForce(otherEntity) * (otherEntity.getYPos() - this.getYPos()) / distanceToOther;
+        }
+
+        //Application du principe fondamental de la dynamique: somme des forces = masse * acceleration => acceleration = somme des forces / masse
+        this.accelerate(forceX / this.getMass(), forceY / this.getMass());
+    }
 
     /**
      * @return Retourne la masse de l'entité
      */
     public abstract double getMass();
 
+    public void updateCollisionBox() {
+        this.collisionBox = computeCollisionBox();
+    }
+
+    public CollisionBox getCollisionBox() {
+        return collisionBox;
+    }
+
+    /**
+     * @param entity L'autre entité depuis laquelle on mesure la ditance avec l'entité actuelle
+     *
+     * @return Retourne la distanceTo entre l'entité courante et une autre entité
+     */
+    public double distanceTo(Entity entity) {
+        return Math.sqrt(squaredDistance(entity));
+    }
+
     public double getXPos() {
         return xPos;
     }
 
-    public void setXPos(double xPos) {
-        this.xPos = xPos;
+    public void accelerate(double xAcceleration, double yAcceleration) {
+        setXAcceleration(getXAcceleration() + xAcceleration);
+        setYAcceleration(getYAcceleration() + yAcceleration);
     }
 
     public double getYPos() {
         return yPos;
     }
 
-    public void setYPos(double yPos) {
-        this.yPos = yPos;
+    /**
+     * @param entity L'autre entité depuis laquelle on mesure la ditance avec l'entité actuelle
+     *
+     * @return Retourne le carré de la distanceTo entre l'entité courante et une autre entité, permet d'alléger les
+     * calculs car Math.sqrt est gourmand en ressource CPU
+     */
+    public double squaredDistance(Entity entity) {
+        return (entity.xPos - this.xPos) * (entity.xPos - this.xPos) + (entity.yPos - this.yPos) * (entity.yPos - this.yPos);
     }
 
     public double getWidth() {
@@ -221,6 +276,11 @@ public abstract class Entity
         this.yAcceleration = yAcceleration;
     }
 
+    public void setXPos(double xPos) {
+        this.xPos = xPos;
+        updateCollisionBox();
+    }
+
     public double getRotationAcceleration() {
         return rotationAcceleration;
     }
@@ -229,8 +289,9 @@ public abstract class Entity
         this.rotationAcceleration = rotationAcceleration;
     }
 
-    public CollisionBox getCollisionBox() {
-        return collisionBox;
+    public void setYPos(double yPos) {
+        this.yPos = yPos;
+        updateCollisionBox();
     }
 
 }

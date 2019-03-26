@@ -1,5 +1,7 @@
 package fr.insa.gravityrocket.logic.entity;
 
+import fr.insa.gravityrocket.logic.Level;
+
 import java.awt.*;
 
 public class Satellite extends Planet
@@ -11,7 +13,7 @@ public class Satellite extends Planet
     private final Planet planet;
 
     /**
-     * La distance entre le satellite et la planète
+     * La distanceTo entre le satellite et la planète
      */
     private final double orbitalDistance;
     /**
@@ -23,8 +25,8 @@ public class Satellite extends Planet
      */
     private       double orbitalAngle;
 
-    public Satellite(Image texture, Planet planet, double orbitalDistance, double orbitalSpeed, double density, double radius) {
-        super(texture, density, radius);
+    public Satellite(Level level, Image texture, Planet planet, double orbitalDistance, double orbitalSpeed, double density, double radius) {
+        super(level, texture, density, radius);
         this.orbitalDistance = orbitalDistance;
         this.orbitalSpeed = orbitalSpeed;
         this.planet = planet;

@@ -1,23 +1,19 @@
 package fr.insa.gravityrocket.logic.entity.rocket;
 
 import fr.insa.gravityrocket.GravityRocket;
-import fr.insa.gravityrocket.graphics.ImageHelper;
+import fr.insa.gravityrocket.logic.EnumGameOverType;
+import fr.insa.gravityrocket.logic.Level;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.entity.IDestroyable;
+import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.input.KeyboardHandler;
 import fr.insa.gravityrocket.sound.SoundHelper;
 import javafx.scene.media.MediaPlayer;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.geom.AffineTransform;
 
 public class Rocket extends Entity implements IDestroyable
 {
-
-    private final Image rocketImage;
-    private final Image flameImage;
-    private final Image gasImage;
 
     private final MediaPlayer boosterSoundPlayer;
 
@@ -38,26 +34,16 @@ public class Rocket extends Entity implements IDestroyable
     private boolean leftThrusterActivated;
     private boolean rightThrusterActivated;
 
-    public Rocket() {
-        this(0, 0, 0);
+    public Rocket(Level level, FuelTank tank, Reactor boosterReactor) {
+        this(level, tank, boosterReactor, 0, 0, 0);
     }
 
-    public Rocket(double posX, double posY, double rotation) {
-        super(posX, posY, 15, 36, rotation);
-
-        //On charge les ressources liées à la fusée (textures, sons)
-        this.rocketImage = ImageHelper.loadImage("/textures/entity/rocket/rocket.png", (int) (getWidth()), (int) (getHeight()));
-        this.flameImage = ImageHelper.loadImage("/textures/entity/rocket/flame.png", (int) (getWidth() * 2 / 3.0), (int) (getHeight() * 2 / 3.0));
-        this.gasImage = ImageHelper.loadImage("/textures/entity/rocket/gas.png", (int) (getWidth() * 2 / 5.0), (int) (getHeight() * 2 / 5.0));
-        this.boosterSoundPlayer = SoundHelper.createPlayer("/sounds/rocket_booster.wav", true);
-
-        this.life = 10;
-    }
-
-    public Rocket(FuelTank tank, Reactor boosterReactor) {
-        this(0, 0, 0);
+    public Rocket(Level level, FuelTank tank, Reactor boosterReactor, double posX, double posY, double rotation) {
+        super(level, posX, posY, 15, 36, rotation);
         this.tank = tank;
         this.boosterReactor = boosterReactor;
+        this.boosterSoundPlayer = SoundHelper.createPlayer("/sounds/rocket_booster.wav", true);
+        this.life = 10;
     }
 
     @Override
@@ -67,6 +53,48 @@ public class Rocket extends Entity implements IDestroyable
         updateTank(dt);
         updateSounds();
         super.update(dt);
+    }
+
+    @Override
+    public void onCollisionWith(Entity entity) {
+        if (entity instanceof Planet) {
+
+            Planet planet = (Planet) entity;
+
+            if (canLandOnPlanet(planet)) {
+
+                if (getLevel().getTargetedPlanet() == planet) {
+                    getLevel().setGameOver(true, EnumGameOverType.SUCCESS);
+                } else {
+                    getLevel().setGameOver(true, EnumGameOverType.WRONG_PLANET);
+                }
+
+
+            } else {
+                crashRocket();
+                getLevel().setGameOver(true, EnumGameOverType.CRASH);
+            }
+        }
+    }
+
+    private boolean canLandOnPlanet(Planet planet) {
+        double xPlanetNormal = this.getXPos() - planet.getXPos();
+        double yPlanetNormal = this.getYPos() - planet.getYPos();
+        double normalLength  = Math.sqrt(xPlanetNormal * xPlanetNormal + yPlanetNormal * yPlanetNormal);
+        xPlanetNormal /= normalLength;
+        yPlanetNormal /= normalLength;
+
+        double xRocketDirection = Math.sin(getRotation());
+        double yRocketDirection = -Math.cos(getRotation());
+
+        double angle          = Math.acos(xPlanetNormal * xRocketDirection + yPlanetNormal * yRocketDirection);
+        double speedMagnitude = Math.sqrt(getXSpeed() * getXSpeed() + getYSpeed() * getYSpeed());
+        return angle < 5 && speedMagnitude < 100;
+    }
+
+    private void crashRocket() {
+        this.life = 0;
+        this.boosterSoundPlayer.stop();
     }
 
     private void updateInputs() {
@@ -83,28 +111,9 @@ public class Rocket extends Entity implements IDestroyable
         this.leftThrusterActivated = !getTank().isEmpty() && (keyboardHandler.isKeyPressed(KeyEvent.VK_RIGHT) || keyboardHandler.isKeyPressed(KeyEvent.VK_DOWN));
     }
 
-    private void updateBooster() {
-
-        if (getBoosterReactor().isActive()) {
-            double forcePropulsionX = getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
-            double forcePropulsionY = -getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
-            setXAcceleration(getXAcceleration() + forcePropulsionX / getMass());
-            setYAcceleration(getYAcceleration() + forcePropulsionY / getMass());
-        }
-
-        if (this.leftThrusterActivated && this.rightThrusterActivated) {
-            double forcePropulsionX = -getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
-            double forcePropulsionY = getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
-            setRotationSpeed(0);
-            setXAcceleration(getXAcceleration() + forcePropulsionX / getMass());
-            setYAcceleration(getYAcceleration() + forcePropulsionY / getMass());
-        } else if (this.leftThrusterActivated) {
-            setRotationSpeed(Math.PI * 0.8);
-        } else if (this.rightThrusterActivated) {
-            setRotationSpeed(-Math.PI * 0.8);
-        } else {
-            setRotationSpeed(0);
-        }
+    @Override
+    public double getMass() {
+        return 10000 + getTank().getMass() + getBoosterReactor().getMass();
     }
 
     private void updateTank(double dt) {
@@ -131,6 +140,34 @@ public class Rocket extends Entity implements IDestroyable
         }
     }
 
+    private void updateBooster() {
+
+        if (getBoosterReactor().isActive()) {
+            double forcePropulsionX = getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
+            double forcePropulsionY = -getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
+            setXAcceleration(getXAcceleration() + forcePropulsionX / getMass());
+            setYAcceleration(getYAcceleration() + forcePropulsionY / getMass());
+        }
+
+        if (this.leftThrusterActivated && this.rightThrusterActivated) {
+            double forcePropulsionX = -getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
+            double forcePropulsionY = getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
+            setRotationSpeed(0);
+            accelerate(forcePropulsionX / getMass(), forcePropulsionY / getMass());
+        } else if (this.leftThrusterActivated) {
+            setRotationSpeed(Math.PI * 0.8);
+        } else if (this.rightThrusterActivated) {
+            setRotationSpeed(-Math.PI * 0.8);
+        } else {
+            setRotationSpeed(0);
+        }
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return life <= 0;
+    }
+
     public FuelTank getTank() {
         return tank;
     }
@@ -147,54 +184,12 @@ public class Rocket extends Entity implements IDestroyable
         this.boosterReactor = boosterReactor;
     }
 
-    @Override
-    public void render(Graphics2D g2d) {
-
-        renderGasThrusters(g2d);
-
-        if (getBoosterReactor().isActive()) {
-            g2d.drawImage(flameImage, (int) (getWidth() * 0.17), (int) (getHeight() * 0.88), flameImage.getWidth(null), flameImage.getHeight(null), null);
-        }
-
-        g2d.drawImage(rocketImage, 0, 0, (int) getWidth(), (int) getHeight(), null);
+    public boolean isLeftThrusterActivated() {
+        return leftThrusterActivated;
     }
 
-    private void renderGasThrusters(Graphics2D g2d) {
-
-        if (this.rightThrusterActivated) {
-            renderGas(g2d, getWidth() * 0.9, getHeight() * 0.25, -Math.PI * 3 / 4.0);
-        }
-
-        if (this.leftThrusterActivated) {
-            renderGas(g2d, getWidth() * 0.4, getHeight() * 0.1, Math.PI * 3 / 4.0);
-        }
-
-    }
-
-    private void renderGas(Graphics2D g2d, double x, double y, double rotation) {
-
-        double scale = 0.8 + 0.2 * (Math.cos(System.currentTimeMillis()) + 2) / 2;
-
-        AffineTransform prevTransform = g2d.getTransform();
-        AffineTransform transform     = new AffineTransform();
-
-        transform.translate(x, y);
-        transform.rotate(rotation);
-        transform.scale(scale, scale);
-
-        g2d.transform(transform);
-        g2d.drawImage(gasImage, 0, 0, gasImage.getWidth(null), gasImage.getHeight(null), null);
-        g2d.setTransform(prevTransform);
-    }
-
-    @Override
-    public double getMass() {
-        return 10000 + getTank().getMass() + getBoosterReactor().getMass();
-    }
-
-    @Override
-    public boolean isDestroyed() {
-        return life <= 0;
+    public boolean isRightThrusterActivated() {
+        return rightThrusterActivated;
     }
 
 }

@@ -1,6 +1,6 @@
 package fr.insa.gravityrocket;
 
-import fr.insa.gravityrocket.graphics.GameWindow;
+import fr.insa.gravityrocket.graphics.GameView;
 import fr.insa.gravityrocket.logic.input.KeyboardHandler;
 import fr.insa.gravityrocket.logic.input.MouseHandler;
 import fr.insa.gravityrocket.sound.SoundHelper;
@@ -17,16 +17,14 @@ import javax.swing.*;
 public class GravityRocket extends Application
 {
 
-    public static final int WINDOW_WIDTH  = 1500;
-    public static final int WINDOW_HEIGHT = 1000;
+    public static final String GAME_TITLE = "Gravity Rocket";
 
-    private static final String GAME_TITLE       = "Gravity Rocket";
-    private static final int    TICKS_PER_SECOND = 20;
+    private static final int TICKS_PER_SECOND = 20;
 
     private static GravityRocket instance;
 
-    private final GameWindow gameWindow;
-    private final GameModel  gameModel;
+    private final GameView  gameView;
+    private final GameModel gameModel;
 
     private final KeyboardHandler keyboardHandler;
     private final MouseHandler    mouseHandler;
@@ -39,10 +37,10 @@ public class GravityRocket extends Application
         this.keyboardHandler = new KeyboardHandler();
         this.mouseHandler = new MouseHandler();
 
-        this.gameWindow = new GameWindow(GAME_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT, this.keyboardHandler, this.mouseHandler);
-
         this.gameModel = new GameModel();
         this.gameModel.setupDefaultLevel();
+
+        this.gameView = new GameView(this.gameModel, this.keyboardHandler, this.mouseHandler);
 
         this.musicPlayer = SoundHelper.createPlayer("/sounds/music/music01.wav", true);
         this.musicPlayer.play();
@@ -64,14 +62,14 @@ public class GravityRocket extends Application
 
         Timer timer = new Timer(interval, actionEvent -> {
             getGameModel().update(interval / 1000.0);
-            getGameWindow().render();
+            getGameView().render();
         });
 
         timer.start();
     }
 
-    public GameWindow getGameWindow() {
-        return gameWindow;
+    public GameView getGameView() {
+        return gameView;
     }
 
     public GameModel getGameModel() {
@@ -90,11 +88,15 @@ public class GravityRocket extends Application
         return instance;
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {}
-
+    //TODO A déplacer vers une classe plus appropriée
     public MediaPlayer getMusicPlayer() {
         return musicPlayer;
     }
+
+    /**
+     * Méthode utile à la construction du contexte JavaFX pour utiliser les MediaPlayer
+     */
+    @Override
+    public void start(Stage stage) throws Exception {}
 
 }

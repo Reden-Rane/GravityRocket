@@ -1,42 +1,33 @@
 package fr.insa.gravityrocket.logic.entity;
 
-import java.awt.*;
+import fr.insa.gravityrocket.logic.Level;
 
 public class Alien extends Entity implements IDestroyable
 {
-    public Alien()
-    {
-        this(0, 0, 0);
+
+    public Alien(Level level) {
+        this(level, 0, 0, 0);
     }
 
-    public Alien(double posX, double posY, double rotation)
-    {
-        super(posX, posY, 16, 16, rotation);
+    public Alien(Level level, double posX, double posY, double rotation) {
+        super(level, posX, posY, 16, 16, rotation);
     }
 
     @Override
-    public void update(double dt)
-    {
+    public void update(double dt) {
         super.update(dt);
         //TODO
     }
 
     @Override
-    public void render(Graphics2D g2d)
-    {
-
-    }
-
-    @Override
-    public double getMass()
-    {
+    public double getMass() {
         //TODO
         return 0;
     }
 
     @Override
-    public boolean isDestroyed()
-    {
+    public boolean isDestroyed() {
         return false;
     }
+
 }
