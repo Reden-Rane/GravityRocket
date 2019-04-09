@@ -5,6 +5,7 @@ package fr.insa.gravityrocket.logic.entity.rocket;
  */
 public class FuelTank
 {
+
     /**
      * La densité du carburant
      */

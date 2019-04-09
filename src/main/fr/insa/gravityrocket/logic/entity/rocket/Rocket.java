@@ -1,18 +1,17 @@
 package fr.insa.gravityrocket.logic.entity.rocket;
 
 import fr.insa.gravityrocket.GravityRocket;
-import fr.insa.gravityrocket.logic.EnumGameOverType;
-import fr.insa.gravityrocket.logic.Level;
+import fr.insa.gravityrocket.controller.KeyboardHandler;
+import fr.insa.gravityrocket.logic.SoundHandler;
 import fr.insa.gravityrocket.logic.entity.Entity;
-import fr.insa.gravityrocket.logic.entity.IDestroyable;
 import fr.insa.gravityrocket.logic.entity.Planet;
-import fr.insa.gravityrocket.logic.input.KeyboardHandler;
-import fr.insa.gravityrocket.sound.SoundHelper;
+import fr.insa.gravityrocket.logic.entity.particle.Explosion;
+import fr.insa.gravityrocket.logic.level.Level;
 import javafx.scene.media.MediaPlayer;
 
 import java.awt.event.KeyEvent;
 
-public class Rocket extends Entity implements IDestroyable
+public class Rocket extends Entity
 {
 
     private final MediaPlayer boosterSoundPlayer;
@@ -42,65 +41,28 @@ public class Rocket extends Entity implements IDestroyable
         super(level, posX, posY, 15, 36, rotation);
         this.tank = tank;
         this.boosterReactor = boosterReactor;
-        this.boosterSoundPlayer = SoundHelper.createPlayer("/sounds/rocket_booster.wav", true);
+        this.boosterSoundPlayer = SoundHandler.createPlayer("/sounds/rocket_booster.wav", true);
         this.life = 10;
     }
 
     @Override
     public void update(double dt) {
-        updateInputs();
+        if (!getLevel().isGameOver()) {
+            updateInputs();
+        }
         updateBooster();
         updateTank(dt);
         updateSounds();
         super.update(dt);
-    }
 
-    @Override
-    public void onCollisionWith(Entity entity) {
-        if (entity instanceof Planet) {
-
-            Planet planet = (Planet) entity;
-
-            this.boosterSoundPlayer.stop();
-            getBoosterReactor().setActive(false);
-            this.leftThrusterActivated = false;
-            this.rightThrusterActivated = false;
-
-            if (canLandOnPlanet(planet)) {
-
-                if (getLevel().getTargetedPlanet() == planet) {
-                    getLevel().setGameOver(true, EnumGameOverType.SUCCESS);
-                } else {
-                    getBoosterReactor().setActive(false);
-                    getLevel().setGameOver(true, EnumGameOverType.WRONG_PLANET);
-                }
-
-
-            } else {
-                crashRocket();
-                getLevel().setGameOver(true, EnumGameOverType.CRASH);
-            }
+        if (this.life <= 0) {
+            this.requestRemove();
         }
     }
 
-    private boolean canLandOnPlanet(Planet planet) {
-        double xPlanetNormal = this.getXPos() - planet.getXPos();
-        double yPlanetNormal = this.getYPos() - planet.getYPos();
-        double normalLength  = Math.sqrt(xPlanetNormal * xPlanetNormal + yPlanetNormal * yPlanetNormal);
-        xPlanetNormal /= normalLength;
-        yPlanetNormal /= normalLength;
-
-        double xRocketDirection = Math.sin(getRotation());
-        double yRocketDirection = -Math.cos(getRotation());
-
-        double angle          = Math.acos(xPlanetNormal * xRocketDirection + yPlanetNormal * yRocketDirection);
-        double speedMagnitude = Math.sqrt(getXSpeed() * getXSpeed() + getYSpeed() * getYSpeed());
-        return angle < Math.toRadians(20) && speedMagnitude < 100;
-    }
-
-    private void crashRocket() {
-        this.life = 0;
-        this.boosterSoundPlayer.stop();
+    @Override
+    public boolean isAttractedBy(Entity entity) {
+        return entity instanceof Planet;
     }
 
     private void updateInputs() {
@@ -115,6 +77,28 @@ public class Rocket extends Entity implements IDestroyable
 
         this.rightThrusterActivated = !getTank().isEmpty() && (keyboardHandler.isKeyPressed(KeyEvent.VK_LEFT) || keyboardHandler.isKeyPressed(KeyEvent.VK_DOWN));
         this.leftThrusterActivated = !getTank().isEmpty() && (keyboardHandler.isKeyPressed(KeyEvent.VK_RIGHT) || keyboardHandler.isKeyPressed(KeyEvent.VK_DOWN));
+    }
+
+    private void updateBooster() {
+
+        if (getBoosterReactor().isActive()) {
+            double forcePropulsionX = getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
+            double forcePropulsionY = -getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
+            accelerate(forcePropulsionX / getMass(), forcePropulsionY / getMass());
+        }
+
+        if (this.leftThrusterActivated && this.rightThrusterActivated) {
+            double forcePropulsionX = -getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
+            double forcePropulsionY = getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
+            setRotationSpeed(0);
+            accelerate(forcePropulsionX / getMass(), forcePropulsionY / getMass());
+        } else if (this.leftThrusterActivated) {
+            setRotationSpeed(Math.PI * 0.8);
+        } else if (this.rightThrusterActivated) {
+            setRotationSpeed(-Math.PI * 0.8);
+        } else {
+            setRotationSpeed(0);
+        }
     }
 
     @Override
@@ -146,32 +130,20 @@ public class Rocket extends Entity implements IDestroyable
         }
     }
 
-    private void updateBooster() {
+    public void crashRocket() {
+        this.stopAllEngines();
+        this.life = 0;
 
-        if (getBoosterReactor().isActive()) {
-            double forcePropulsionX = getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
-            double forcePropulsionY = -getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
-            setXAcceleration(getXAcceleration() + forcePropulsionX / getMass());
-            setYAcceleration(getYAcceleration() + forcePropulsionY / getMass());
-        }
-
-        if (this.leftThrusterActivated && this.rightThrusterActivated) {
-            double forcePropulsionX = -getBoosterReactor().getPropulsionForce() * Math.sin(getRotation());
-            double forcePropulsionY = getBoosterReactor().getPropulsionForce() * Math.cos(getRotation());
-            setRotationSpeed(0);
-            accelerate(forcePropulsionX / getMass(), forcePropulsionY / getMass());
-        } else if (this.leftThrusterActivated) {
-            setRotationSpeed(Math.PI * 0.8);
-        } else if (this.rightThrusterActivated) {
-            setRotationSpeed(-Math.PI * 0.8);
-        } else {
-            setRotationSpeed(0);
-        }
+        Explosion explosion = new Explosion(getLevel(), 50, 50);
+        explosion.setPos(getXPos(), getYPos());
+        getLevel().addEntity(explosion);
     }
 
-    @Override
-    public boolean isDestroyed() {
-        return life <= 0;
+    public void stopAllEngines() {
+        this.boosterSoundPlayer.stop();
+        getBoosterReactor().setActive(false);
+        this.leftThrusterActivated = false;
+        this.rightThrusterActivated = false;
     }
 
     public FuelTank getTank() {

@@ -1,4 +1,4 @@
-package fr.insa.gravityrocket.logic.input;
+package fr.insa.gravityrocket.controller;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

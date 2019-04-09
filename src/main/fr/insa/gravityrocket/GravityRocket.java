@@ -1,10 +1,10 @@
 package fr.insa.gravityrocket;
 
-import fr.insa.gravityrocket.graphics.GameView;
-import fr.insa.gravityrocket.logic.GameModel;
-import fr.insa.gravityrocket.logic.input.KeyboardHandler;
-import fr.insa.gravityrocket.logic.input.MouseHandler;
-import fr.insa.gravityrocket.sound.SoundHelper;
+import fr.insa.gravityrocket.controller.KeyboardHandler;
+import fr.insa.gravityrocket.controller.MouseHandler;
+import fr.insa.gravityrocket.graphics.GravityRocketView;
+import fr.insa.gravityrocket.logic.GravityRocketModel;
+import fr.insa.gravityrocket.logic.SoundHandler;
 import javafx.application.Application;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -18,14 +18,12 @@ import javax.swing.*;
 public class GravityRocket extends Application
 {
 
-    public static final String GAME_TITLE = "Gravity Rocket";
-
     private static final int TICKS_PER_SECOND = 20;
 
     private static GravityRocket instance;
 
-    private final GameView  gameView;
-    private final GameModel gameModel;
+    private final GravityRocketView  gravityRocketView;
+    private final GravityRocketModel gravityRocketModel;
 
     private final KeyboardHandler keyboardHandler;
     private final MouseHandler    mouseHandler;
@@ -38,12 +36,12 @@ public class GravityRocket extends Application
         this.keyboardHandler = new KeyboardHandler();
         this.mouseHandler = new MouseHandler();
 
-        this.gameModel = new GameModel();
-        this.gameModel.setupDefaultLevel();
+        this.gravityRocketModel = new GravityRocketModel();
+        this.gravityRocketModel.setupTestLevel();
 
-        this.gameView = new GameView(this.gameModel, this.keyboardHandler, this.mouseHandler);
+        this.gravityRocketView = new GravityRocketView(this.gravityRocketModel, this.keyboardHandler, this.mouseHandler);
 
-        this.musicPlayer = SoundHelper.createPlayer("/sounds/music/music01.wav", true);
+        this.musicPlayer = SoundHandler.createPlayer("/sounds/music/music01.wav", true);
         this.musicPlayer.play();
 
         startGameLoop();
@@ -62,19 +60,19 @@ public class GravityRocket extends Application
         int interval = 1000 / TICKS_PER_SECOND;
 
         Timer timer = new Timer(interval, actionEvent -> {
-            getGameModel().update(interval / 1000.0);
-            getGameView().render();
+            getGravityRocketModel().update(interval / 1000.0);
+            getGravityRocketView().render();
         });
 
         timer.start();
     }
 
-    public GameView getGameView() {
-        return gameView;
+    public GravityRocketModel getGravityRocketModel() {
+        return gravityRocketModel;
     }
 
-    public GameModel getGameModel() {
-        return gameModel;
+    public GravityRocketView getGravityRocketView() {
+        return gravityRocketView;
     }
 
     public KeyboardHandler getKeyboardHandler() {
@@ -95,7 +93,8 @@ public class GravityRocket extends Application
     }
 
     /**
-     * Méthode utile à la construction du contexte JavaFX pour utiliser les MediaPlayer
+     * Méthode utile à la construction du contexte JavaFX pour utiliser les MediaPlayer, bien plus fluides pour jouer
+     * des sons que sous javax
      */
     @Override
     public void start(Stage stage) throws Exception {}

@@ -1,6 +1,6 @@
 package fr.insa.gravityrocket.logic.entity;
 
-import fr.insa.gravityrocket.logic.Level;
+import fr.insa.gravityrocket.logic.level.Level;
 
 public class Asteroid extends Entity
 {

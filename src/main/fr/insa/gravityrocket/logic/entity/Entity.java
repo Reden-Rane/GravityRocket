@@ -1,8 +1,8 @@
 package fr.insa.gravityrocket.logic.entity;
 
-import fr.insa.gravityrocket.logic.Level;
 import fr.insa.gravityrocket.logic.collision.CollisionBox;
 import fr.insa.gravityrocket.logic.collision.RectangularCollisionBox;
+import fr.insa.gravityrocket.logic.level.Level;
 
 /**
  * Classe abstraite d'une entité: objet positionnable dans l'espace, possédant une vitesse, une accélération, une
@@ -60,6 +60,11 @@ public abstract class Entity
 
     private CollisionBox collisionBox;
 
+    /**
+     * Vrai si l'entité doit être supprimée du niveau
+     */
+    private boolean requestRemove;
+
     public Entity(Level level, double width, double height) {
         this(level, 0, 0, width, height, 0);
     }
@@ -85,14 +90,14 @@ public abstract class Entity
      */
     public void update(double dt) {
 
-        for (Entity otherEntity : getLevel().getEntitySet()) {
+        for (Entity otherEntity : getLevel().getEntityList()) {
 
             if (otherEntity == this) {
                 continue;
             }
 
             if (collidesWith(otherEntity)) {
-                onCollisionWith(otherEntity);
+                getLevel().handleEntityCollision(this, otherEntity);
             }
 
             if (isAttractedBy(otherEntity)) {
@@ -252,6 +257,10 @@ public abstract class Entity
         this.ySpeed = ySpeed;
     }
 
+    public double getSpeedMagnitude() {
+        return Math.sqrt(getXSpeed() * getXSpeed() + getYSpeed() * getYSpeed());
+    }
+
     public double getRotationSpeed() {
         return rotationSpeed;
     }
@@ -292,6 +301,19 @@ public abstract class Entity
     public void setYPos(double yPos) {
         this.yPos = yPos;
         updateCollisionBox();
+    }
+
+    public void setPos(double xPos, double yPos) {
+        this.setXPos(xPos);
+        this.setYPos(yPos);
+    }
+
+    public boolean doesRequestRemove() {
+        return requestRemove;
+    }
+
+    public void requestRemove() {
+        this.requestRemove = true;
     }
 
 }

@@ -1,6 +1,6 @@
 package fr.insa.gravityrocket.logic.entity;
 
-import fr.insa.gravityrocket.logic.Level;
+import fr.insa.gravityrocket.logic.level.Level;
 
 import java.awt.*;
 
@@ -36,8 +36,9 @@ public class Satellite extends Planet
     public void update(double dt) {
         super.update(dt);
         this.orbitalAngle += this.orbitalSpeed * dt;
-        this.setXPos(this.planet.getXPos() + (this.planet.getRadius() + this.orbitalDistance) * Math.cos(this.orbitalAngle));
-        this.setYPos(this.planet.getYPos() + (this.planet.getRadius() + this.orbitalDistance) * Math.sin(this.orbitalAngle));
+        double x = this.planet.getXPos() + (this.planet.getRadius() + this.orbitalDistance) * Math.cos(this.orbitalAngle);
+        double y = this.planet.getYPos() + (this.planet.getRadius() + this.orbitalDistance) * Math.sin(this.orbitalAngle);
+        setPos(x, y);
     }
 
 }

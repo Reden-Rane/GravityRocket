@@ -1,8 +1,8 @@
 package fr.insa.gravityrocket.logic;
 
-public enum EnumGameOverType
+public enum EnumLevelState
 {
-
+    RUNNING,
     SUCCESS,
     CRASH,
     WRONG_PLANET,

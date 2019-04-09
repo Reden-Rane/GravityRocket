@@ -1,7 +1,7 @@
-package fr.insa.gravityrocket.graphics;
+package fr.insa.gravityrocket.graphics.game;
 
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
-import fr.insa.gravityrocket.logic.Level;
+import fr.insa.gravityrocket.logic.level.Level;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;

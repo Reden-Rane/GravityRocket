@@ -1,14 +1,28 @@
 package fr.insa.gravityrocket.graphics.renderer;
 
+import fr.insa.gravityrocket.GravityRocket;
+import fr.insa.gravityrocket.graphics.GravityRocketView;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RenderManager
 {
 
+    private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
+
+    public static final Font BEBAS_NEUE_FONT = loadFont("/fonts/BebasNeue-Regular.ttf", Font.TRUETYPE_FONT);
+
+    private final GravityRocketView           gravityRocketView;
     private final Map<Class<?>, IRenderer<?>> rendererMap = new HashMap<>();
+
+    public RenderManager(GravityRocketView gravityRocketView) {
+        this.gravityRocketView = gravityRocketView;
+    }
 
     public <T> void render(T obj, Graphics2D g2d) {
         this.render(obj, 0, 0, 0, 0, 0, g2d);
@@ -65,6 +79,33 @@ public class RenderManager
 
     public <T> void registerRenderer(Class<T> objType, IRenderer<T> renderer) {
         this.rendererMap.put(objType, renderer);
+    }
+
+    public static Image loadImage(String filePath, int width, int height) {
+        try {
+            return ImageIO.read(GravityRocket.class.getResource(filePath)).getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Font loadFont(String filePath, int fontType) {
+        try {
+            return Font.createFont(fontType, RenderManager.class.getResourceAsStream(filePath));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+        return DEFAULT_FONT;
+    }
+
+    public int getScreenWidth() {
+        return this.gravityRocketView.getCanvasWidth();
+    }
+
+    public int getScreenHeight() {
+        return this.gravityRocketView.getCanvasHeight();
     }
 
 }

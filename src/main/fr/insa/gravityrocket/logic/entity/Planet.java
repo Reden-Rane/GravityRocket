@@ -1,8 +1,8 @@
 package fr.insa.gravityrocket.logic.entity;
 
-import fr.insa.gravityrocket.logic.Level;
 import fr.insa.gravityrocket.logic.collision.CircularCollisionBox;
 import fr.insa.gravityrocket.logic.collision.CollisionBox;
+import fr.insa.gravityrocket.logic.level.Level;
 
 import java.awt.*;
 

@@ -1,8 +1,8 @@
 package fr.insa.gravityrocket.logic.entity;
 
-import fr.insa.gravityrocket.logic.Level;
+import fr.insa.gravityrocket.logic.level.Level;
 
-public class Alien extends Entity implements IDestroyable
+public class Alien extends Entity
 {
 
     public Alien(Level level) {
@@ -23,11 +23,6 @@ public class Alien extends Entity implements IDestroyable
     public double getMass() {
         //TODO
         return 0;
-    }
-
-    @Override
-    public boolean isDestroyed() {
-        return false;
     }
 
 }

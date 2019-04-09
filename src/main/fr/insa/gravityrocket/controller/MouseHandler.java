@@ -1,4 +1,4 @@
-package fr.insa.gravityrocket.logic.input;
+package fr.insa.gravityrocket.controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

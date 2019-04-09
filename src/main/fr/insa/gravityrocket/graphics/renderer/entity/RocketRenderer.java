@@ -1,7 +1,7 @@
 package fr.insa.gravityrocket.graphics.renderer.entity;
 
-import fr.insa.gravityrocket.graphics.ImageHelper;
 import fr.insa.gravityrocket.graphics.renderer.IRenderer;
+import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
 
 import java.awt.*;
@@ -15,9 +15,9 @@ public class RocketRenderer implements IRenderer<Rocket>
     private final Image gasImage;
 
     public RocketRenderer() {
-        this.rocketImage = ImageHelper.loadImage("/textures/entity/rocket/rocket.png", 15, 36);
-        this.flameImage = ImageHelper.loadImage("/textures/entity/rocket/flame.png", 10, 24);
-        this.gasImage = ImageHelper.loadImage("/textures/entity/rocket/gas.png", 6, 14);
+        this.rocketImage = RenderManager.loadImage("/textures/entity/rocket/rocket.png", 15, 36);
+        this.flameImage = RenderManager.loadImage("/textures/entity/rocket/flame.png", 10, 24);
+        this.gasImage = RenderManager.loadImage("/textures/entity/rocket/gas.png", 6, 14);
     }
 
     @Override
