@@ -2,8 +2,7 @@ package fr.insa.gravityrocket.graphics;
 
 import fr.insa.gravityrocket.controller.KeyboardHandler;
 import fr.insa.gravityrocket.controller.MouseHandler;
-import fr.insa.gravityrocket.graphics.game.GameWindow;
-import fr.insa.gravityrocket.graphics.main.MainWindow;
+import fr.insa.gravityrocket.graphics.interfaces.MainWindow;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 import fr.insa.gravityrocket.graphics.renderer.collision.CircularCollisionBoxRenderer;
 import fr.insa.gravityrocket.graphics.renderer.collision.RectangularCollisionBoxRenderer;
@@ -33,7 +32,6 @@ public class GravityRocketView
     private final RenderManager renderManager;
 
     private final MainWindow mainWindow;
-    private final GameWindow gameWindow;
 
     public GravityRocketView(GravityRocketModel gravityRocketModel, KeyboardHandler keyboardHandler, MouseHandler mouseHandler) {
         this.gravityRocketModel = gravityRocketModel;
@@ -45,8 +43,7 @@ public class GravityRocketView
             e.printStackTrace();
         }
 
-        this.mainWindow = new MainWindow(1500, 1000);
-        this.gameWindow = new GameWindow(this.renderManager, 1500, 1000, keyboardHandler, mouseHandler);
+        this.mainWindow = new MainWindow(this.renderManager, 1500, 1000, keyboardHandler, mouseHandler);
         this.registerRenderers();
     }
 
@@ -66,7 +63,7 @@ public class GravityRocketView
     }
 
     public void render() {
-        this.gameWindow.render();
+        this.mainWindow.repaint();
     }
 
     public GravityRocketModel getGravityRocketModel() {
@@ -77,12 +74,16 @@ public class GravityRocketView
         return renderManager;
     }
 
-    public int getCanvasWidth() {
-        return this.gameWindow.getGameCanvas().getWidth();
+    public int getScreenWidth() {
+        return this.mainWindow.getContentPane().getWidth();
     }
 
-    public int getCanvasHeight() {
-        return this.gameWindow.getGameCanvas().getHeight();
+    public int getScreenHeight() {
+        return this.mainWindow.getContentPane().getHeight();
+    }
+
+    public MainWindow getMainWindow() {
+        return mainWindow;
     }
 
 }

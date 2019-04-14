@@ -7,7 +7,7 @@ import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
 
 import java.awt.*;
 
-public class LandingLevel extends Level
+public abstract class LandingLevel extends Level
 {
 
     /**
@@ -21,12 +21,12 @@ public class LandingLevel extends Level
     private final int    maximumSpeed;
     private       Planet targetedPlanet;
 
-    public LandingLevel(Rectangle preferredView, Rectangle bounds) {
-        this(preferredView, bounds, Math.toRadians(20), 100);
+    public LandingLevel(Image backgroundImage, Rectangle preferredView, Rectangle bounds) {
+        this(backgroundImage, preferredView, bounds, Math.toRadians(20), 100);
     }
 
-    public LandingLevel(Rectangle preferredView, Rectangle bounds, double maximumAngle, int maximumSpeed) {
-        super(preferredView, bounds);
+    public LandingLevel(Image backgroundImage, Rectangle preferredView, Rectangle bounds, double maximumAngle, int maximumSpeed) {
+        super(backgroundImage, preferredView, bounds);
         this.maximumAngle = maximumAngle;
         this.maximumSpeed = maximumSpeed;
     }
@@ -46,9 +46,9 @@ public class LandingLevel extends Level
                     setLevelState(EnumLevelState.SUCCESS);
                 } else {
                     getRocket().getBoosterReactor().setActive(false);
-                    setLevelState(EnumLevelState.WRONG_PLANET);
                 }
 
+                getRocket().attachToPlanet(planet);
 
             } else {
                 getRocket().crashRocket();
@@ -62,22 +62,11 @@ public class LandingLevel extends Level
 
     private boolean canRocketLandOn(Planet planet) {
         double speedMagnitude = getRocket().getSpeedMagnitude();
-        return getAngleWithPlanet(planet) < getMaximumAngle() && speedMagnitude < getMaximumSpeed();
+        return getRocket().getAngleWithPlanet(planet) < getMaximumAngle() && speedMagnitude < getMaximumSpeed();
     }
 
     public Planet getTargetedPlanet() {
         return targetedPlanet;
-    }
-
-    public double getAngleWithPlanet(Planet planet) {
-        double xPlanetNormal = getRocket().getXPos() - planet.getXPos();
-        double yPlanetNormal = getRocket().getYPos() - planet.getYPos();
-        double normalLength  = Math.sqrt(xPlanetNormal * xPlanetNormal + yPlanetNormal * yPlanetNormal);
-        xPlanetNormal /= normalLength;
-        yPlanetNormal /= normalLength;
-        double xRocketDirection = Math.sin(getRocket().getRotation());
-        double yRocketDirection = -Math.cos(getRocket().getRotation());
-        return Math.abs(Math.acos(xPlanetNormal * xRocketDirection + yPlanetNormal * yRocketDirection));
     }
 
     public double getMaximumAngle() {

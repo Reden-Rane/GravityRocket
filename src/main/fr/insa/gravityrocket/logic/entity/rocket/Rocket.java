@@ -30,6 +30,13 @@ public class Rocket extends Entity
      */
     private Reactor  boosterReactor;
 
+    /**
+     * La planète sur laquelle la fusée est posée, peut être null
+     */
+    private Planet attachedPlanet;
+    private double attachedPlanetInitialAngle;
+    private double attachedAngle;
+
     private boolean leftThrusterActivated;
     private boolean rightThrusterActivated;
 
@@ -49,15 +56,64 @@ public class Rocket extends Entity
     public void update(double dt) {
         if (!getLevel().isGameOver()) {
             updateInputs();
-        }
-        updateBooster();
-        updateTank(dt);
-        updateSounds();
-        super.update(dt);
+            updateBooster();
+            updateTank(dt);
+            updateSounds();
+            super.update(dt);
 
-        if (this.life <= 0) {
-            this.requestRemove();
+            if (this.life <= 0) {
+                this.requestRemove();
+            }
         }
+
+        if (isAttached()) {
+            double angle    = attachedAngle + (attachedPlanet.getRotation() - attachedPlanetInitialAngle);
+            double x        = attachedPlanet.getXPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.cos(angle);
+            double y        = attachedPlanet.getYPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.sin(angle);
+            double rotation = angle - Math.PI * 1.5;
+            setPos(x, y);
+            setRotation(rotation);
+        }
+    }
+
+    private void updateInputs() {
+
+        KeyboardHandler keyboardHandler = GravityRocket.getInstance().getKeyboardHandler();
+
+        if (isAttached()) {
+
+            if (keyboardHandler.isKeyPressed(KeyEvent.VK_UP)) {
+                detach();
+            }
+
+        } else {
+            if (keyboardHandler.isKeyPressed(KeyEvent.VK_UP) && !getTank().isEmpty()) {
+                getBoosterReactor().setActive(true);
+            } else {
+                getBoosterReactor().setActive(false);
+            }
+
+            this.rightThrusterActivated = !getTank().isEmpty() && (keyboardHandler.isKeyPressed(KeyEvent.VK_LEFT) || keyboardHandler.isKeyPressed(KeyEvent.VK_DOWN));
+            this.leftThrusterActivated = !getTank().isEmpty() && (keyboardHandler.isKeyPressed(KeyEvent.VK_RIGHT) || keyboardHandler.isKeyPressed(KeyEvent.VK_DOWN));
+        }
+    }
+
+    public boolean isAttached() {
+        return this.attachedPlanet != null;
+    }
+
+    public void detach() {
+        double angle = attachedAngle + (attachedPlanet.getRotation() - attachedPlanetInitialAngle);
+        double x     = attachedPlanet.getXPos() + (attachedPlanet.getRadius() + getHeight() * 0.6) * Math.cos(angle);
+        double y     = attachedPlanet.getYPos() + (attachedPlanet.getRadius() + getHeight() * 0.6) * Math.sin(angle);
+        setPos(x, y);
+        this.attachedPlanet = null;
+    }
+
+    public void attachToPlanet(Planet planet) {
+        this.attachedPlanet = planet;
+        this.attachedPlanetInitialAngle = planet.getRotation();
+        this.attachedAngle = Math.atan2(getYPos() - planet.getYPos(), getXPos() - planet.getXPos());
     }
 
     @Override
@@ -65,18 +121,15 @@ public class Rocket extends Entity
         return entity instanceof Planet;
     }
 
-    private void updateInputs() {
-
-        KeyboardHandler keyboardHandler = GravityRocket.getInstance().getKeyboardHandler();
-
-        if (keyboardHandler.isKeyPressed(KeyEvent.VK_UP) && !getTank().isEmpty()) {
-            getBoosterReactor().setActive(true);
-        } else {
-            getBoosterReactor().setActive(false);
-        }
-
-        this.rightThrusterActivated = !getTank().isEmpty() && (keyboardHandler.isKeyPressed(KeyEvent.VK_LEFT) || keyboardHandler.isKeyPressed(KeyEvent.VK_DOWN));
-        this.leftThrusterActivated = !getTank().isEmpty() && (keyboardHandler.isKeyPressed(KeyEvent.VK_RIGHT) || keyboardHandler.isKeyPressed(KeyEvent.VK_DOWN));
+    public double getAngleWithPlanet(Planet planet) {
+        double xPlanetNormal = getXPos() - planet.getXPos();
+        double yPlanetNormal = getYPos() - planet.getYPos();
+        double normalLength  = Math.sqrt(xPlanetNormal * xPlanetNormal + yPlanetNormal * yPlanetNormal);
+        xPlanetNormal /= normalLength;
+        yPlanetNormal /= normalLength;
+        double xRocketDirection = Math.sin(getRotation());
+        double yRocketDirection = -Math.cos(getRotation());
+        return Math.abs(Math.acos(xPlanetNormal * xRocketDirection + yPlanetNormal * yRocketDirection));
     }
 
     private void updateBooster() {

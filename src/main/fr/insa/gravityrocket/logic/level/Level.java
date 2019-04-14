@@ -17,6 +17,9 @@ public abstract class Level
 {
 
     private final MediaPlayer dangerSoundPlayer;
+    private final MediaPlayer successSoundPlayer;
+
+    private final Image levelBackground;
 
     /**
      * Les entités à ajouter dans le niveau, évite les ConcurrentModificationException si on ajoute une entité pendant
@@ -43,12 +46,21 @@ public abstract class Level
 
     private EnumLevelState levelState = EnumLevelState.RUNNING;
 
-    public Level(Rectangle preferredView, Rectangle bounds) {
+    public Level(Image levelBackground, Rectangle preferredView, Rectangle bounds) {
+        this.levelBackground = levelBackground;
         this.preferredView = preferredView;
         this.bounds = bounds;
         this.dangerSoundPlayer = SoundHandler.createPlayer("/sounds/alarm.wav", true);
         this.dangerSoundPlayer.setVolume(0.5);
+        this.successSoundPlayer = SoundHandler.createPlayer("/sounds/success.wav", false);
         resetOutOfBoundsCountdown();
+    }
+
+    public void resetLevel() {
+        this.stopAllSounds();
+        this.setLevelState(EnumLevelState.RUNNING);
+        this.toAddEntityList.clear();
+        this.entityList.clear();
     }
 
     private void resetOutOfBoundsCountdown() {
@@ -69,6 +81,22 @@ public abstract class Level
         }
     }
 
+    public void stopAllSounds() {
+        this.dangerSoundPlayer.stop();
+        this.successSoundPlayer.stop();
+        if (getRocket() != null) {
+            this.getRocket().stopAllEngines();
+        }
+    }
+
+    public void setLevelState(EnumLevelState levelState) {
+        this.levelState = levelState;
+
+        if (this.levelState == EnumLevelState.SUCCESS) {
+            this.successSoundPlayer.play();
+        }
+    }
+
     /**
      * Méthode de mise à jour du niveau, elle est appelée 20 fois par seconde et met à jour toutes les entités du
      * niveau.
@@ -84,9 +112,7 @@ public abstract class Level
 
         while (iterator.hasNext()) {
             Entity entity = iterator.next();
-            entity.setXAcceleration(0);
-            entity.setYAcceleration(0);
-            entity.update(dt);
+            updateEntity(entity, dt);
 
             if (entity.doesRequestRemove()) {
                 iterator.remove();
@@ -109,10 +135,6 @@ public abstract class Level
             resetOutOfBoundsCountdown();
         }
 
-    }
-
-    public void stopAllSounds() {
-        this.dangerSoundPlayer.stop();
     }
 
     public void handleEntityCollision(Entity entity1, Entity entity2) {
@@ -139,8 +161,16 @@ public abstract class Level
         return rocket;
     }
 
-    public void setLevelState(EnumLevelState levelState) {
-        this.levelState = levelState;
+    /**
+     * Mets à jour l'entité passée en paramètre
+     *
+     * @param entity L'entité à mettre à jour
+     * @param dt     Le delta de temps écoulé
+     */
+    private void updateEntity(Entity entity, double dt) {
+        entity.setXAcceleration(0);
+        entity.setYAcceleration(0);
+        entity.update(dt);
     }
 
     public Rectangle getPreferredView() {
@@ -153,6 +183,10 @@ public abstract class Level
 
     public double getOutOfBoundsCountdown() {
         return outOfBoundsCountdown;
+    }
+
+    public Image getLevelBackground() {
+        return levelBackground;
     }
 
 }

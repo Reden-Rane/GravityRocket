@@ -4,13 +4,13 @@ import fr.insa.gravityrocket.logic.EnumLevelState;
 
 import java.awt.*;
 
-public class ReachingZoneLevel extends Level
+public abstract class ReachingZoneLevel extends Level
 {
 
     private final Shape zone;
 
-    public ReachingZoneLevel(Rectangle preferredView, Rectangle bounds, Shape zone) {
-        super(preferredView, bounds);
+    public ReachingZoneLevel(Image backgroundImage, Rectangle preferredView, Rectangle bounds, Shape zone) {
+        super(backgroundImage, preferredView, bounds);
         this.zone = zone;
     }
 

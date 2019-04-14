@@ -18,7 +18,7 @@ import javax.swing.*;
 public class GravityRocket extends Application
 {
 
-    private static final int TICKS_PER_SECOND = 20;
+    private static final int UPDATES_PER_SECOND = 60;
 
     private static GravityRocket instance;
 
@@ -37,8 +37,6 @@ public class GravityRocket extends Application
         this.mouseHandler = new MouseHandler();
 
         this.gravityRocketModel = new GravityRocketModel();
-        this.gravityRocketModel.setupTestLevel();
-
         this.gravityRocketView = new GravityRocketView(this.gravityRocketModel, this.keyboardHandler, this.mouseHandler);
 
         this.musicPlayer = SoundHandler.createPlayer("/sounds/music/music01.wav", true);
@@ -57,7 +55,7 @@ public class GravityRocket extends Application
      */
     private void startGameLoop() {
 
-        int interval = 1000 / TICKS_PER_SECOND;
+        int interval = 1000 / UPDATES_PER_SECOND;
 
         Timer timer = new Timer(interval, actionEvent -> {
             getGravityRocketModel().update(interval / 1000.0);

@@ -100,12 +100,24 @@ public class RenderManager
         return DEFAULT_FONT;
     }
 
+    public static void renderFittedImage(Graphics g, Image img, int width, int height) {
+        double scaleWidth  = width / (double) img.getWidth(null);
+        double scaleHeight = height / (double) img.getHeight(null);
+        double scale       = Math.max(scaleHeight, scaleWidth);
+
+        int imgWidth  = (int) (scale * img.getWidth(null));
+        int imgHeight = (int) (scale * img.getHeight(null));
+
+        g.drawImage(img, (width - imgWidth) / 2, (height - imgHeight) / 2, imgWidth, imgHeight, null);
+
+    }
+
     public int getScreenWidth() {
-        return this.gravityRocketView.getCanvasWidth();
+        return this.gravityRocketView.getScreenWidth();
     }
 
     public int getScreenHeight() {
-        return this.gravityRocketView.getCanvasHeight();
+        return this.gravityRocketView.getScreenHeight();
     }
 
 }

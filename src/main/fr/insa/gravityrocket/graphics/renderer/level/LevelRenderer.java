@@ -16,14 +16,11 @@ import java.awt.geom.RoundRectangle2D;
 public class LevelRenderer<T extends Level> implements IRenderer<T>
 {
 
-    private static final boolean DEBUG_MODE  = false;
-    private static final Color   SPACE_COLOR = new Color(14, 21, 33);
+    private static final boolean DEBUG_MODE = false;
     private final        Image   dangerImage;
-    private final        Image   backgroundImage;
 
     public LevelRenderer() {
         this.dangerImage = RenderManager.loadImage("/textures/danger.png", 286, 40);
-        this.backgroundImage = RenderManager.loadImage("/textures/background_0.png", 1920, 1080);
     }
 
     @Override
@@ -41,14 +38,11 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
     }
 
     private void renderBackground(T level, Graphics2D g2d) {
-        g2d.setColor(SPACE_COLOR);
-        g2d.fillRect(0, 0, getRenderManager().getScreenWidth(), getRenderManager().getScreenHeight());
-
-        double ratio = backgroundImage.getWidth(null) / (double) backgroundImage.getHeight(null);
-
-        int width  = (int) (ratio * Math.max(getRenderManager().getScreenHeight(), backgroundImage.getHeight(null)));
-        int height = (int) (1 / ratio * Math.max(getRenderManager().getScreenWidth(), backgroundImage.getWidth(null)));
-        g2d.drawImage(backgroundImage, 0, 0, width, height, null);
+        Composite      prevComposite  = g2d.getComposite();
+        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
+        g2d.setComposite(alphaComposite);
+        RenderManager.renderFittedImage(g2d, level.getLevelBackground(), getRenderManager().getScreenWidth(), getRenderManager().getScreenHeight());
+        g2d.setComposite(prevComposite);
     }
 
     private void applyCameraTransform(T level, Graphics2D g2d) {
@@ -93,10 +87,13 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         }
 
         for (Entity entity : level.getEntityList()) {
-            renderEntity(level, entity, g2d);
 
-            if (DEBUG_MODE) {
-                renderEntityCollisionBox(level, entity, g2d);
+            if (!entity.doesRequestRemove()) {
+                renderEntity(level, entity, g2d);
+
+                if (DEBUG_MODE) {
+                    renderEntityCollisionBox(level, entity, g2d);
+                }
             }
         }
     }
@@ -146,12 +143,6 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         if (level.getLevelState() == EnumLevelState.CRASH) {
             text = "GAME OVER";
             subText = "Vous vous êtes écrasé";
-            textStartColor = Color.RED;
-            textEndColor = Color.DARK_GRAY;
-            subTextColor = Color.RED;
-        } else if (level.getLevelState() == EnumLevelState.WRONG_PLANET) {
-            text = "GAME OVER";
-            subText = "Vous n'avez pas atterri sur la bonne planète";
             textStartColor = Color.RED;
             textEndColor = Color.DARK_GRAY;
             subTextColor = Color.RED;
@@ -218,6 +209,7 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
     }
 
     protected void renderLevelHUD(T level, Graphics2D g2d) {
+        renderShortcuts(g2d);
         renderTankHUD(level, g2d);
         renderSpeedHUD(level, g2d);
 
@@ -226,18 +218,29 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         }
     }
 
+    private void renderShortcuts(Graphics2D g2d) {
+        g2d.setFont(RenderManager.BEBAS_NEUE_FONT.deriveFont(20.0f));
+        g2d.setColor(Color.LIGHT_GRAY);
+        g2d.drawString("Recommencer: R", 10, 25);
+        g2d.drawString("Quitter: Echap", 10, 50);
+    }
+
     private void renderTankHUD(T level, Graphics2D g2d) {
+
         int tankWidth        = 200;
         int tankHeight       = 30;
-        int tankX            = 40;
+        int tankX            = 140;
         int tankY            = getRenderManager().getScreenHeight() - tankHeight - 40;
         int tankStrokeWeight = 4;
 
         double fuelRatio      = level.getRocket().getTank().getFuelVolume() / level.getRocket().getTank().getCapacity();
         int    fuelPercentage = (int) (fuelRatio * 100);
         String percentageText = fuelPercentage + "%";
+        Stroke prevStroke     = g2d.getStroke();
 
-        Stroke prevStroke = g2d.getStroke();
+        g2d.setFont(RenderManager.BEBAS_NEUE_FONT.deriveFont(25.0f));
+        g2d.setColor(Color.WHITE);
+        g2d.drawString("Réservoir:", tankX - 100, tankY + 25);
 
         RoundRectangle2D.Double tankShape = new RoundRectangle2D.Double(tankX, tankY, tankWidth, tankHeight, Math.min(tankWidth, tankHeight), Math.min(tankWidth, tankHeight));
         g2d.setStroke(new BasicStroke(tankStrokeWeight));
