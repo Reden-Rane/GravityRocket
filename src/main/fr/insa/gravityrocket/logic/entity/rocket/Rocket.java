@@ -2,24 +2,17 @@ package fr.insa.gravityrocket.logic.entity.rocket;
 
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.controller.KeyboardHandler;
-import fr.insa.gravityrocket.logic.SoundHandler;
+import fr.insa.gravityrocket.logic.EnumLevelState;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.particle.Explosion;
+import fr.insa.gravityrocket.logic.entity.particle.Laser;
 import fr.insa.gravityrocket.logic.level.Level;
-import javafx.scene.media.MediaPlayer;
 
 import java.awt.event.KeyEvent;
 
 public class Rocket extends Entity
 {
-
-    private final MediaPlayer boosterSoundPlayer;
-
-    /**
-     * Les points de vie de la fusée
-     */
-    private int life;
 
     /**
      * Le réservoir contenant le carburant de la fusée
@@ -48,8 +41,6 @@ public class Rocket extends Entity
         super(level, posX, posY, 15, 36, rotation);
         this.tank = tank;
         this.boosterReactor = boosterReactor;
-        this.boosterSoundPlayer = SoundHandler.createPlayer("/sounds/rocket_booster.wav", true);
-        this.life = 10;
     }
 
     @Override
@@ -60,19 +51,10 @@ public class Rocket extends Entity
             updateTank(dt);
             updateSounds();
             super.update(dt);
-
-            if (this.life <= 0) {
-                this.requestRemove();
-            }
         }
 
         if (isAttached()) {
-            double angle    = attachedAngle + (attachedPlanet.getRotation() - attachedPlanetInitialAngle);
-            double x        = attachedPlanet.getXPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.cos(angle);
-            double y        = attachedPlanet.getYPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.sin(angle);
-            double rotation = angle - Math.PI * 1.5;
-            setPos(x, y);
-            setRotation(rotation);
+            updateAttachedPos();
         }
     }
 
@@ -106,40 +88,6 @@ public class Rocket extends Entity
         }
     }
 
-    public boolean isAttached() {
-        return this.attachedPlanet != null;
-    }
-
-    public void detach() {
-        double angle = attachedAngle + (attachedPlanet.getRotation() - attachedPlanetInitialAngle);
-        double x     = attachedPlanet.getXPos() + (attachedPlanet.getRadius() + getHeight() * 0.6) * Math.cos(angle);
-        double y     = attachedPlanet.getYPos() + (attachedPlanet.getRadius() + getHeight() * 0.6) * Math.sin(angle);
-        setPos(x, y);
-        this.attachedPlanet = null;
-    }
-
-    public void attachToPlanet(Planet planet) {
-        this.attachedPlanet = planet;
-        this.attachedPlanetInitialAngle = planet.getRotation();
-        this.attachedAngle = Math.atan2(getYPos() - planet.getYPos(), getXPos() - planet.getXPos());
-    }
-
-    @Override
-    public boolean isAttractedBy(Entity entity) {
-        return entity instanceof Planet;
-    }
-
-    public double getAngleWithPlanet(Planet planet) {
-        double xPlanetNormal = getXPos() - planet.getXPos();
-        double yPlanetNormal = getYPos() - planet.getYPos();
-        double normalLength  = Math.sqrt(xPlanetNormal * xPlanetNormal + yPlanetNormal * yPlanetNormal);
-        xPlanetNormal /= normalLength;
-        yPlanetNormal /= normalLength;
-        double xRocketDirection = Math.sin(getRotation());
-        double yRocketDirection = -Math.cos(getRotation());
-        return Math.abs(Math.acos(xPlanetNormal * xRocketDirection + yPlanetNormal * yRocketDirection));
-    }
-
     private void updateBooster() {
 
         if (getBoosterReactor().isActive()) {
@@ -162,11 +110,6 @@ public class Rocket extends Entity
         }
     }
 
-    @Override
-    public double getMass() {
-        return 10000 + getTank().getMass() + getBoosterReactor().getMass();
-    }
-
     private void updateTank(double dt) {
 
         if (getBoosterReactor().isActive()) {
@@ -185,23 +128,82 @@ public class Rocket extends Entity
 
     private void updateSounds() {
         if (getBoosterReactor().isActive()) {
-            this.boosterSoundPlayer.play();
+            getSoundHandler().boosterSoundPlayer.play();
         } else {
-            this.boosterSoundPlayer.stop();
+            getSoundHandler().boosterSoundPlayer.stop();
         }
     }
 
-    public void crashRocket() {
+    public boolean isAttached() {
+        return this.attachedPlanet != null;
+    }
+
+    private void updateAttachedPos() {
+        double angle    = attachedAngle + (attachedPlanet.getRotation() - attachedPlanetInitialAngle);
+        double x        = attachedPlanet.getXPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.cos(angle);
+        double y        = attachedPlanet.getYPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.sin(angle);
+        double rotation = angle - Math.PI * 1.5;
+        setPos(x, y);
+        setRotation(rotation);
+    }
+
+    @Override
+    public void onCollisionWith(Entity entity) {
+
+        if (entity instanceof Laser) {
+            explode();
+            getLevel().setLevelState(EnumLevelState.DEAD);
+        }
+
+    }
+
+    @Override
+    public boolean isAttractedBy(Entity entity) {
+        return entity instanceof Planet;
+    }
+
+    @Override
+    public double getMass() {
+        return 10000 + getTank().getMass() + getBoosterReactor().getMass();
+    }
+
+    public void explode() {
+        getSoundHandler().explosionSoundPlayer.play();
         this.stopAllEngines();
-        this.life = 0;
+        this.requestRemove();
 
         Explosion explosion = new Explosion(getLevel(), 50, 50);
         explosion.setPos(getXPos(), getYPos());
         getLevel().addEntity(explosion);
     }
 
+    public double getAngleWithPlanet(Planet planet) {
+        double xPlanetNormal = getXPos() - planet.getXPos();
+        double yPlanetNormal = getYPos() - planet.getYPos();
+        double normalLength  = Math.sqrt(xPlanetNormal * xPlanetNormal + yPlanetNormal * yPlanetNormal);
+        xPlanetNormal /= normalLength;
+        yPlanetNormal /= normalLength;
+        double xRocketDirection = Math.sin(getRotation());
+        double yRocketDirection = -Math.cos(getRotation());
+        return Math.abs(Math.acos(xPlanetNormal * xRocketDirection + yPlanetNormal * yRocketDirection));
+    }
+
+    public void detach() {
+        double angle = attachedAngle + (attachedPlanet.getRotation() - attachedPlanetInitialAngle);
+        double x     = attachedPlanet.getXPos() + (attachedPlanet.getRadius() + getHeight() * 0.6) * Math.cos(angle);
+        double y     = attachedPlanet.getYPos() + (attachedPlanet.getRadius() + getHeight() * 0.6) * Math.sin(angle);
+        setPos(x, y);
+        this.attachedPlanet = null;
+    }
+
+    public void attachToPlanet(Planet planet) {
+        this.attachedPlanet = planet;
+        this.attachedPlanetInitialAngle = planet.getRotation();
+        this.attachedAngle = Math.atan2(getYPos() - planet.getYPos(), getXPos() - planet.getXPos());
+        updateAttachedPos();
+    }
+
     public void stopAllEngines() {
-        this.boosterSoundPlayer.stop();
         getBoosterReactor().setActive(false);
         this.leftThrusterActivated = false;
         this.rightThrusterActivated = false;

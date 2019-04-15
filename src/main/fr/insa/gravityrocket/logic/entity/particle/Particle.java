@@ -35,7 +35,7 @@ public abstract class Particle extends Entity
 
     @Override
     public double getMass() {
-        return 0;
+        return 1;
     }
 
 }

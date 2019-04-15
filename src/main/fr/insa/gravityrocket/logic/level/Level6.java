@@ -29,7 +29,7 @@ public class Level6 extends ReachingZoneLevel
         this.uranusTexture = RenderManager.loadImage("/textures/star/uranus.png", 200, 200);
 
         this.earth = new Planet(this, "Terre", earthTexture, 2 * Math.pow(10, 7), 40, -600, -200);
-        this.venus = new Planet(this, "VÃ©nus", venusTexture, 2 * Math.pow(10, 10), 120, 1850, 1000);
+        this.venus = new Planet(this, "Vénus", venusTexture, 2 * Math.pow(10, 10), 120, 1850, 1000);
         this.uranus = new Planet(this, "Uranus", uranusTexture, 2 * Math.pow(10, 10), 150, 750, 400);
 
         this.earth.setRotationSpeed(Math.PI / 16);

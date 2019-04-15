@@ -2,24 +2,18 @@ package fr.insa.gravityrocket.logic.level;
 
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.logic.EnumLevelState;
-import fr.insa.gravityrocket.logic.SoundHandler;
 import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
-import javafx.scene.media.MediaPlayer;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Level
 {
-
-    private final MediaPlayer dangerSoundPlayer;
-    private final MediaPlayer successSoundPlayer;
 
     private final Image levelBackground;
 
@@ -28,12 +22,19 @@ public abstract class Level
      * la mise à jour d'une entité existante par exemple. On utilise une LinkedList car on y fait uniquement des
      * ajouts/suppressions donc il est préférable que ces opérations ait une complexité en O(1)
      */
-    private final List<Entity> toAddEntityList = new LinkedList<>();
+    private final List<Entity> toAddEntityList    = new LinkedList<>();
+    /**
+     * Les entités à supprimer du niveau, évite les ConcurrentModificationException si on supprime une entité pendant la
+     * mise à jour d'une entité existante par exemple. On utilise une LinkedList car on y fait uniquement des
+     * ajouts/suppressions donc il est préférable que ces opérations ait une complexité en O(1)
+     */
+    private final List<Entity> toRemoveEntityList = new LinkedList<>();
+
     /**
      * L'ensemble des entités présentes dans le niveau. On utilise une ArrayList car on parcourt souvent cette liste
      * donc il est préférable d'avoir une complexité de O(1) pour le parcours
      */
-    private final List<Entity> entityList      = new ArrayList<>();
+    private final List<Entity> entityList = new ArrayList<>();
     /**
      * La vue par défaut du niveau, avec une dimension appropriée. On s'y ramène dès que la fusée est dans cette zone,
      * autrement on passe à une vue plus grande du niveau.
@@ -66,9 +67,6 @@ public abstract class Level
         this.levelBackground = levelBackground;
         this.preferredView = preferredView;
         this.bounds = bounds;
-        this.dangerSoundPlayer = SoundHandler.createPlayer("/sounds/alarm.wav", true);
-        this.dangerSoundPlayer.setVolume(0.5);
-        this.successSoundPlayer = SoundHandler.createPlayer("/sounds/success.wav", false);
         this.maximumAngle = maximumAngle;
         this.maximumSpeed = maximumSpeed;
         resetOutOfBoundsCountdown();
@@ -99,26 +97,17 @@ public abstract class Level
         }
     }
 
-    public void stopAllSounds() {
-        this.dangerSoundPlayer.stop();
-        this.successSoundPlayer.stop();
-        if (getRocket() != null) {
-            this.getRocket().stopAllEngines();
-        }
+    public void removeEntity(Entity entity) {
+        this.toRemoveEntityList.add(entity);
     }
 
-    public void setLevelState(EnumLevelState levelState) {
-        this.levelState = levelState;
-
-        if (this.levelState != EnumLevelState.RUNNING) {
-            if (getRocket() != null) {
-                this.getRocket().stopAllEngines();
-            }
-        }
-
-        if (this.levelState == EnumLevelState.SUCCESS) {
-            this.successSoundPlayer.play();
-        }
+    public void stopAllSounds() {
+        GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.stop();
+        GravityRocket.getInstance().getSoundHandler().successSoundPlayer.stop();
+        GravityRocket.getInstance().getSoundHandler().explosionSoundPlayer.stop();
+        GravityRocket.getInstance().getSoundHandler().boosterSoundPlayer.stop();
+        GravityRocket.getInstance().getSoundHandler().alienSpeechSoundPlayer.stop();
+        GravityRocket.getInstance().getSoundHandler().shootingSoundPlayer.stop();
     }
 
     /**
@@ -132,33 +121,43 @@ public abstract class Level
         this.entityList.addAll(this.toAddEntityList);
         this.toAddEntityList.clear();
 
-        Iterator<Entity> iterator = this.entityList.iterator();
-
-        while (iterator.hasNext()) {
-            Entity entity = iterator.next();
+        for (Entity entity : this.entityList) {
             updateEntity(entity, dt);
-
-            if (entity.doesRequestRemove()) {
-                iterator.remove();
-            }
         }
 
+        this.entityList.removeAll(toRemoveEntityList);
+        this.toRemoveEntityList.clear();
+
         if (isRocketOutOfLevelBounds()) {
-            this.dangerSoundPlayer.play();
-            GravityRocket.getInstance().getMusicPlayer().pause();
+            GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.play();
+            GravityRocket.getInstance().getSoundHandler().musicSoundPlayer.pause();
             this.outOfBoundsCountdown = Math.max(0, this.outOfBoundsCountdown - dt);
 
             if (this.outOfBoundsCountdown == 0) {
-                this.dangerSoundPlayer.stop();
+                GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.stop();
+                GravityRocket.getInstance().getSoundHandler().musicSoundPlayer.play();
                 setLevelState(EnumLevelState.OUT_OF_LEVEL);
             }
-
         } else {
-            this.dangerSoundPlayer.stop();
-            GravityRocket.getInstance().getMusicPlayer().play();
+            GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.stop();
+            GravityRocket.getInstance().getSoundHandler().musicSoundPlayer.play();
             resetOutOfBoundsCountdown();
         }
 
+    }
+
+    public void setLevelState(EnumLevelState levelState) {
+        this.levelState = levelState;
+
+        if (this.levelState != EnumLevelState.RUNNING) {
+            if (getRocket() != null) {
+                this.getRocket().stopAllEngines();
+            }
+        }
+
+        if (this.levelState == EnumLevelState.SUCCESS) {
+            GravityRocket.getInstance().getSoundHandler().successSoundPlayer.play();
+        }
     }
 
     public void handleEntityCollision(Entity entity1, Entity entity2) {
@@ -176,17 +175,17 @@ public abstract class Level
                     getRocket().attachToPlanet(planet);
 
                 } else {
-                    getRocket().crashRocket();
+                    getRocket().explode();
                     setLevelState(EnumLevelState.CRASH);
                 }
             } else if (entity2 instanceof Asteroid) {
-                getRocket().crashRocket();
+                getRocket().explode();
                 setLevelState(EnumLevelState.CRASH);
             }
 
-        } else {
-            entity1.onCollisionWith(entity2);
         }
+
+        entity1.onCollisionWith(entity2);
     }
 
     protected boolean canRocketLandOn(Planet planet) {

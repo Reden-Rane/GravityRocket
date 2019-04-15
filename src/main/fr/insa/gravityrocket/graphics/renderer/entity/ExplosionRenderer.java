@@ -1,4 +1,4 @@
-package fr.insa.gravityrocket.graphics.renderer.entity.particle;
+package fr.insa.gravityrocket.graphics.renderer.entity;
 
 import fr.insa.gravityrocket.graphics.renderer.IRenderer;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;

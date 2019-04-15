@@ -3,6 +3,9 @@ package fr.insa.gravityrocket.logic.level;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.Satellite;
+import fr.insa.gravityrocket.logic.entity.alien.Alien;
+import fr.insa.gravityrocket.logic.entity.alien.OrbitingAlien;
+import fr.insa.gravityrocket.logic.entity.alien.WanderingAlien;
 import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Reactor;
@@ -71,6 +74,11 @@ public class Level4 extends LandingLevel
         addEntity(itemFuel3);
         addEntity(itemFuel4);
 
+        Alien alien1 = new OrbitingAlien(this, 500, venus, 100, 0.5);
+        Alien alien2 = new WanderingAlien(this, 900, -400, 1000);
+
+        addEntity(alien1);
+        addEntity(alien2);
 
         FuelTank basicTank    = new FuelTank(100);
         Reactor  basicReactor = new Reactor(4, 800_000);

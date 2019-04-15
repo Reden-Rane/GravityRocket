@@ -5,5 +5,6 @@ public enum EnumLevelState
     RUNNING,
     SUCCESS,
     CRASH,
-    OUT_OF_LEVEL
+    OUT_OF_LEVEL,
+    DEAD
 }

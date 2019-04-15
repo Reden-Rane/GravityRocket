@@ -1,5 +1,7 @@
 package fr.insa.gravityrocket.logic.entity;
 
+import fr.insa.gravityrocket.GravityRocket;
+import fr.insa.gravityrocket.logic.SoundHandler;
 import fr.insa.gravityrocket.logic.collision.CollisionBox;
 import fr.insa.gravityrocket.logic.collision.RectangularCollisionBox;
 import fr.insa.gravityrocket.logic.level.Level;
@@ -59,11 +61,6 @@ public abstract class Entity
     private       double rotationAcceleration;
 
     private CollisionBox collisionBox;
-
-    /**
-     * Vrai si l'entité doit être supprimée du niveau
-     */
-    private boolean requestRemove;
 
     public Entity(Level level, double width, double height) {
         this(level, 0, 0, width, height, 0);
@@ -257,6 +254,11 @@ public abstract class Entity
         this.ySpeed = ySpeed;
     }
 
+    public void setSpeed(double xSpeed, double ySpeed) {
+        setXSpeed(xSpeed);
+        setYSpeed(ySpeed);
+    }
+
     public double getSpeedMagnitude() {
         return Math.sqrt(getXSpeed() * getXSpeed() + getYSpeed() * getYSpeed());
     }
@@ -308,12 +310,12 @@ public abstract class Entity
         this.setYPos(yPos);
     }
 
-    public boolean doesRequestRemove() {
-        return requestRemove;
+    public void requestRemove() {
+        getLevel().removeEntity(this);
     }
 
-    public void requestRemove() {
-        this.requestRemove = true;
+    public SoundHandler getSoundHandler() {
+        return GravityRocket.getInstance().getSoundHandler();
     }
 
 }

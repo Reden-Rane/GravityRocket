@@ -40,7 +40,7 @@ public abstract class ReachingZoneLevel extends Level
                 getRocket().attachToPlanet(planet);
 
             } else {
-                getRocket().crashRocket();
+                getRocket().explode();
                 setLevelState(EnumLevelState.CRASH);
             }
 

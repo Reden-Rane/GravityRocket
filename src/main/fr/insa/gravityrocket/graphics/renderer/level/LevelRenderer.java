@@ -88,12 +88,10 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
 
         for (Entity entity : level.getEntityList()) {
 
-            if (!entity.doesRequestRemove()) {
-                renderEntity(level, entity, g2d);
+            renderEntity(level, entity, g2d);
 
-                if (DEBUG_MODE) {
-                    renderEntityCollisionBox(level, entity, g2d);
-                }
+            if (DEBUG_MODE) {
+                renderEntityCollisionBox(level, entity, g2d);
             }
         }
     }
@@ -149,6 +147,12 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         } else if (level.getLevelState() == EnumLevelState.OUT_OF_LEVEL) {
             text = "GAME OVER";
             subText = "Vous vous êtes trop éloigné de l'objectif";
+            textStartColor = Color.RED;
+            textEndColor = Color.DARK_GRAY;
+            subTextColor = Color.RED;
+        } else if (level.getLevelState() == EnumLevelState.DEAD) {
+            text = "GAME OVER";
+            subText = "Vous êtes mort";
             textStartColor = Color.RED;
             textEndColor = Color.DARK_GRAY;
             subTextColor = Color.RED;

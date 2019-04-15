@@ -6,7 +6,6 @@ import fr.insa.gravityrocket.graphics.GravityRocketView;
 import fr.insa.gravityrocket.logic.GravityRocketModel;
 import fr.insa.gravityrocket.logic.SoundHandler;
 import javafx.application.Application;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -25,13 +24,15 @@ public class GravityRocket extends Application
     private final GravityRocketView  gravityRocketView;
     private final GravityRocketModel gravityRocketModel;
 
+    private final SoundHandler soundHandler;
+
     private final KeyboardHandler keyboardHandler;
     private final MouseHandler    mouseHandler;
 
-    private final MediaPlayer musicPlayer;
-
     private GravityRocket() {
         GravityRocket.instance = this;
+
+        this.soundHandler = new SoundHandler();
 
         this.keyboardHandler = new KeyboardHandler();
         this.mouseHandler = new MouseHandler();
@@ -39,8 +40,7 @@ public class GravityRocket extends Application
         this.gravityRocketModel = new GravityRocketModel();
         this.gravityRocketView = new GravityRocketView(this.gravityRocketModel, this.keyboardHandler, this.mouseHandler);
 
-        this.musicPlayer = SoundHandler.createPlayer("/sounds/music/music01.wav", true);
-        this.musicPlayer.play();
+        this.soundHandler.musicSoundPlayer.play();
 
         startGameLoop();
 
@@ -85,9 +85,8 @@ public class GravityRocket extends Application
         return instance;
     }
 
-    //TODO A déplacer vers une classe plus appropriée
-    public MediaPlayer getMusicPlayer() {
-        return musicPlayer;
+    public SoundHandler getSoundHandler() {
+        return this.soundHandler;
     }
 
     /**
