@@ -3,7 +3,9 @@ package fr.insa.gravityrocket.logic.level;
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.logic.EnumLevelState;
 import fr.insa.gravityrocket.logic.SoundHandler;
+import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.Entity;
+import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
 import javafx.scene.media.MediaPlayer;
 
@@ -44,15 +46,31 @@ public abstract class Level
     private       Rocket       rocket;
     private       double       outOfBoundsCountdown;
 
+    /**
+     * L'angle maximum que doit avoir la fusée avec la normale de la planète en atterissant, sinon elle se crash L'angle
+     * est exprimé en radians
+     */
+    private final double maximumAngle;
+    /**
+     * La vitesse maximale que doit avoir la fusée en atterissant, sinon elle se crash La vitesse est exprimée en m/s
+     */
+    private final int    maximumSpeed;
+
     private EnumLevelState levelState = EnumLevelState.RUNNING;
 
     public Level(Image levelBackground, Rectangle preferredView, Rectangle bounds) {
+        this(levelBackground, preferredView, bounds, Math.toRadians(20), 100);
+    }
+
+    public Level(Image levelBackground, Rectangle preferredView, Rectangle bounds, double maximumAngle, int maximumSpeed) {
         this.levelBackground = levelBackground;
         this.preferredView = preferredView;
         this.bounds = bounds;
         this.dangerSoundPlayer = SoundHandler.createPlayer("/sounds/alarm.wav", true);
         this.dangerSoundPlayer.setVolume(0.5);
         this.successSoundPlayer = SoundHandler.createPlayer("/sounds/success.wav", false);
+        this.maximumAngle = maximumAngle;
+        this.maximumSpeed = maximumSpeed;
         resetOutOfBoundsCountdown();
     }
 
@@ -144,7 +162,36 @@ public abstract class Level
     }
 
     public void handleEntityCollision(Entity entity1, Entity entity2) {
-        entity1.onCollisionWith(entity2);
+
+        if (entity1 instanceof Rocket) {
+
+            if (entity2 instanceof Planet) {
+
+                Planet planet = (Planet) entity2;
+
+                getRocket().stopAllEngines();
+
+                if (canRocketLandOn(planet)) {
+                    getRocket().getBoosterReactor().setActive(false);
+                    getRocket().attachToPlanet(planet);
+
+                } else {
+                    getRocket().crashRocket();
+                    setLevelState(EnumLevelState.CRASH);
+                }
+            } else if (entity2 instanceof Asteroid) {
+                getRocket().crashRocket();
+                setLevelState(EnumLevelState.CRASH);
+            }
+
+        } else {
+            entity1.onCollisionWith(entity2);
+        }
+    }
+
+    protected boolean canRocketLandOn(Planet planet) {
+        double speedMagnitude = getRocket().getSpeedMagnitude();
+        return getRocket().getAngleWithPlanet(planet) < getMaximumAngle() && speedMagnitude < getMaximumSpeed();
     }
 
     public boolean isGameOver() {
@@ -193,6 +240,14 @@ public abstract class Level
 
     public Image getLevelBackground() {
         return levelBackground;
+    }
+
+    public double getMaximumAngle() {
+        return maximumAngle;
+    }
+
+    public int getMaximumSpeed() {
+        return maximumSpeed;
     }
 
 }

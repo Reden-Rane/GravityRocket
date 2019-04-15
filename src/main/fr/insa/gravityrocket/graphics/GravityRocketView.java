@@ -6,6 +6,7 @@ import fr.insa.gravityrocket.graphics.interfaces.MainWindow;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 import fr.insa.gravityrocket.graphics.renderer.collision.CircularCollisionBoxRenderer;
 import fr.insa.gravityrocket.graphics.renderer.collision.RectangularCollisionBoxRenderer;
+import fr.insa.gravityrocket.graphics.renderer.entity.AsteroidRenderer;
 import fr.insa.gravityrocket.graphics.renderer.entity.ItemFuelRenderer;
 import fr.insa.gravityrocket.graphics.renderer.entity.PlanetRenderer;
 import fr.insa.gravityrocket.graphics.renderer.entity.RocketRenderer;
@@ -15,6 +16,7 @@ import fr.insa.gravityrocket.graphics.renderer.level.ReachingZoneLevelRenderer;
 import fr.insa.gravityrocket.logic.GravityRocketModel;
 import fr.insa.gravityrocket.logic.collision.CircularCollisionBox;
 import fr.insa.gravityrocket.logic.collision.RectangularCollisionBox;
+import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.particle.Explosion;
@@ -53,6 +55,7 @@ public class GravityRocketView
 
         this.renderManager.registerRenderer(Planet.class, new PlanetRenderer());
         this.renderManager.registerRenderer(Rocket.class, new RocketRenderer());
+        this.renderManager.registerRenderer(Asteroid.class, new AsteroidRenderer());
 
         this.renderManager.registerRenderer(RectangularCollisionBox.class, new RectangularCollisionBoxRenderer());
         this.renderManager.registerRenderer(CircularCollisionBox.class, new CircularCollisionBoxRenderer());
