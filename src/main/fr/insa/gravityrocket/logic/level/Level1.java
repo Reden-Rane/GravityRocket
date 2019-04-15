@@ -29,6 +29,8 @@ public class Level1 extends LandingLevel
         this.earth.setRotationSpeed(Math.PI / 16);
         this.neptun.setRotationSpeed(-Math.PI / 32);
 
+        this.setTargetedPlanetHaloSize(60);
+
         resetLevel();
     }
 

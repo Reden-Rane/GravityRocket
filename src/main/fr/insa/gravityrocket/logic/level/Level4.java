@@ -40,6 +40,8 @@ public class Level4 extends LandingLevel
         this.venus.setRotationSpeed(-Math.PI / 16);
         this.uranus.setRotationSpeed(Math.PI / 8);
 
+        this.setTargetedPlanetHaloSize(20);
+
         resetLevel();
     }
 

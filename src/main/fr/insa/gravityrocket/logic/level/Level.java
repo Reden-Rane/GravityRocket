@@ -92,6 +92,12 @@ public abstract class Level
     public void setLevelState(EnumLevelState levelState) {
         this.levelState = levelState;
 
+        if (this.levelState != EnumLevelState.RUNNING) {
+            if (getRocket() != null) {
+                this.getRocket().stopAllEngines();
+            }
+        }
+
         if (this.levelState == EnumLevelState.SUCCESS) {
             this.successSoundPlayer.play();
         }

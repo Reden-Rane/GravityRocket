@@ -206,6 +206,17 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
 
         g2d.setTransform(prevTransform);
         g2d.setStroke(prevStroke);
+
+        Font        shortcutFont      = RenderManager.BEBAS_NEUE_FONT.deriveFont(25.0f);
+        String      restartText       = "Recommencer: R";
+        String      exitText          = "Quitter: Echap";
+        Rectangle2D restartTextBounds = shortcutFont.getStringBounds(restartText, g2d.getFontRenderContext());
+        Rectangle2D exitTextBounds    = shortcutFont.getStringBounds(exitText, g2d.getFontRenderContext());
+
+        g2d.setColor(Color.LIGHT_GRAY);
+        g2d.setFont(shortcutFont);
+        g2d.drawString(restartText, (int) ((getRenderManager().getScreenWidth() - restartTextBounds.getWidth()) / 2), getRenderManager().getScreenHeight() / 2 + 120);
+        g2d.drawString(exitText, (int) ((getRenderManager().getScreenWidth() - exitTextBounds.getWidth()) / 2), getRenderManager().getScreenHeight() / 2 + 150);
     }
 
     protected void renderLevelHUD(T level, Graphics2D g2d) {
@@ -221,8 +232,8 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
     private void renderShortcuts(Graphics2D g2d) {
         g2d.setFont(RenderManager.BEBAS_NEUE_FONT.deriveFont(20.0f));
         g2d.setColor(Color.LIGHT_GRAY);
-        g2d.drawString("Recommencer: R", 10, 25);
-        g2d.drawString("Quitter: Echap", 10, 50);
+        g2d.drawString("Recommencer: R", 40, 55);
+        g2d.drawString("Quitter: Echap", 40, 80);
     }
 
     private void renderTankHUD(T level, Graphics2D g2d) {
@@ -265,7 +276,7 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         g2d.drawString(percentageText, tankX + (int) ((tankWidth - textBounds.getWidth()) / 2), tankY + tankHeight / 2 + 5);
     }
 
-    protected void renderSpeedHUD(T level, Graphics g2d) {
+    protected void renderSpeedHUD(T level, Graphics2D g2d) {
         double speedMagnitude = level.getRocket().getSpeedMagnitude();
         int    speedX         = 40;
         int    speedY         = getRenderManager().getScreenHeight() - 80;

@@ -32,13 +32,15 @@ public class Level2 extends LandingLevel
         this.uranusTexture = RenderManager.loadImage("/textures/star/uranus.png", 200, 200);
 
         this.earth = new Planet(this, "Terre", earthTexture, 2 * Math.pow(10, 6), 120, -200, -200);
-        this.moon = new Satellite(this, "Lune", moonTexture, earth, 50, Math.PI / 16, 2 * Math.pow(10, 6), 30);
+        this.moon = new Satellite(this, "Lune", moonTexture, earth, 100, Math.PI / 16, 2 * Math.pow(10, 6), 30);
         this.venus = new Planet(this, "Vénus", venusTexture, 2 * Math.pow(10, 6), 120, 1850, 1000);
-        this.uranus = new Planet(this, "Uranus", uranusTexture, 2 * Math.pow(10, 6), 150, 750, 400);
+        this.uranus = new Planet(this, "Uranus", uranusTexture, 2 * Math.pow(10, 10), 150, 750, 400);
 
         this.earth.setRotationSpeed(Math.PI / 16);
         this.venus.setRotationSpeed(-Math.PI / 32);
         this.uranus.setRotationSpeed(Math.PI / 8);
+
+        this.setTargetedPlanetHaloSize(32);
 
         resetLevel();
     }

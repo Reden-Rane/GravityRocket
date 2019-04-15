@@ -38,12 +38,14 @@ public class Level3 extends LandingLevel
         this.earth = new Planet(this, "Terre", earthTexture, 2 * Math.pow(10, 7), 40, -600, -200);
         this.mercury = new Planet(this, "Mercure", mercuryTexture, 2 * Math.pow(10, 7), 100, 1700, 850);
         this.sun = new Planet(this, "Soleil", sunTexture, 2 * Math.pow(10, 9), 250, 1400, -100);
-        this.jupiter = new Planet(this, "Jupiter", jupiterTexture, 2 * Math.pow(10, 8), 125, 200, 900);
+        this.jupiter = new Planet(this, "Jupiter", jupiterTexture, 2 * Math.pow(10, 10), 125, 200, 900);
 
         this.earth.setRotationSpeed(Math.PI / 16);
         this.mercury.setRotationSpeed(-Math.PI / 32);
         this.sun.setRotationSpeed(Math.PI / 25);
         this.jupiter.setRotationSpeed(-Math.PI / 25);
+
+        this.setTargetedPlanetHaloSize(32);
 
         resetLevel();
     }

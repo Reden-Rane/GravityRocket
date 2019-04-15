@@ -20,6 +20,7 @@ public abstract class LandingLevel extends Level
      */
     private final int    maximumSpeed;
     private       Planet targetedPlanet;
+    private       double haloSize = 30;
 
     public LandingLevel(Image backgroundImage, Rectangle preferredView, Rectangle bounds) {
         this(backgroundImage, preferredView, bounds, Math.toRadians(20), 100);
@@ -44,10 +45,9 @@ public abstract class LandingLevel extends Level
 
                 if (getTargetedPlanet() == planet) {
                     setLevelState(EnumLevelState.SUCCESS);
-                } else {
-                    getRocket().getBoosterReactor().setActive(false);
                 }
 
+                getRocket().getBoosterReactor().setActive(false);
                 getRocket().attachToPlanet(planet);
 
             } else {
@@ -79,6 +79,14 @@ public abstract class LandingLevel extends Level
 
     public void setTargetedPlanet(Planet targetedPlanet) {
         this.targetedPlanet = targetedPlanet;
+    }
+
+    public double getHaloSize() {
+        return haloSize;
+    }
+
+    public void setTargetedPlanetHaloSize(double haloSize) {
+        this.haloSize = haloSize;
     }
 
 }

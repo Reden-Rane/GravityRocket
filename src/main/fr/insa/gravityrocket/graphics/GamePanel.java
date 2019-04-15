@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements KeyListener
     public void keyPressed(KeyEvent keyEvent) {
         if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) {
             //On quitte le niveau
+            GravityRocket.getInstance().getGravityRocketModel().setPaused(true);
             GravityRocket.getInstance().getGravityRocketModel().getCurrentLevel().stopAllSounds();
             this.mainWindow.openLevelSelection();
         } else if (keyEvent.getKeyCode() == KeyEvent.VK_R) {

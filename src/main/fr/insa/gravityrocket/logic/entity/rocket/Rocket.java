@@ -82,6 +82,14 @@ public class Rocket extends Entity
 
         if (isAttached()) {
 
+            getBoosterReactor().setActive(false);
+            this.rightThrusterActivated = false;
+            this.leftThrusterActivated = false;
+            this.setXAcceleration(0);
+            this.setYAcceleration(0);
+            this.setXSpeed(0);
+            this.setYSpeed(0);
+
             if (keyboardHandler.isKeyPressed(KeyEvent.VK_UP)) {
                 detach();
             }

@@ -54,10 +54,10 @@ public class LevelSelectionPanel extends JPanel implements ActionListener
         addLevelMarker(3, GravityRocketModel.LEVEL_3, -350, 150);
         addLevelMarker(4, GravityRocketModel.LEVEL_4, -200, 300);
 
-        addLevelMarker(8, GravityRocketModel.LEVEL_1, 180, -300);
-        addLevelMarker(7, GravityRocketModel.LEVEL_1, 330, -150);
-        addLevelMarker(6, GravityRocketModel.LEVEL_1, 330, 150);
-        addLevelMarker(5, GravityRocketModel.LEVEL_1, 180, 300);
+        addLevelMarker(8, GravityRocketModel.LEVEL_8, 180, -300);
+        addLevelMarker(7, GravityRocketModel.LEVEL_7, 330, -150);
+        addLevelMarker(6, GravityRocketModel.LEVEL_6, 330, 150);
+        addLevelMarker(5, GravityRocketModel.LEVEL_5, 180, 300);
     }
 
     private void updateStarsPositions() {

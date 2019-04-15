@@ -9,6 +9,10 @@ public class GravityRocketModel
     public static final Level2 LEVEL_2 = new Level2();
     public static final Level3 LEVEL_3 = new Level3();
     public static final Level4 LEVEL_4 = new Level4();
+    public static final Level5 LEVEL_5 = new Level5();
+    public static final Level6 LEVEL_6 = new Level6();
+    public static final Level7 LEVEL_7 = new Level7();
+    public static final Level8 LEVEL_8 = new Level8();
 
     private Level   currentLevel;
     private boolean paused = true;
