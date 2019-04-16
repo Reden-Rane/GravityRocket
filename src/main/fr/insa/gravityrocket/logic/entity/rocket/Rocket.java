@@ -5,6 +5,7 @@ import fr.insa.gravityrocket.controller.KeyboardHandler;
 import fr.insa.gravityrocket.logic.EnumLevelState;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.entity.Planet;
+import fr.insa.gravityrocket.logic.entity.alien.Alien;
 import fr.insa.gravityrocket.logic.entity.particle.Explosion;
 import fr.insa.gravityrocket.logic.entity.particle.Laser;
 import fr.insa.gravityrocket.logic.level.Level;
@@ -150,7 +151,7 @@ public class Rocket extends Entity
     @Override
     public void onCollisionWith(Entity entity) {
 
-        if (entity instanceof Laser) {
+        if (entity instanceof Laser || entity instanceof Alien) {
             explode();
             getLevel().setLevelState(EnumLevelState.DEAD);
         }
