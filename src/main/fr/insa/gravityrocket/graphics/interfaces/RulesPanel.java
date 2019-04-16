@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -126,7 +125,7 @@ public class RulesPanel extends JPanel implements ActionListener
         StringBuilder text = new StringBuilder();
 
         try {
-            InputStream       stream = new FileInputStream(GravityRocket.class.getResource("/rules.txt").getFile());
+            InputStream       stream = GravityRocket.class.getResourceAsStream("/rules.txt");
             InputStreamReader reader = new InputStreamReader(stream);
             BufferedReader    buff   = new BufferedReader(reader);
             String            line;
