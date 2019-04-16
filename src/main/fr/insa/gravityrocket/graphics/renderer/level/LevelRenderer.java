@@ -38,11 +38,7 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
     }
 
     private void renderBackground(T level, Graphics2D g2d) {
-        Composite      prevComposite  = g2d.getComposite();
-        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
-        g2d.setComposite(alphaComposite);
         RenderManager.renderFittedImage(g2d, level.getLevelBackground(), getRenderManager().getScreenWidth(), getRenderManager().getScreenHeight());
-        g2d.setComposite(prevComposite);
     }
 
     private void applyCameraTransform(T level, Graphics2D g2d) {
@@ -230,7 +226,18 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
 
         if (level.isRocketOutOfLevelBounds()) {
             renderDangerHUD(level, g2d);
+        } else {
+            renderObjective(level, g2d);
         }
+    }
+
+    protected void renderSpeedHUD(T level, Graphics2D g2d) {
+        double speedMagnitude = level.getRocket().getSpeedMagnitude();
+        int    renderX        = 40;
+        int    renderY        = getRenderManager().getScreenHeight() - 80;
+        g2d.setFont(RenderManager.BEBAS_NEUE_FONT.deriveFont(25.0f));
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(String.format("Vitesse: %.2fm/s", speedMagnitude), renderX, renderY);
     }
 
     private void renderShortcuts(Graphics2D g2d) {
@@ -280,12 +287,8 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         g2d.drawString(percentageText, tankX + (int) ((tankWidth - textBounds.getWidth()) / 2), tankY + tankHeight / 2 + 5);
     }
 
-    protected void renderSpeedHUD(T level, Graphics2D g2d) {
-        double speedMagnitude = level.getRocket().getSpeedMagnitude();
-        int    speedX         = 40;
-        int    speedY         = getRenderManager().getScreenHeight() - 80;
-        g2d.setColor(Color.WHITE);
-        g2d.drawString(String.format("Vitesse: %.2fm/s", speedMagnitude), speedX, speedY);
+    protected void renderObjective(T level, Graphics2D g2d) {
+
     }
 
     private void renderDangerHUD(T level, Graphics2D g2d) {

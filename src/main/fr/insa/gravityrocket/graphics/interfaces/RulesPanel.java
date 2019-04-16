@@ -4,8 +4,7 @@ import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 
 import javax.swing.*;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +20,7 @@ public class RulesPanel extends JPanel implements ActionListener
     private final Image      background;
 
     private final JLabel      titleLabel;
+    private final JTextPane   rulesTextPane;
     private final JScrollPane scrollPane;
 
     private final TransparentButton closeButton;
@@ -31,19 +31,16 @@ public class RulesPanel extends JPanel implements ActionListener
 
         this.setLayout(new GridBagLayout());
 
-        JTextPane rulesTextArea = new JTextPane();
-        rulesTextArea.setBackground(new Color(0, 0, 0, 0));
-        rulesTextArea.setText(loadText());
-        rulesTextArea.setFont(RenderManager.BEBAS_NEUE_FONT.deriveFont(25.0f));
-        rulesTextArea.setForeground(Color.WHITE);
-        rulesTextArea.setOpaque(false);
-        rulesTextArea.setBorder(null);
+        this.rulesTextPane = new JTextPane();
+        this.rulesTextPane.setBackground(new Color(0, 0, 0, 0));
+        this.rulesTextPane.setFont(RenderManager.BEBAS_NEUE_FONT.deriveFont(25.0f));
+        this.rulesTextPane.setForeground(Color.WHITE);
+        this.rulesTextPane.setOpaque(false);
+        this.rulesTextPane.setBorder(null);
 
-        SimpleAttributeSet attribs = new SimpleAttributeSet();
-        StyleConstants.setAlignment(attribs, StyleConstants.ALIGN_JUSTIFIED);
-        rulesTextArea.setParagraphAttributes(attribs, false);
+        setRulesText();
 
-        this.scrollPane = new JScrollPane(rulesTextArea);
+        this.scrollPane = new JScrollPane(rulesTextPane);
         this.scrollPane.setOpaque(false);
         this.scrollPane.getViewport().setOpaque(true);
         this.scrollPane.getViewport().setBackground(new Color(0x222342));
@@ -83,6 +80,45 @@ public class RulesPanel extends JPanel implements ActionListener
         gbc.weighty = 1 / 8.0;
         gbc.insets = new Insets(15, 100, 15, 100);
         this.add(closeButton, gbc);
+    }
+
+    private void setRulesText() {
+        try {
+            StyledDocument doc = (StyledDocument) rulesTextPane.getDocument();
+
+            MutableAttributeSet titleStyle = new SimpleAttributeSet();
+            StyleConstants.setBold(titleStyle, true);
+            StyleConstants.setForeground(titleStyle, new Color(255, 162, 80));
+
+            MutableAttributeSet paragraphStyle = new SimpleAttributeSet();
+            StyleConstants.setForeground(paragraphStyle, new Color(255, 255, 255));
+
+            MutableAttributeSet centered = new SimpleAttributeSet();
+            StyleConstants.setAlignment(centered, StyleConstants.ALIGN_CENTER);
+
+            String text = loadText();
+
+            MutableAttributeSet currentStyle = paragraphStyle;
+
+            int i = 0;
+
+            for (String str : text.split("\n")) {
+                if (str.startsWith("<title>")) {
+                    currentStyle = titleStyle;
+                    str = str.replaceFirst("<title>", "");
+                } else if (str.startsWith("<p>")) {
+                    currentStyle = paragraphStyle;
+                    str = str.replaceFirst("<p>", "");
+                }
+
+                doc.insertString(doc.getLength(), str + "\n", currentStyle);
+            }
+
+            doc.setParagraphAttributes(0, doc.getLength(), centered, false);
+
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
     }
 
     private String loadText() {

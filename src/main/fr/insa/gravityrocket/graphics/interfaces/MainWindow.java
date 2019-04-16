@@ -1,5 +1,6 @@
 package fr.insa.gravityrocket.graphics.interfaces;
 
+import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.controller.KeyboardHandler;
 import fr.insa.gravityrocket.controller.MouseHandler;
 import fr.insa.gravityrocket.graphics.GamePanel;
@@ -36,6 +37,8 @@ public class MainWindow extends JFrame
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+
+        GravityRocket.getInstance().getSoundHandler().menuMusicPlayer.play();
     }
 
     public void openHome() {
@@ -54,9 +57,12 @@ public class MainWindow extends JFrame
 
     public void openLevelSelection() {
         this.openPanel(this.levelSelectionPanel);
+        this.levelSelectionPanel.requestFocus();
+        GravityRocket.getInstance().getSoundHandler().menuMusicPlayer.play();
     }
 
     public void openLevel() {
+        GravityRocket.getInstance().getSoundHandler().menuMusicPlayer.pause();
         this.openPanel(this.gamePanel);
         this.gamePanel.requestFocus();
     }

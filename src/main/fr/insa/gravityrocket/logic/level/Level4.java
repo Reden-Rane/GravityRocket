@@ -1,6 +1,9 @@
 package fr.insa.gravityrocket.logic.level;
 
+import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
+import fr.insa.gravityrocket.logic.entity.Asteroid;
+import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.Satellite;
 import fr.insa.gravityrocket.logic.entity.alien.Alien;
@@ -27,15 +30,15 @@ public class Level4 extends LandingLevel
     private final Planet    uranus;
 
     public Level4() {
-        super(RenderManager.loadImage("/textures/background_3.png", 1920, 1080), new Rectangle(-900, -650, 1650 * 2, 1150 * 2), new Rectangle(-1500, -1000, 1500 * 3, 1000 * 3));
+        super(GravityRocket.getInstance().getSoundHandler().musicPlayers[3], RenderManager.loadImage("/textures/background_3.jpg", 1920, 1080), new Rectangle(-900, -650, 1650 * 2, 1150 * 2), new Rectangle(-1500, -1000, 1500 * 3, 1000 * 3));
 
         this.earthTexture = RenderManager.loadImage("/textures/star/earth.png", 200, 200);
         this.venusTexture = RenderManager.loadImage("/textures/star/venus.png", 200, 200);
-        this.moonTexture = RenderManager.loadImage("/textures/star/moon.png", 60, 60);
+        this.moonTexture = RenderManager.loadImage("/textures/star/moon.png", 40, 40);
         this.uranusTexture = RenderManager.loadImage("/textures/star/uranus.png", 200, 200);
 
         this.earth = new Planet(this, "Terre", earthTexture, 1 * Math.pow(10, 9), 150, 2000, 1200);
-        this.moon = new Satellite(this, "Lune", moonTexture, earth, 75, Math.PI / 16, 2 * Math.pow(10, 10), 20);
+        this.moon = new Satellite(this, "Lune", moonTexture, 2 * Math.pow(10, 10), 20, earth, 75, Math.PI / 16);
         this.venus = new Planet(this, "Vénus", venusTexture, 5 * Math.pow(10, 8), 350, 700, 500);
         this.uranus = new Planet(this, "Uranus", uranusTexture, 0 * Math.pow(10, 9), 100, -700, -200);
 
@@ -59,10 +62,10 @@ public class Level4 extends LandingLevel
 
         setTargetedPlanet(moon);
 
-        ItemFuel itemFuel1 = new ItemFuel(this, 50, 10);
-        ItemFuel itemFuel2 = new ItemFuel(this, 50, 10);
-        ItemFuel itemFuel3 = new ItemFuel(this, 50, 10);
-        ItemFuel itemFuel4 = new ItemFuel(this, 50, 10);
+        ItemFuel itemFuel1 = new ItemFuel(this, 60, 10);
+        ItemFuel itemFuel2 = new ItemFuel(this, 60, 10);
+        ItemFuel itemFuel3 = new ItemFuel(this, 60, 10);
+        ItemFuel itemFuel4 = new ItemFuel(this, 60, 10);
 
         itemFuel1.setPos(-200, 200);
         itemFuel2.setPos(1700, 200);
@@ -74,15 +77,30 @@ public class Level4 extends LandingLevel
         addEntity(itemFuel3);
         addEntity(itemFuel4);
 
-        Alien alien1 = new OrbitingAlien(this, 500, venus, 100, 0.5);
-        Alien alien2 = new WanderingAlien(this, 900, -400, 1000);
+        Alien alien1 = new OrbitingAlien(this, 700, venus, 100, 0.5);
+        Alien alien2 = new WanderingAlien(this, 1000, -400, 1000);
+        Alien alien3 = new WanderingAlien(this, 1000, 1900, 0);
 
         addEntity(alien1);
         addEntity(alien2);
+        addEntity(alien3);
 
-        FuelTank basicTank    = new FuelTank(100);
-        Reactor  basicReactor = new Reactor(4, 800_000);
-        Rocket   rocket       = new Rocket(this, basicTank, basicReactor);
+        Asteroid asteroid1 = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
+        Asteroid asteroid2 = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
+
+        asteroid1.setPos(1300, 400);
+        asteroid2.setPos(100, 600);
+
+        asteroid1.setRotationSpeed(-Math.PI / 28);
+        asteroid2.setRotationSpeed(-Math.PI / 28);
+
+        addEntity(asteroid1);
+        addEntity(asteroid2);
+
+        FuelTank basicTank = new FuelTank(50);
+        basicTank.setFuelVolume(50);
+        Reactor basicReactor = new Reactor(4, 900_000);
+        Rocket  rocket       = new Rocket(this, basicTank, basicReactor);
 
         addEntity(rocket);
         rocket.attachToPlanet(uranus);

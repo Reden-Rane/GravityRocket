@@ -65,6 +65,11 @@ public abstract class Alien extends Entity
     }
 
     @Override
+    public boolean isAttractedBy(Entity entity) {
+        return false;
+    }
+
+    @Override
     public double getMass() {
         return 5000;
     }

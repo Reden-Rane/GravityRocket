@@ -1,9 +1,12 @@
 package fr.insa.gravityrocket.logic.level;
 
+import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
+import fr.insa.gravityrocket.logic.entity.alien.Alien;
+import fr.insa.gravityrocket.logic.entity.alien.WanderingAlien;
 import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Reactor;
@@ -25,7 +28,7 @@ public class Level3 extends LandingLevel
     private final Planet jupiter;
 
     public Level3() {
-        super(RenderManager.loadImage("/textures/background_2.png", 1920, 1080), new Rectangle(-750, -500, 1500 * 2, 1000 * 2), new Rectangle(-1500, -1000, 1500 * 3, 1000 * 3));
+        super(GravityRocket.getInstance().getSoundHandler().musicPlayers[2], RenderManager.loadImage("/textures/background_2.jpg", 1920, 1080), new Rectangle(-750, -500, 1500 * 2, 1000 * 2), new Rectangle(-1500, -1000, 1500 * 3, 1000 * 3));
 
         this.earthTexture = RenderManager.loadImage("/textures/star/earth.png", 80, 80);
         this.mercuryTexture = RenderManager.loadImage("/textures/star/mercury.png", 200, 200);
@@ -67,30 +70,20 @@ public class Level3 extends LandingLevel
         addFuel(50, 50, 1800, 500);
         addFuel(50, 50, 1600, 300);
 
-        Asteroid asteroid = new Asteroid(this, 50, EnumAsteroidVariant.ASTEROID_0);
-        asteroid.setPos(1000, 510);
-        asteroid.setRotationSpeed(-Math.PI / 28);
-        addEntity(asteroid);
+        Alien alien1 = new WanderingAlien(this, 800, 900, -90);
+        Alien alien2 = new WanderingAlien(this, 500, 1200, 500);
 
-        Asteroid asteroid1 = new Asteroid(this, 150, EnumAsteroidVariant.ASTEROID_2);
-        asteroid1.setPos(1100, 300);
-        asteroid1.setRotationSpeed(Math.PI / 20);
-        addEntity(asteroid1);
+        addEntity(alien1);
+        addEntity(alien2);
 
-        Asteroid asteroid2 = new Asteroid(this, 150, EnumAsteroidVariant.ASTEROID_1);
-        asteroid2.setPos(800, 700);
-        asteroid2.setRotationSpeed(-Math.PI / 25);
-        addEntity(asteroid2);
-
-        Asteroid asteroid3 = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_2);
-        asteroid3.setPos(600, 800);
-        asteroid3.setRotationSpeed(Math.PI / 25);
-        addEntity(asteroid3);
-
-        Asteroid asteroid4 = new Asteroid(this, 50, EnumAsteroidVariant.ASTEROID_0);
-        asteroid4.setPos(650, 700);
-        asteroid4.setRotationSpeed(-Math.PI / 10);
-        addEntity(asteroid4);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, -800, 1100, -Math.PI / 10);
+        addAsteroid(80, EnumAsteroidVariant.ASTEROID_2, -500, 1000, -Math.PI / 10);
+        addAsteroid(150, EnumAsteroidVariant.ASTEROID_1, -300, 1200, -Math.PI / 28);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, 1000, 510, -Math.PI / 28);
+        addAsteroid(150, EnumAsteroidVariant.ASTEROID_2, 1100, 300, Math.PI / 20);
+        addAsteroid(150, EnumAsteroidVariant.ASTEROID_1, 800, 700, -Math.PI / 25);
+        addAsteroid(100, EnumAsteroidVariant.ASTEROID_2, 600, 800, Math.PI / 25);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, 650, 700, -Math.PI / 10);
 
         FuelTank basicTank = new FuelTank(100);
         basicTank.setFuelVolume(40);
@@ -99,6 +92,13 @@ public class Level3 extends LandingLevel
 
         addEntity(rocket);
         rocket.attachToPlanet(earth);
+    }
+
+    private void addAsteroid(int radius, EnumAsteroidVariant variant, int x, int y, double v) {
+        Asteroid asteroid = new Asteroid(this, radius, variant);
+        asteroid.setPos(x, y);
+        asteroid.setRotationSpeed(v);
+        addEntity(asteroid);
     }
 
     private void addFuel(int size, int volume, int x, int y) {

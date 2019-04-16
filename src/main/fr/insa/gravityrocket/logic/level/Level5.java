@@ -1,7 +1,7 @@
 package fr.insa.gravityrocket.logic.level;
 
+import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
-import fr.insa.gravityrocket.logic.Polygon2D;
 import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
@@ -23,7 +23,7 @@ public class Level5 extends ReachingZoneLevel
     private final Planet mercury;
 
     public Level5() {
-        super(RenderManager.loadImage("/textures/background_1.png", 1920, 1080), new Rectangle(-750, -500, 1500 * 2, 1000 * 2), new Rectangle(-1500, -1000, 1500 * 3, 1000 * 3), createZoneShape());
+        super("Constellation du Verseau", GravityRocket.getInstance().getSoundHandler().musicPlayers[4], RenderManager.loadImage("/textures/background_4.jpg", 1920, 1080), new Rectangle(-750, -500, 1500 * 2, 1000 * 2), new Rectangle(-1500, -1000, 1500 * 3, 1000 * 3), createZoneShape());
 
         this.earthTexture = RenderManager.loadImage("/textures/star/earth.png", 80, 80);
         this.earth = new Planet(this, "Terre", earthTexture, 2 * Math.pow(10, 7), 40, 1800, 1000);
@@ -38,18 +38,16 @@ public class Level5 extends ReachingZoneLevel
     }
 
     private static Shape createZoneShape() {
-        Polygon2D verseau = new Polygon2D();
+        Polygon verseau = new Polygon();
 
-        verseau.addPoint(-500f, -300.0f);
-        verseau.addPoint(-600f, -222f);
-        verseau.addPoint(-700f, -170f);
-        verseau.addPoint(-685f, -101f);
-        verseau.addPoint(-720f, -90f);
-        verseau.addPoint(-738f, -68f);
-        verseau.addPoint(-659f, 61f);
-        verseau.addPoint(-644f, -17f);
-        verseau.addPoint(-586f, -26f);
-        verseau.addPoint(-500f, 52f);
+        verseau.addPoint(-900 + 200, -150);
+        verseau.addPoint(-900 + 421, -150);
+        verseau.addPoint(-900 + 421, -150 + 623);
+        verseau.addPoint(-900 + 300, -150 + 623);
+        verseau.addPoint(-900 + 50, -150 + 500);
+        verseau.addPoint(-900, -150 + 300);
+        verseau.addPoint(-900 + 100, -150 + 50);
+
         return verseau;
     }
 

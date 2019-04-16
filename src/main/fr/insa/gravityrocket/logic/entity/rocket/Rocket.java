@@ -54,7 +54,7 @@ public class Rocket extends Entity
         }
 
         if (isAttached()) {
-            updateAttachedPos();
+            updateAttachedPosition();
         }
     }
 
@@ -138,7 +138,7 @@ public class Rocket extends Entity
         return this.attachedPlanet != null;
     }
 
-    private void updateAttachedPos() {
+    private void updateAttachedPosition() {
         double angle    = attachedAngle + (attachedPlanet.getRotation() - attachedPlanetInitialAngle);
         double x        = attachedPlanet.getXPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.cos(angle);
         double y        = attachedPlanet.getYPos() + (attachedPlanet.getRadius() + getHeight() * 0.52) * Math.sin(angle);
@@ -200,7 +200,7 @@ public class Rocket extends Entity
         this.attachedPlanet = planet;
         this.attachedPlanetInitialAngle = planet.getRotation();
         this.attachedAngle = Math.atan2(getYPos() - planet.getYPos(), getXPos() - planet.getXPos());
-        updateAttachedPos();
+        updateAttachedPosition();
     }
 
     public void stopAllEngines() {

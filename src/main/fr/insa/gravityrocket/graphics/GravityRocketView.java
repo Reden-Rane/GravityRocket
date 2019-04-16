@@ -7,8 +7,7 @@ import fr.insa.gravityrocket.graphics.renderer.RenderManager;
 import fr.insa.gravityrocket.graphics.renderer.collision.CircularCollisionBoxRenderer;
 import fr.insa.gravityrocket.graphics.renderer.collision.RectangularCollisionBoxRenderer;
 import fr.insa.gravityrocket.graphics.renderer.entity.*;
-import fr.insa.gravityrocket.graphics.renderer.level.LandingLevelRenderer;
-import fr.insa.gravityrocket.graphics.renderer.level.ReachingZoneLevelRenderer;
+import fr.insa.gravityrocket.graphics.renderer.level.*;
 import fr.insa.gravityrocket.logic.GravityRocketModel;
 import fr.insa.gravityrocket.logic.collision.CircularCollisionBox;
 import fr.insa.gravityrocket.logic.collision.RectangularCollisionBox;
@@ -19,8 +18,7 @@ import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.particle.Explosion;
 import fr.insa.gravityrocket.logic.entity.particle.Laser;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
-import fr.insa.gravityrocket.logic.level.LandingLevel;
-import fr.insa.gravityrocket.logic.level.ReachingZoneLevel;
+import fr.insa.gravityrocket.logic.level.*;
 
 import javax.swing.*;
 
@@ -49,7 +47,11 @@ public class GravityRocketView
 
     private void registerRenderers() {
         this.renderManager.registerRenderer(LandingLevel.class, new LandingLevelRenderer());
-        this.renderManager.registerRenderer(ReachingZoneLevel.class, new ReachingZoneLevelRenderer());
+        this.renderManager.registerRenderer(ReachingZoneLevel.class, new ReachingZoneLevelRenderer<>());
+        this.renderManager.registerRenderer(Level5.class, new Level5Renderer());
+        this.renderManager.registerRenderer(Level6.class, new Level6Renderer());
+        this.renderManager.registerRenderer(Level7.class, new Level7Renderer());
+        this.renderManager.registerRenderer(Level8.class, new Level8Renderer());
 
         this.renderManager.registerRenderer(Planet.class, new PlanetRenderer());
         this.renderManager.registerRenderer(Rocket.class, new RocketRenderer());

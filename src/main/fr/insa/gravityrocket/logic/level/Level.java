@@ -6,6 +6,7 @@ import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
+import javafx.scene.media.MediaPlayer;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.List;
 public abstract class Level
 {
 
-    private final Image levelBackground;
+    private final MediaPlayer musicPlayer;
+    private final Image       levelBackground;
 
     /**
      * Les entités à ajouter dans le niveau, évite les ConcurrentModificationException si on ajoute une entité pendant
@@ -59,11 +61,12 @@ public abstract class Level
 
     private EnumLevelState levelState = EnumLevelState.RUNNING;
 
-    public Level(Image levelBackground, Rectangle preferredView, Rectangle bounds) {
-        this(levelBackground, preferredView, bounds, Math.toRadians(20), 100);
+    public Level(MediaPlayer musicPlayer, Image levelBackground, Rectangle preferredView, Rectangle bounds) {
+        this(musicPlayer, levelBackground, preferredView, bounds, Math.toRadians(20), 100);
     }
 
-    public Level(Image levelBackground, Rectangle preferredView, Rectangle bounds, double maximumAngle, int maximumSpeed) {
+    public Level(MediaPlayer musicPlayer, Image levelBackground, Rectangle preferredView, Rectangle bounds, double maximumAngle, int maximumSpeed) {
+        this.musicPlayer = musicPlayer;
         this.levelBackground = levelBackground;
         this.preferredView = preferredView;
         this.bounds = bounds;
@@ -73,7 +76,7 @@ public abstract class Level
     }
 
     public void resetLevel() {
-        this.stopAllSounds();
+        GravityRocket.getInstance().getSoundHandler().stopAllSounds();
         this.setLevelState(EnumLevelState.RUNNING);
         this.toAddEntityList.clear();
         this.entityList.clear();
@@ -101,15 +104,6 @@ public abstract class Level
         this.toRemoveEntityList.add(entity);
     }
 
-    public void stopAllSounds() {
-        GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.stop();
-        GravityRocket.getInstance().getSoundHandler().successSoundPlayer.stop();
-        GravityRocket.getInstance().getSoundHandler().explosionSoundPlayer.stop();
-        GravityRocket.getInstance().getSoundHandler().boosterSoundPlayer.stop();
-        GravityRocket.getInstance().getSoundHandler().alienSpeechSoundPlayer.stop();
-        GravityRocket.getInstance().getSoundHandler().shootingSoundPlayer.stop();
-    }
-
     /**
      * Méthode de mise à jour du niveau, elle est appelée 20 fois par seconde et met à jour toutes les entités du
      * niveau.
@@ -130,17 +124,17 @@ public abstract class Level
 
         if (isRocketOutOfLevelBounds()) {
             GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.play();
-            GravityRocket.getInstance().getSoundHandler().musicSoundPlayer.pause();
+            this.musicPlayer.pause();
             this.outOfBoundsCountdown = Math.max(0, this.outOfBoundsCountdown - dt);
 
             if (this.outOfBoundsCountdown == 0) {
                 GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.stop();
-                GravityRocket.getInstance().getSoundHandler().musicSoundPlayer.play();
+                this.musicPlayer.play();
                 setLevelState(EnumLevelState.OUT_OF_LEVEL);
             }
         } else {
             GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.stop();
-            GravityRocket.getInstance().getSoundHandler().musicSoundPlayer.play();
+            this.musicPlayer.play();
             resetOutOfBoundsCountdown();
         }
 
@@ -247,6 +241,10 @@ public abstract class Level
 
     public int getMaximumSpeed() {
         return maximumSpeed;
+    }
+
+    public MediaPlayer getMusicPlayer() {
+        return musicPlayer;
     }
 
 }

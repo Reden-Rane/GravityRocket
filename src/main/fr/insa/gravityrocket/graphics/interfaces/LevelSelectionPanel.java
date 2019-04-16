@@ -7,10 +7,7 @@ import fr.insa.gravityrocket.logic.level.Level;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +21,22 @@ public class LevelSelectionPanel extends JPanel implements ActionListener
     private final int   EARTH_WIDTH  = 587 / 2;
     private final int   EARTH_HEIGHT = 591 / 2;
 
+    private final TransparentButton       menuButton;
     private final List<LevelMarkerButton> levelMarkerButtonList = new ArrayList<>();
 
     public LevelSelectionPanel(MainWindow mainWindow) {
         this.setLayout(null);
         this.setPreferredSize(new Dimension(1500, 1000));
+
+        this.menuButton = new TransparentButton("Retour");
+        this.menuButton.setBounds(5, 5, 150, 50);
+        this.menuButton.addActionListener(this);
+        this.add(menuButton);
         addLevelMarkers();
 
         this.mainWindow = mainWindow;
 
-        this.background = RenderManager.loadImage("/textures/background_0.png", 1920, 1080);
+        this.background = RenderManager.loadImage("/textures/background_0.jpg", 1920, 1080);
         this.earthImage = RenderManager.loadImage("/textures/star/earth_2.png", EARTH_WIDTH, EARTH_HEIGHT);
 
         this.addComponentListener(new ComponentAdapter()
@@ -42,6 +45,17 @@ public class LevelSelectionPanel extends JPanel implements ActionListener
             public void componentResized(ComponentEvent componentEvent) {
                 super.componentResized(componentEvent);
                 updateStarsPositions();
+            }
+        });
+
+        this.addKeyListener(new KeyAdapter()
+        {
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                super.keyPressed(keyEvent);
+                if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    mainWindow.openHome();
+                }
             }
         });
 
@@ -90,6 +104,8 @@ public class LevelSelectionPanel extends JPanel implements ActionListener
         if (e.getSource() instanceof LevelMarkerButton) {
             GravityRocket.getInstance().getGravityRocketModel().startLevel(((LevelMarkerButton) e.getSource()).getLevel());
             this.mainWindow.openLevel();
+        } else if (e.getSource() == menuButton) {
+            this.mainWindow.openHome();
         }
     }
 

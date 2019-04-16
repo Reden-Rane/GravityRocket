@@ -1,5 +1,6 @@
 package fr.insa.gravityrocket.logic;
 
+import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.logic.level.*;
 
 public class GravityRocketModel
@@ -17,12 +18,11 @@ public class GravityRocketModel
     private Level   currentLevel;
     private boolean paused = true;
 
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-
-        if (paused) {
-            this.currentLevel.stopAllSounds();
-        }
+    public void startLevel(Level level) {
+        this.currentLevel = level;
+        this.currentLevel.resetLevel();
+        this.currentLevel.getMusicPlayer().play();
+        setPaused(false);
     }
 
     public void update(double dt) {
@@ -35,10 +35,12 @@ public class GravityRocketModel
         return currentLevel;
     }
 
-    public void startLevel(Level level) {
-        this.currentLevel = level;
-        this.currentLevel.resetLevel();
-        setPaused(false);
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+
+        if (paused) {
+            GravityRocket.getInstance().getSoundHandler().stopAllSounds();
+        }
     }
 
 }

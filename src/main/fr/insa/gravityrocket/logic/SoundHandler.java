@@ -6,7 +6,9 @@ import javafx.scene.media.MediaPlayer;
 public class SoundHandler
 {
 
-    public final MediaPlayer musicSoundPlayer;
+    public final MediaPlayer   menuMusicPlayer;
+    public final MediaPlayer[] musicPlayers = new MediaPlayer[8];
+
     public final MediaPlayer boosterSoundPlayer;
     public final MediaPlayer explosionSoundPlayer;
     public final MediaPlayer dangerSoundPlayer;
@@ -15,7 +17,17 @@ public class SoundHandler
     public final MediaPlayer alienSpeechSoundPlayer;
 
     public SoundHandler() {
-        this.musicSoundPlayer = createPlayer("/sounds/music/music01.wav", true);
+        this.menuMusicPlayer = createPlayer("/sounds/music/faster_than_light.wav", true);
+
+        this.musicPlayers[0] = createPlayer("/sounds/music/kerbal_space_program.wav", true);
+        this.musicPlayers[1] = createPlayer("/sounds/music/interstellar_0.wav", true);
+        this.musicPlayers[2] = createPlayer("/sounds/music/guardians_of_the_galaxy.wav", true);
+        this.musicPlayers[3] = createPlayer("/sounds/music/star_wars.wav", true);
+        this.musicPlayers[4] = createPlayer("/sounds/music/mass_effect.wav", true);
+        this.musicPlayers[5] = createPlayer("/sounds/music/batman.wav", true);
+        this.musicPlayers[6] = createPlayer("/sounds/music/the_martian.wav", true);
+        this.musicPlayers[7] = createPlayer("/sounds/music/interstellar_1.wav", true);
+
         this.boosterSoundPlayer = createPlayer("/sounds/rocket_booster.wav", true);
         this.explosionSoundPlayer = createPlayer("/sounds/explosion.wav", false);
         this.dangerSoundPlayer = createPlayer("/sounds/alarm.wav", true);
@@ -25,6 +37,22 @@ public class SoundHandler
         this.shootingSoundPlayer = createPlayer("/sounds/pew_pew.wav", false);
         this.alienSpeechSoundPlayer = createPlayer("/sounds/alien_speech.wav", false);
         this.alienSpeechSoundPlayer.setVolume(0.5);
+    }
+
+    public void stopAllMusics() {
+        menuMusicPlayer.stop();
+        for (MediaPlayer mediaPlayer : musicPlayers) {
+            mediaPlayer.stop();
+        }
+    }
+
+    public void stopAllSounds() {
+        dangerSoundPlayer.stop();
+        successSoundPlayer.stop();
+        explosionSoundPlayer.stop();
+        boosterSoundPlayer.stop();
+        alienSpeechSoundPlayer.stop();
+        shootingSoundPlayer.stop();
     }
 
     public MediaPlayer createPlayer(String filePath, boolean loop) {

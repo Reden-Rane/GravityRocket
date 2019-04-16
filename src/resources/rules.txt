@@ -1,16 +1,22 @@
-Bienvenue sur Gravity Rocket ! 
+<title>Bienvenue sur Gravity Rocket !
 
-Le but du jeu est très simple : Voyager d'une planète à une autre en réussissant à faire de la gravité ton alliée
-et en bravant de multiples dangers (astéroïdes, aliens, etc).
+<p>Dans ce jeu, tu pourras trouver 2 types de niveaux.
+Il te faudra soit voyager d'une planète à une autre, soit partir d'une planète pour atteindre une constellation.
+Pour cela, tu devras faire de la gravité ton alliée, et braver de multiples dangers. En effet, dans l'espace, 
+les pluies d'astéroides sont fréquentes, et les petits hommes verts n'aiment pas qu'on s'approche de
+trop près de leur planète.
 
-Comment gagner une partie ? 
+<title>Comment gagner une partie ?
+<p>Dans les niveaux où il faut se poser sur une planète, il faut que tu réussisse à retourner ta fusée
+pour atterir dans les meilleures conditions possibles. Il faut donc que ta vitesse ne sois pas trop élevée, 
+et que tu te poses assez droit. 
+Dans les niveaux où il faut atteindre une constellation, tu n'auras pas assez de carburant pour atteindre 
+la zone directement. Il faudra alors utiliser la gravité des planètes alentours pour atteindre ton but. 
+Et heureusement pour toi, d'autres fusées sont passées par là avant toi. Et elles ont perdu quelques
+bidons de fuel en chemin.
 
-Il faut réussir à retourner ta fusée pour atterir dans les meilleures conditions possibles. Attention aux crashs !
 
-
-Commandes : 
-
-Flèches gauche-Droite : Pivoter
-Flèche Haut : Activer les booster arrières, donc Avancer
-Flèche Bas : Activer les booster à l'avant, donc Freiner
-Barre d'espace : Tirer 
+<title>Commandes :
+<p>Flèches gauche-Droite : Pivoter
+Flèche Haut : Activer les booster arrières, Avancer 
+Flèche Bas : Activer les booster à l'avant, Freiner

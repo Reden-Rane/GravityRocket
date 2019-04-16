@@ -4,6 +4,7 @@ import fr.insa.gravityrocket.logic.EnumLevelState;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
+import javafx.scene.media.MediaPlayer;
 
 import java.awt.*;
 
@@ -13,12 +14,12 @@ public abstract class LandingLevel extends Level
     private Planet targetedPlanet;
     private double haloSize = 30;
 
-    public LandingLevel(Image levelBackground, Rectangle preferredView, Rectangle bounds) {
-        super(levelBackground, preferredView, bounds);
+    public LandingLevel(MediaPlayer musicPlayer, Image levelBackground, Rectangle preferredView, Rectangle bounds) {
+        super(musicPlayer, levelBackground, preferredView, bounds);
     }
 
-    public LandingLevel(Image levelBackground, Rectangle preferredView, Rectangle bounds, double maximumAngle, int maximumSpeed) {
-        super(levelBackground, preferredView, bounds, maximumAngle, maximumSpeed);
+    public LandingLevel(MediaPlayer musicPlayer, Image levelBackground, Rectangle preferredView, Rectangle bounds, double maximumAngle, int maximumSpeed) {
+        super(musicPlayer, levelBackground, preferredView, bounds, maximumAngle, maximumSpeed);
     }
 
     @Override

@@ -4,16 +4,19 @@ import fr.insa.gravityrocket.logic.EnumLevelState;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
+import javafx.scene.media.MediaPlayer;
 
 import java.awt.*;
 
 public abstract class ReachingZoneLevel extends Level
 {
 
-    private final Shape zone;
+    private final String zoneName;
+    private final Shape  zone;
 
-    public ReachingZoneLevel(Image backgroundImage, Rectangle preferredView, Rectangle bounds, Shape zone) {
-        super(backgroundImage, preferredView, bounds);
+    public ReachingZoneLevel(String zoneName, MediaPlayer musicPlayer, Image backgroundImage, Rectangle preferredView, Rectangle bounds, Shape zone) {
+        super(musicPlayer, backgroundImage, preferredView, bounds);
+        this.zoneName = zoneName;
         this.zone = zone;
     }
 
@@ -51,6 +54,10 @@ public abstract class ReachingZoneLevel extends Level
 
     public Shape getZone() {
         return zone;
+    }
+
+    public String getZoneName() {
+        return zoneName;
     }
 
 }

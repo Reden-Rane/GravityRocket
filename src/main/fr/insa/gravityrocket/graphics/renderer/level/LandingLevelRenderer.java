@@ -42,13 +42,10 @@ public class LandingLevelRenderer extends LevelRenderer<LandingLevel>
     protected void renderLevelHUD(LandingLevel level, Graphics2D g2d) {
         super.renderLevelHUD(level, g2d);
         renderAngleToTargetHUD(level, g2d);
-
-        if (!level.isRocketOutOfLevelBounds()) {
-            renderObjective(level, g2d);
-        }
     }
 
-    private void renderObjective(LandingLevel level, Graphics2D g2d) {
+    @Override
+    protected void renderObjective(LandingLevel level, Graphics2D g2d) {
 
         String objectiveText = "Objectif: Atterir sur " + level.getTargetedPlanet().getName();
         Font   font          = RenderManager.BEBAS_NEUE_FONT.deriveFont(25.0f);

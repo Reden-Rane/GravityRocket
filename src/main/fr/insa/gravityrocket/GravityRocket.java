@@ -39,11 +39,7 @@ public class GravityRocket extends Application
 
         this.gravityRocketModel = new GravityRocketModel();
         this.gravityRocketView = new GravityRocketView(this.gravityRocketModel, this.keyboardHandler, this.mouseHandler);
-
-        this.soundHandler.musicSoundPlayer.play();
-
         startGameLoop();
-
     }
 
     public static void main(String[] args) {
