@@ -16,7 +16,7 @@ public class Level8Renderer extends ReachingZoneLevelRenderer<Level8>
 
     @Override
     protected void renderZone(Level8 level, Graphics2D g2d) {
-        g2d.drawImage(rhinocerosImage, 1100, 600, rhinocerosImage.getWidth(null), rhinocerosImage.getHeight(null), null);
+        g2d.drawImage(rhinocerosImage, 1100 + 750, 600 + 500, rhinocerosImage.getWidth(null), rhinocerosImage.getHeight(null), null);
     }
 
 }

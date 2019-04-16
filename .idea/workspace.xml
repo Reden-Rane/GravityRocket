@@ -7,42 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82578299-4e14-4421-8ac7-a521b4eaa4bc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/GravityRocket_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/GravityRocket_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/GravityRocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/GravityRocketView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/GravityRocketView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/LevelSelectionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/LevelSelectionPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/RulesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/RulesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LandingLevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LandingLevelRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LevelRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/ReachingZoneLevelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/ReachingZoneLevelRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/GravityRocketModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/GravityRocketModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/Polygon2D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/SoundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/SoundHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/Satellite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/Satellite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/alien/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/alien/Alien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/particle/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/particle/Laser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/rocket/Rocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/rocket/Rocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/LandingLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/LandingLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.~lock.DocumentExplicatif.odt#" beforeDir="false" afterPath="$PROJECT_DIR$/.~lock.DocumentExplicatif.odt#" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DocumentExplicatif.odt" beforeDir="false" afterPath="$PROJECT_DIR$/DocumentExplicatif.odt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DocumentExplicatif.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/DocumentExplicatif.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level8Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level8Renderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level8.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level8.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/ReachingZoneLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/ReachingZoneLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/rules.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/sounds/music/music01.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/background_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/background_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/background_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/background_3.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level8.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level8Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="26" column="36" lean-forward="true" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+            <state relative-caret-position="360">
+              <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -76,30 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/Satellite.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level8.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-              <folding>
-                <element signature="e#1398#1399#0" expanded="true" />
-                <element signature="e#1436#1437#0" expanded="true" />
-                <element signature="e#1475#1476#0" expanded="true" />
-                <element signature="e#1510#1511#0" expanded="true" />
-                <element signature="e#1549#1550#0" expanded="true" />
-                <element signature="e#1584#1585#0" expanded="true" />
-                <element signature="e#1640#1641#0" expanded="true" />
-                <element signature="e#1688#1689#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="99" column="9" lean-forward="true" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
+            <state relative-caret-position="231">
+              <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -197,7 +150,6 @@
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/entity/LaserRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/EnumLevelState.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/Entity.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/RulesPanel.java" />
         <option value="$PROJECT_DIR$/src/resources/rules.txt" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/particle/Laser.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/alien/Alien.java" />
@@ -207,7 +159,6 @@
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/LandingLevel.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/GravityRocketModel.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/SoundHandler.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level1.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level3.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level4Renderer.java" />
@@ -217,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LevelRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/ReachingZoneLevelRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level7Renderer.java" />
-        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level8Renderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level7.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level6Renderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level5.java" />
@@ -229,6 +179,9 @@
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level2.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/rocket/Rocket.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/Satellite.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/RulesPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/SoundHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level8Renderer.java" />
         <option value="$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level8.java" />
       </list>
     </option>
@@ -259,6 +212,32 @@
             <path>
               <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
               <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="sounds" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -280,7 +259,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="gravityrocket" type="462c0819:PsiDirectoryNode" />
-              <item name="logic" type="462c0819:PsiDirectoryNode" />
+              <item name="graphics" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
@@ -288,13 +267,31 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="gravityrocket" type="462c0819:PsiDirectoryNode" />
-              <item name="logic" type="462c0819:PsiDirectoryNode" />
+              <item name="graphics" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="gravityrocket" type="462c0819:PsiDirectoryNode" />
+              <item name="graphics" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
               <item name="level" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
               <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="gravityrocket" type="462c0819:PsiDirectoryNode" />
+              <item name="logic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -302,15 +299,7 @@
               <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="textures" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GravityRocket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GravityRocket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="textures" type="462c0819:PsiDirectoryNode" />
-              <item name="star" type="462c0819:PsiDirectoryNode" />
+              <item name="sounds" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -331,7 +320,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -442,7 +431,7 @@
       <workItem from="1555224998039" duration="6296000" />
       <workItem from="1555270810476" duration="5579000" />
       <workItem from="1555321223559" duration="24570000" />
-      <workItem from="1555404857280" duration="22261000" />
+      <workItem from="1555404857280" duration="26227000" />
     </task>
     <task id="LOCAL-00001" summary="+ Ajout du système de gravité&#10;+ Début des boites de collisions">
       <created>1553008884661</created>
@@ -514,11 +503,25 @@
       <option name="project" value="LOCAL" />
       <updated>1555353666733</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="+ Ajout des différentes musiques&#10;+ Ajout de nouveaux fonds&#10;+ Mise à jour des niveaux">
+      <created>1555433246847</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1555433246847</updated>
+    </task>
+    <task id="LOCAL-00012" summary="+ Chargement du texte des règles fixé">
+      <created>1555433794808</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1555433794808</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221142000" />
+    <option name="totallyTimeSpent" value="225108000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -533,7 +536,7 @@
     <frame x="47" y="27" width="1873" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2025178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17515051" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -542,7 +545,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.28833693" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4975097" visible="true" weight="0.28077754" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4975097" visible="true" weight="0.28077754" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4991699" weight="0.11447084" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -623,7 +626,9 @@
     <MESSAGE value="+ Ajout des niveaux de zones à atteindre" />
     <MESSAGE value="+ Ajout des astéroides&#10;+ Mise à jour des niveaux" />
     <MESSAGE value="+ Ajout des aliens&#10;+ Ajout des lasers" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Ajout des aliens&#10;+ Ajout des lasers" />
+    <MESSAGE value="+ Ajout des différentes musiques&#10;+ Ajout de nouveaux fonds&#10;+ Mise à jour des niveaux" />
+    <MESSAGE value="+ Chargement du texte des règles fixé" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Chargement du texte des règles fixé" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -725,13 +730,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/collision/CircularCollisionBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/alien/Alien.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
@@ -951,16 +949,6 @@
     <entry file="file://$PROJECT_DIR$/src/resources/textures/constellation/candy.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LevelRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LandingLevelRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1011,13 +999,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/SoundHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="42" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1136,13 +1117,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level8Renderer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/rocket/Rocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="378">
+          <caret line="202" column="30" selection-start-line="202" selection-start-column="30" selection-end-line="202" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1153,13 +1131,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/entity/rocket/Rocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="202" column="30" selection-start-line="202" selection-start-column="30" selection-end-line="202" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1180,10 +1151,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/SoundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/interfaces/RulesPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="124" column="49" selection-start-line="124" selection-start-column="49" selection-end-line="124" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/LevelRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/graphics/renderer/level/Level8Renderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/fr/insa/gravityrocket/logic/level/Level8.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="26" column="36" lean-forward="true" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+        <state relative-caret-position="231">
+          <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1201,6 +1206,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

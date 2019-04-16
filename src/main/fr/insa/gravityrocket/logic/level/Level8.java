@@ -2,8 +2,14 @@ package fr.insa.gravityrocket.logic.level;
 
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
+import fr.insa.gravityrocket.logic.entity.Asteroid;
+import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.Satellite;
+import fr.insa.gravityrocket.logic.entity.alien.Alien;
+import fr.insa.gravityrocket.logic.entity.alien.OrbitingAlien;
+import fr.insa.gravityrocket.logic.entity.alien.WanderingAlien;
+import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Reactor;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
@@ -18,6 +24,7 @@ public class Level8 extends ReachingZoneLevel
     private final Image neptunTexture;
     private final Image moonTexture;
     private final Image mercuryTexture;
+    private final Image venusTexture;
 
     private final Planet    sun;
     private final Satellite earth;
@@ -25,6 +32,7 @@ public class Level8 extends ReachingZoneLevel
     private final Satellite earthMoon;
     private final Satellite mercuryMoon;
     private final Satellite mercury;
+    private final Planet    venus;
 
     public Level8() {
         super("Constellation du Rhinocéros", GravityRocket.getInstance().getSoundHandler().musicPlayers[7], RenderManager.loadImage("/textures/background_7.jpg", 1920, 1080), new Rectangle(-750, -500, 1500 * 2, 1000 * 2), new Rectangle(-1500, -1000, 1500 * 3, 1000 * 3), createZoneShape());
@@ -34,6 +42,7 @@ public class Level8 extends ReachingZoneLevel
         this.neptunTexture = RenderManager.loadImage("/textures/star/neptun.png", 400, 400);
         this.moonTexture = RenderManager.loadImage("/textures/star/moon.png", 40, 40);
         this.mercuryTexture = RenderManager.loadImage("/textures/star/mercury.png", 300, 300);
+        this.venusTexture = RenderManager.loadImage("/textures/star/venus.png", 200, 200);
 
         this.sun = new Planet(this, "Soleil", sunTexture, 2 * Math.pow(10, 7), 200);
         this.sun.setRotationSpeed(Math.PI / 10);
@@ -51,17 +60,23 @@ public class Level8 extends ReachingZoneLevel
 
         this.mercuryMoon = new Satellite(this, "Lune", moonTexture, 2 * Math.pow(10, 7), 40, mercury, 80, Math.PI / 8);
 
+        this.venus = new Planet(this, "Vénus", venusTexture, 5 * Math.pow(10, 8), 150, 1400, 700);
+        this.venus.setRotationSpeed(-Math.PI / 16);
+
         resetLevel();
     }
 
     private static Shape createZoneShape() {
         Polygon polygon = new Polygon();
 
-        polygon.addPoint(1225, 600);
-        polygon.addPoint(1600, 600);
-        polygon.addPoint(1600, 840);
-        polygon.addPoint(1150, 840);
-        polygon.addPoint(1100, 700);
+        int x = 750;
+        int y = 500;
+
+        polygon.addPoint(x + 1225, y + 600);
+        polygon.addPoint(x + 1600, y + 600);
+        polygon.addPoint(x + 1600, y + 840);
+        polygon.addPoint(x + 1150, y + 840);
+        polygon.addPoint(x + 1100, y + 700);
 
         return polygon;
     }
@@ -75,16 +90,82 @@ public class Level8 extends ReachingZoneLevel
         mercury.setOrbitalAngle(Math.PI * 2 * 0.8);
         neptun.setOrbitalAngle(0);
 
+        ItemFuel itemFuel = new ItemFuel(this, 60, 5);
+        itemFuel.setPos(1135, 1215);
+        addEntity(itemFuel);
+
+        Alien alien1 = new OrbitingAlien(this, 800, venus, 100, 0.5);
+        Alien alien2 = new WanderingAlien(this, 1000, 200, 1250);
+        Alien alien3 = new WanderingAlien(this, 800, 700, 1350);
+        Alien alien4 = new WanderingAlien(this, 800, 1700, 0);
+        Alien alien5 = new WanderingAlien(this, 900, 1820, 680);
+
+        addEntity(alien1);
+        addEntity(alien2);
+        addEntity(alien3);
+        addEntity(alien4);
+        addEntity(alien5);
+
+        Asteroid asteroid1  = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
+        Asteroid asteroid2  = new Asteroid(this, 150, EnumAsteroidVariant.ASTEROID_2);
+        Asteroid asteroid3  = new Asteroid(this, 50, EnumAsteroidVariant.ASTEROID_1);
+        Asteroid asteroid4  = new Asteroid(this, 200, EnumAsteroidVariant.ASTEROID_2);
+        Asteroid asteroid5  = new Asteroid(this, 60, EnumAsteroidVariant.ASTEROID_1);
+        Asteroid asteroid6  = new Asteroid(this, 80, EnumAsteroidVariant.ASTEROID_1);
+        Asteroid asteroid7  = new Asteroid(this, 65, EnumAsteroidVariant.ASTEROID_2);
+        Asteroid asteroid8  = new Asteroid(this, 80, EnumAsteroidVariant.ASTEROID_1);
+        Asteroid asteroid9  = new Asteroid(this, 65, EnumAsteroidVariant.ASTEROID_2);
+        Asteroid asteroid10 = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
+
+        int x = 2000;
+        int y = -700;
+
+        asteroid1.setPos(x + 410, y + 430);
+        asteroid2.setPos(x + 70, y + 590);
+        asteroid3.setPos(x - 80, y + 830);
+        asteroid4.setPos(x - 210, y + 1020);
+        asteroid5.setPos(x - 100, y + 720);
+        asteroid6.setPos(x - 320, y + 1170);
+        asteroid7.setPos(x + 220, y + 500);
+        asteroid8.setPos(1240, 1090);
+        asteroid9.setPos(1030, 1340);
+        asteroid10.setPos(1600, 1240);
+
+        asteroid1.setRotationSpeed(-Math.PI / 32);
+        asteroid2.setRotationSpeed(-Math.PI / 16);
+        asteroid3.setRotationSpeed(-Math.PI / 28);
+        asteroid4.setRotationSpeed(-Math.PI / 24);
+        asteroid5.setRotationSpeed(-Math.PI / 22);
+        asteroid5.setRotationSpeed(-Math.PI / 34);
+        asteroid6.setRotationSpeed(-Math.PI / 8);
+        asteroid7.setRotationSpeed(-Math.PI / 30);
+        asteroid8.setRotationSpeed(-Math.PI / 8);
+        asteroid9.setRotationSpeed(-Math.PI / 30);
+        asteroid10.setRotationSpeed(-Math.PI / 32);
+
+        addEntity(asteroid1);
+        addEntity(asteroid2);
+        addEntity(asteroid3);
+        addEntity(asteroid4);
+        addEntity(asteroid5);
+        addEntity(asteroid6);
+        addEntity(asteroid7);
+        addEntity(asteroid8);
+        addEntity(asteroid9);
+        addEntity(asteroid10);
+
         addEntity(sun);
         addEntity(earth);
         addEntity(neptun);
         addEntity(earthMoon);
         addEntity(mercury);
         addEntity(mercuryMoon);
+        addEntity(venus);
 
-        FuelTank basicTank    = new FuelTank(40);
-        Reactor  basicReactor = new Reactor(5, 800_000);
-        Rocket   rocket       = new Rocket(this, basicTank, basicReactor);
+        FuelTank basicTank = new FuelTank(100);
+        basicTank.setFuelVolume(50);
+        Reactor basicReactor = new Reactor(5, 800_000);
+        Rocket  rocket       = new Rocket(this, basicTank, basicReactor);
 
         addEntity(rocket);
         rocket.attachToPlanet(earth);

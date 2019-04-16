@@ -2,7 +2,7 @@ Contenu de l’archive:
 
 DocumentExplicatif.pdf
 GravityRocket.jar
-src/
+src
 ├── main
 │   └── fr
 │       └── insa
@@ -35,6 +35,10 @@ src/
 │               │       ├── IRenderer.java
 │               │       ├── level
 │               │       │   ├── LandingLevelRenderer.java
+│               │       │   ├── Level5Renderer.java
+│               │       │   ├── Level6Renderer.java
+│               │       │   ├── Level7Renderer.java
+│               │       │   ├── Level8Renderer.java
 │               │       │   ├── LevelRenderer.java
 │               │       │   └── ReachingZoneLevelRenderer.java
 │               │       └── RenderManager.java
@@ -78,7 +82,6 @@ src/
 │                   │   ├── Level8.java
 │                   │   ├── Level.java
 │                   │   └── ReachingZoneLevel.java
-│                   ├── Polygon2D.java
 │                   └── SoundHandler.java
 └── resources
     ├── fonts
@@ -89,17 +92,34 @@ src/
     │   ├── alien_speech.wav
     │   ├── explosion.wav
     │   ├── music
-    │   │   └── music01.wav
+    │   │   ├── batman.wav
+    │   │   ├── faster_than_light.wav
+    │   │   ├── guardians_of_the_galaxy.wav
+    │   │   ├── interstellar_0.wav
+    │   │   ├── interstellar_1.wav
+    │   │   ├── kerbal_space_program.wav
+    │   │   ├── mass_effect.wav
+    │   │   ├── star_wars.wav
+    │   │   └── the_martian.wav
     │   ├── pew_pew.wav
     │   ├── rocket_booster.wav
     │   └── success.wav
     └── textures
-        ├── background_0.png
-        ├── background_1.png
-        ├── background_2.png
-        ├── background_3.png
+        ├── background_0.jpg
+        ├── background_1.jpg
+        ├── background_2.jpg
+        ├── background_3.jpg
+        ├── background_4.jpg
+        ├── background_5.jpg
+        ├── background_6.jpg
+        ├── background_7.jpg
         ├── background_main.png
         ├── background_rules.jpg
+        ├── constellation
+        │   ├── aquarius.png
+        │   ├── candy.png
+        │   ├── rhinoceros.png
+        │   └── taurus.png
         ├── danger.png
         ├── entity
         │   ├── alien.png
@@ -129,3 +149,5 @@ src/
             ├── sun.png
             ├── uranus.png
             └── venus.png
+
+
