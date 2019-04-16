@@ -1,5 +1,8 @@
 package fr.insa.gravityrocket.logic.collision;
 
+/**
+ * Boite de collision rectangulaire
+ */
 public class RectangularCollisionBox extends CollisionBox
 {
 
@@ -9,6 +12,8 @@ public class RectangularCollisionBox extends CollisionBox
     public RectangularCollisionBox(double centerX, double centerY, double width, double height, double rotation) {
         double cos = Math.cos(rotation);
         double sin = Math.sin(rotation);
+
+        //On calcule les coordonnées des points à l'aide d'une matrice de rotation
 
         this.points[0][0] = centerX + (-width / 2) * cos - (-height / 2) * sin;
         this.points[0][1] = centerY + (-width / 2) * sin + (-height / 2) * cos;

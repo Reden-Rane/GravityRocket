@@ -19,14 +19,32 @@ public class GravityRocket extends Application
 
     private static final int UPDATES_PER_SECOND = 60;
 
+    /**
+     * Instance unique de GravityRocket (Singleton)
+     */
     private static GravityRocket instance;
 
+    /**
+     * Objet contenant la partie graphique du jeu (ihm, classes de rendu des niveaux, ...)
+     */
     private final GravityRocketView  gravityRocketView;
+    /**
+     * Objet contenant la partie logique du jeu
+     */
     private final GravityRocketModel gravityRocketModel;
 
+    /**
+     * Objet de gestion du son du jeu
+     */
     private final SoundHandler soundHandler;
 
+    /**
+     * Listener du clavier pour les niveaux (permet la gestion de pressions multiples de touches)
+     */
     private final KeyboardHandler keyboardHandler;
+    /**
+     * Listener de la souris pour les niveaux TODO A utiliser pour de futurs niveaux ?
+     */
     private final MouseHandler    mouseHandler;
 
     private GravityRocket() {
@@ -47,7 +65,7 @@ public class GravityRocket extends Application
     }
 
     /**
-     * Démarre le thread pour mettre à jour le jeu et le rendu graphique
+     * Démarre le timer pour mettre à jour le jeu et le rendu graphique
      */
     private void startGameLoop() {
 

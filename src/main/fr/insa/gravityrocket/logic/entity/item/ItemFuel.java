@@ -7,9 +7,15 @@ import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
 import fr.insa.gravityrocket.logic.level.Level;
 
+/**
+ * Entité correspondant à du carburant
+ */
 public class ItemFuel extends Entity
 {
 
+    /**
+     * La quantité de carburant que donnera l'item en étant ramassé
+     */
     private final double fuelVolume;
 
     public ItemFuel(Level level, int size, double fuelVolume) {
@@ -25,6 +31,7 @@ public class ItemFuel extends Entity
     @Override
     public void onCollisionWith(Entity entity) {
         if (entity instanceof Rocket) {
+            //On remplit le réservoir de la fusée avec le volume de cet item
             ((Rocket) entity).getTank().addFuel(this.fuelVolume);
             this.requestRemove();
         }

@@ -2,6 +2,9 @@ package fr.insa.gravityrocket.logic.entity.alien;
 
 import fr.insa.gravityrocket.logic.level.Level;
 
+/**
+ * Type d'alien statique dans le niveau, ayant un léger mouvement sinusoidal de bas en haut
+ */
 public class WanderingAlien extends Alien
 {
 

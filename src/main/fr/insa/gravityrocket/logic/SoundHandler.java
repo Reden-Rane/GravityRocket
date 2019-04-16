@@ -3,6 +3,9 @@ package fr.insa.gravityrocket.logic;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * Gestionnaire des sons du jeu contenant l'ensemble des players.
+ */
 public class SoundHandler
 {
 
@@ -39,13 +42,9 @@ public class SoundHandler
         this.alienSpeechSoundPlayer.setVolume(0.5);
     }
 
-    public void stopAllMusics() {
-        menuMusicPlayer.stop();
-        for (MediaPlayer mediaPlayer : musicPlayers) {
-            mediaPlayer.stop();
-        }
-    }
-
+    /**
+     * Arrête tous les sons du jeu
+     */
     public void stopAllSounds() {
         dangerSoundPlayer.stop();
         successSoundPlayer.stop();
@@ -55,6 +54,14 @@ public class SoundHandler
         shootingSoundPlayer.stop();
     }
 
+    /**
+     * Crée un player pour le son donné
+     *
+     * @param filePath Le son à jouer
+     * @param loop     Vrai si le son doit être joué en boucle
+     *
+     * @return L'instance du player
+     */
     public MediaPlayer createPlayer(String filePath, boolean loop) {
         MediaPlayer player = new MediaPlayer(new Media(SoundHandler.class.getResource(filePath).toString()));
         if (loop) {

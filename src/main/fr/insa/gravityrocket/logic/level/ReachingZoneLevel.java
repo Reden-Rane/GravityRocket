@@ -8,10 +8,19 @@ import javafx.scene.media.MediaPlayer;
 
 import java.awt.*;
 
+/**
+ * Type de niveau où l'objectif est de rejoindre une zone/constellation
+ */
 public abstract class ReachingZoneLevel extends Level
 {
 
+    /**
+     * Le nom de la zone/constellation
+     */
     private final String zoneName;
+    /**
+     * La forme de la zone
+     */
     private final Shape  zone;
 
     public ReachingZoneLevel(String zoneName, MediaPlayer musicPlayer, Image backgroundImage, Rectangle preferredView, Rectangle bounds, Shape zone) {
@@ -24,6 +33,7 @@ public abstract class ReachingZoneLevel extends Level
     public void update(double dt) {
         super.update(dt);
 
+        //Si la fusée est dans la zone, le niveau est réussi
         if (getZone().contains(getRocket().getXPos(), getRocket().getYPos())) {
             setLevelState(EnumLevelState.SUCCESS);
         }
@@ -38,6 +48,7 @@ public abstract class ReachingZoneLevel extends Level
 
             getRocket().stopAllEngines();
 
+            //On peut atterir sur n'importe qu'elle planète à condition d'avoir une bonne vitesse/angle sinon on se crash
             if (canRocketLandOn(planet)) {
                 getRocket().getBoosterReactor().setActive(false);
                 getRocket().attachToPlanet(planet);

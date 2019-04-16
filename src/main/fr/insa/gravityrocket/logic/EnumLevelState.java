@@ -1,5 +1,8 @@
 package fr.insa.gravityrocket.logic;
 
+/**
+ * Enumération des états de niveaux
+ */
 public enum EnumLevelState
 {
     RUNNING,

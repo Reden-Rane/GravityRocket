@@ -4,6 +4,9 @@ import fr.insa.gravityrocket.logic.level.Level;
 
 import java.awt.*;
 
+/**
+ * Type d'astre orbitant autour d'un autre
+ */
 public class Satellite extends Planet
 {
 

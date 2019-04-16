@@ -75,6 +75,9 @@ public abstract class Level
         resetOutOfBoundsCountdown();
     }
 
+    /**
+     * Réinitialise le niveau
+     */
     public void resetLevel() {
         GravityRocket.getInstance().getSoundHandler().stopAllSounds();
         this.setLevelState(EnumLevelState.RUNNING);
@@ -112,9 +115,11 @@ public abstract class Level
      */
     public void update(double dt) {
 
+        //On ajoute les entités mises dans la file d'attente, évitant ainsi les ConcurrentModificationException
         this.entityList.addAll(this.toAddEntityList);
         this.toAddEntityList.clear();
 
+        //On met à jour toutes les entités
         for (Entity entity : this.entityList) {
             updateEntity(entity, dt);
         }
@@ -122,6 +127,7 @@ public abstract class Level
         this.entityList.removeAll(toRemoveEntityList);
         this.toRemoveEntityList.clear();
 
+        //Si la fusée est en dehors des bordures du niveau on affiche le message de danger
         if (isRocketOutOfLevelBounds()) {
             GravityRocket.getInstance().getSoundHandler().dangerSoundPlayer.play();
             this.musicPlayer.pause();
@@ -182,17 +188,25 @@ public abstract class Level
         entity1.onCollisionWith(entity2);
     }
 
-    protected boolean canRocketLandOn(Planet planet) {
-        double speedMagnitude = getRocket().getSpeedMagnitude();
-        return getRocket().getAngleWithPlanet(planet) < getMaximumAngle() && speedMagnitude < getMaximumSpeed();
+    /**
+     * @return Vrai si la fusée est trop loin de la zone du niveau
+     */
+    public boolean isRocketOutOfLevelBounds() {
+        return !getBounds().contains(getRocket().getXPos(), getRocket().getYPos());
     }
 
     public boolean isGameOver() {
         return getLevelState() != EnumLevelState.RUNNING;
     }
 
-    public boolean isRocketOutOfLevelBounds() {
-        return !getBounds().contains(getRocket().getXPos(), getRocket().getYPos());
+    /**
+     * @param planet La planète sur laquelle on veut se poser
+     *
+     * @return Vrai si la fusée à un angle correct et une vitesse raisonnable pour se poser
+     */
+    protected boolean canRocketLandOn(Planet planet) {
+        double speedMagnitude = getRocket().getSpeedMagnitude();
+        return getRocket().getAngleWithPlanet(planet) < getMaximumAngle() && speedMagnitude < getMaximumSpeed();
     }
 
     public EnumLevelState getLevelState() {

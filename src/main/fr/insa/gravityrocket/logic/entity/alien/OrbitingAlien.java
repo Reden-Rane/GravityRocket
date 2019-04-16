@@ -3,12 +3,27 @@ package fr.insa.gravityrocket.logic.entity.alien;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.level.Level;
 
+/**
+ * Type d'alien orbitant autour d'une planète
+ */
 public class OrbitingAlien extends Alien
 {
 
+    /**
+     * La planète protégée par l'alien
+     */
     private final Planet protectedPlanet;
+    /**
+     * L'angle orbital avec la planète
+     */
     private       double orbitalAngle;
+    /**
+     * La vitesse de rotation autour de la planète
+     */
     private       double orbitalSpeed;
+    /**
+     * La distance à la surface de la planète
+     */
     private       double orbitalDistance;
 
     public OrbitingAlien(Level level, double shootingDistance, Planet protectedPlanet, double orbitalDistance, double orbitalSpeed) {
@@ -29,7 +44,6 @@ public class OrbitingAlien extends Alien
         double y = this.protectedPlanet.getYPos() + (this.protectedPlanet.getRadius() + this.orbitalDistance) * Math.sin(this.orbitalAngle);
         setPos(x, y);
         setRotation(this.orbitalAngle + Math.PI / 2);
-
         super.update(dt);
     }
 

@@ -22,13 +22,25 @@ import fr.insa.gravityrocket.logic.level.*;
 
 import javax.swing.*;
 
+/**
+ * Gestionnaire de la partie graphique du jeu
+ */
 public class GravityRocketView
 {
 
+    /**
+     * La référence à la partie logique du jeu qui doit être dessinée
+     */
     private final GravityRocketModel gravityRocketModel;
 
+    /**
+     * Le gestionnaire de rendu des niveaux
+     */
     private final RenderManager renderManager;
 
+    /**
+     * La fenêtre principale de l'IHM
+     */
     private final MainWindow mainWindow;
 
     public GravityRocketView(GravityRocketModel gravityRocketModel, KeyboardHandler keyboardHandler, MouseHandler mouseHandler) {
@@ -45,6 +57,10 @@ public class GravityRocketView
         this.registerRenderers();
     }
 
+    /**
+     * On met les IRenderer associé à un type de classes précises dans un registre (table associative) Quand un objet
+     * doit être rendu, la table associative renvoie ainsi le bon renderer et appellera la méthode render()
+     */
     private void registerRenderers() {
         this.renderManager.registerRenderer(LandingLevel.class, new LandingLevelRenderer());
         this.renderManager.registerRenderer(ReachingZoneLevel.class, new ReachingZoneLevelRenderer<>());

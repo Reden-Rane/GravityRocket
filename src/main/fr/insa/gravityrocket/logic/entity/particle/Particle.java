@@ -3,10 +3,19 @@ package fr.insa.gravityrocket.logic.entity.particle;
 import fr.insa.gravityrocket.logic.entity.Entity;
 import fr.insa.gravityrocket.logic.level.Level;
 
+/**
+ * Particule ayant une durée de vie
+ */
 public abstract class Particle extends Entity
 {
 
+    /**
+     * Durée de vie de la particule
+     */
     private final double longevity;
+    /**
+     * Age de la particule, permettant de savoir si elle doit disparaitre
+     */
     private       double age;
 
     public Particle(Level level, double width, double height, double longevity) {

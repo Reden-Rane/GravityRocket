@@ -13,9 +13,12 @@ import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
-public class LevelRenderer<T extends Level> implements IRenderer<T>
+public abstract class LevelRenderer<T extends Level> implements IRenderer<T>
 {
 
+    /**
+     * Mettre à vrai pour afficher les bordures du niveaux et les boites de collision des entités
+     */
     private static final boolean DEBUG_MODE = false;
     private final        Image   dangerImage;
 
@@ -41,6 +44,12 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         RenderManager.renderFittedImage(g2d, level.getLevelBackground(), getRenderManager().getScreenWidth(), getRenderManager().getScreenHeight());
     }
 
+    /**
+     * Permet de dézoomer la caméra si la fusée est en dehors de l'écran, pour toujours la voir
+     *
+     * @param level Le niveau actuel
+     * @param g2d   L'instance de Graphics2D
+     */
     private void applyCameraTransform(T level, Graphics2D g2d) {
 
         AffineTransform transform = new AffineTransform();
@@ -82,6 +91,7 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
             renderLevelBounds(level, g2d);
         }
 
+        //On dessine toutes les entités du niveau
         for (Entity entity : level.getEntityList()) {
 
             renderEntity(level, entity, g2d);
@@ -92,6 +102,12 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         }
     }
 
+    /**
+     * On dessine l'interface d'informations pour le joueur
+     *
+     * @param level Le niveau actuel
+     * @param g2d   L'instance de Graphics2D
+     */
     protected void renderHUD(T level, Graphics2D g2d) {
 
         if (level.isGameOver()) {
@@ -287,9 +303,7 @@ public class LevelRenderer<T extends Level> implements IRenderer<T>
         g2d.drawString(percentageText, tankX + (int) ((tankWidth - textBounds.getWidth()) / 2), tankY + tankHeight / 2 + 5);
     }
 
-    protected void renderObjective(T level, Graphics2D g2d) {
-
-    }
+    protected abstract void renderObjective(T level, Graphics2D g2d);
 
     private void renderDangerHUD(T level, Graphics2D g2d) {
         Composite prevComposite = g2d.getComposite();

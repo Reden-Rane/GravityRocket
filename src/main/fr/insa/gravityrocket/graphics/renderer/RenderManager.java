@@ -18,6 +18,9 @@ public class RenderManager
     public static final Font BEBAS_NEUE_FONT = loadFont("/fonts/BebasNeue-Regular.ttf", Font.TRUETYPE_FONT);
 
     private final GravityRocketView           gravityRocketView;
+    /**
+     * La table associative des types d'objets et de leur renderer
+     */
     private final Map<Class<?>, IRenderer<?>> rendererMap = new HashMap<>();
 
     public RenderManager(GravityRocketView gravityRocketView) {
@@ -56,6 +59,77 @@ public class RenderManager
         }
     }
 
+    /**
+     * Charge une image depuis les ressources
+     *
+     * @param filePath Le chemin vers l'image
+     * @param width    La largeur de l'image
+     * @param height   La hauteur de l'image
+     *
+     * @return L'instance de l'image redimensionnée
+     */
+    public static Image loadImage(String filePath, int width, int height) {
+        try {
+            return ImageIO.read(GravityRocket.class.getResource(filePath)).getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public <T> void render(T obj, double x, double y, Graphics2D g2d) {
+        this.render(obj, x, y, 0, 0, 0, g2d);
+    }
+
+    public <T> void render(T obj, double x, double y, double rotation, Graphics2D g2d) {
+        this.render(obj, x, y, 0, 0, rotation, g2d);
+    }
+
+    /**
+     * Charge une police d'écriture depuis les ressources
+     *
+     * @param filePath Le chemin vers la police
+     * @param fontType Le type de police (ttf, otf, ...)
+     *
+     * @return L'instance de la police d'écriture
+     */
+    public static Font loadFont(String filePath, int fontType) {
+        try {
+            return Font.createFont(fontType, RenderManager.class.getResourceAsStream(filePath));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+        return DEFAULT_FONT;
+    }
+
+    /**
+     * Applique une échelle à l'image et la dessine pour qu'elle prenne tout l'écran, utile pour dessiner le fond des
+     * niveaux
+     *
+     * @param g      L'instance de Graphics
+     * @param img    L'image à dessiner
+     * @param width  La largeur de l'espace à remplir
+     * @param height La hauteur de l'espace à remplir
+     */
+    public static void renderFittedImage(Graphics g, Image img, int width, int height) {
+        double scaleWidth  = width / (double) img.getWidth(null);
+        double scaleHeight = height / (double) img.getHeight(null);
+        double scale       = Math.max(scaleHeight, scaleWidth);
+
+        int imgWidth  = (int) (scale * img.getWidth(null));
+        int imgHeight = (int) (scale * img.getHeight(null));
+
+        g.drawImage(img, (width - imgWidth) / 2, (height - imgHeight) / 2, imgWidth, imgHeight, null);
+
+    }
+
+    /**
+     * @param obj L'objet à dessiner
+     * @param <T> Le type générique de l'objet à dessiner
+     *
+     * @return Le renderer associé au type d'objet
+     */
     @SuppressWarnings("unchecked")
     private <T> IRenderer<T> getRenderer(T obj) {
 
@@ -69,47 +143,15 @@ public class RenderManager
         return (IRenderer<T>) renderer;
     }
 
-    public <T> void render(T obj, double x, double y, Graphics2D g2d) {
-        this.render(obj, x, y, 0, 0, 0, g2d);
-    }
-
-    public <T> void render(T obj, double x, double y, double rotation, Graphics2D g2d) {
-        this.render(obj, x, y, 0, 0, rotation, g2d);
-    }
-
+    /**
+     * Ajoute un renderer à la table associative
+     *
+     * @param objType  Le type d'objet associé au renderer
+     * @param renderer Le renderer
+     * @param <T>      Le type générique de l'objet associé au renderer
+     */
     public <T> void registerRenderer(Class<T> objType, IRenderer<T> renderer) {
         this.rendererMap.put(objType, renderer);
-    }
-
-    public static Image loadImage(String filePath, int width, int height) {
-        try {
-            return ImageIO.read(GravityRocket.class.getResource(filePath)).getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public static Font loadFont(String filePath, int fontType) {
-        try {
-            return Font.createFont(fontType, RenderManager.class.getResourceAsStream(filePath));
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-        }
-        return DEFAULT_FONT;
-    }
-
-    public static void renderFittedImage(Graphics g, Image img, int width, int height) {
-        double scaleWidth  = width / (double) img.getWidth(null);
-        double scaleHeight = height / (double) img.getHeight(null);
-        double scale       = Math.max(scaleHeight, scaleWidth);
-
-        int imgWidth  = (int) (scale * img.getWidth(null));
-        int imgHeight = (int) (scale * img.getHeight(null));
-
-        g.drawImage(img, (width - imgWidth) / 2, (height - imgHeight) / 2, imgWidth, imgHeight, null);
-
     }
 
     public int getScreenWidth() {

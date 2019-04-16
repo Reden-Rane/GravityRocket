@@ -6,11 +6,23 @@ import fr.insa.gravityrocket.logic.level.Level;
 
 import java.awt.*;
 
+/**
+ * Type d'entité définissant une planète
+ */
 public class Planet extends Entity
 {
 
+    /**
+     * Le nom de la planète
+     */
     private final String name;
+    /**
+     * La texture de la planète
+     */
     private final Image  texture;
+    /**
+     * La densité de la planète en kg/m³
+     */
     private final double density;
 
     public Planet(Level level, String name, Image texture, double density, double radius) {

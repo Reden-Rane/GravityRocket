@@ -1,5 +1,8 @@
 package fr.insa.gravityrocket.logic.collision;
 
+/**
+ * Boite de collision circulaire
+ */
 public class CircularCollisionBox extends CollisionBox
 {
 
