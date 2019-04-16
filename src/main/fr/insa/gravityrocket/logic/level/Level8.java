@@ -2,14 +2,12 @@ package fr.insa.gravityrocket.logic.level;
 
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
-import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.Satellite;
 import fr.insa.gravityrocket.logic.entity.alien.Alien;
 import fr.insa.gravityrocket.logic.entity.alien.OrbitingAlien;
 import fr.insa.gravityrocket.logic.entity.alien.WanderingAlien;
-import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Reactor;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
@@ -90,9 +88,7 @@ public class Level8 extends ReachingZoneLevel
         mercury.setOrbitalAngle(Math.PI * 2 * 0.8);
         neptun.setOrbitalAngle(0);
 
-        ItemFuel itemFuel = new ItemFuel(this, 60, 5);
-        itemFuel.setPos(1135, 1215);
-        addEntity(itemFuel);
+        addFuel(60, 5, 1135, 1215);
 
         Alien alien1 = new OrbitingAlien(this, 800, venus, 100, 0.5);
         Alien alien2 = new WanderingAlien(this, 1000, 200, 1250);
@@ -106,53 +102,19 @@ public class Level8 extends ReachingZoneLevel
         addEntity(alien4);
         addEntity(alien5);
 
-        Asteroid asteroid1  = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
-        Asteroid asteroid2  = new Asteroid(this, 150, EnumAsteroidVariant.ASTEROID_2);
-        Asteroid asteroid3  = new Asteroid(this, 50, EnumAsteroidVariant.ASTEROID_1);
-        Asteroid asteroid4  = new Asteroid(this, 200, EnumAsteroidVariant.ASTEROID_2);
-        Asteroid asteroid5  = new Asteroid(this, 60, EnumAsteroidVariant.ASTEROID_1);
-        Asteroid asteroid6  = new Asteroid(this, 80, EnumAsteroidVariant.ASTEROID_1);
-        Asteroid asteroid7  = new Asteroid(this, 65, EnumAsteroidVariant.ASTEROID_2);
-        Asteroid asteroid8  = new Asteroid(this, 80, EnumAsteroidVariant.ASTEROID_1);
-        Asteroid asteroid9  = new Asteroid(this, 65, EnumAsteroidVariant.ASTEROID_2);
-        Asteroid asteroid10 = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
-
         int x = 2000;
         int y = -700;
 
-        asteroid1.setPos(x + 410, y + 430);
-        asteroid2.setPos(x + 70, y + 590);
-        asteroid3.setPos(x - 80, y + 830);
-        asteroid4.setPos(x - 210, y + 1020);
-        asteroid5.setPos(x - 100, y + 720);
-        asteroid6.setPos(x - 320, y + 1170);
-        asteroid7.setPos(x + 220, y + 500);
-        asteroid8.setPos(1240, 1090);
-        asteroid9.setPos(1030, 1340);
-        asteroid10.setPos(1600, 1240);
-
-        asteroid1.setRotationSpeed(-Math.PI / 32);
-        asteroid2.setRotationSpeed(-Math.PI / 16);
-        asteroid3.setRotationSpeed(-Math.PI / 28);
-        asteroid4.setRotationSpeed(-Math.PI / 24);
-        asteroid5.setRotationSpeed(-Math.PI / 22);
-        asteroid5.setRotationSpeed(-Math.PI / 34);
-        asteroid6.setRotationSpeed(-Math.PI / 8);
-        asteroid7.setRotationSpeed(-Math.PI / 30);
-        asteroid8.setRotationSpeed(-Math.PI / 8);
-        asteroid9.setRotationSpeed(-Math.PI / 30);
-        asteroid10.setRotationSpeed(-Math.PI / 32);
-
-        addEntity(asteroid1);
-        addEntity(asteroid2);
-        addEntity(asteroid3);
-        addEntity(asteroid4);
-        addEntity(asteroid5);
-        addEntity(asteroid6);
-        addEntity(asteroid7);
-        addEntity(asteroid8);
-        addEntity(asteroid9);
-        addEntity(asteroid10);
+        addAsteroid(100, EnumAsteroidVariant.ASTEROID_1, x + 410, y + 430, -Math.PI / 32);
+        addAsteroid(150, EnumAsteroidVariant.ASTEROID_2, x + 70, y + 590, -Math.PI / 16);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_1, x - 80, y + 830, -Math.PI / 28);
+        addAsteroid(200, EnumAsteroidVariant.ASTEROID_2, x - 210, y + 1020, -Math.PI / 18);
+        addAsteroid(60, EnumAsteroidVariant.ASTEROID_1, x - 100, y + 720, -Math.PI / 22);
+        addAsteroid(80, EnumAsteroidVariant.ASTEROID_2, x - 320, y + 1170, -Math.PI / 10);
+        addAsteroid(65, EnumAsteroidVariant.ASTEROID_2, x + 220, y + 500, -Math.PI / 14);
+        addAsteroid(80, EnumAsteroidVariant.ASTEROID_1, 1240, 1090, -Math.PI / 12);
+        addAsteroid(65, EnumAsteroidVariant.ASTEROID_1, 1030, 1340, -Math.PI / 26);
+        addAsteroid(100, EnumAsteroidVariant.ASTEROID_2, 1600, 1240, -Math.PI / 30);
 
         addEntity(sun);
         addEntity(earth);
@@ -170,6 +132,5 @@ public class Level8 extends ReachingZoneLevel
         addEntity(rocket);
         rocket.attachToPlanet(earth);
     }
-
 
 }

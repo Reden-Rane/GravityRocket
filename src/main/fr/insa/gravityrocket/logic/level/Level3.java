@@ -2,12 +2,10 @@ package fr.insa.gravityrocket.logic.level;
 
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
-import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.alien.Alien;
 import fr.insa.gravityrocket.logic.entity.alien.WanderingAlien;
-import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Reactor;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
@@ -76,35 +74,23 @@ public class Level3 extends LandingLevel
         addEntity(alien1);
         addEntity(alien2);
 
-        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, -800, 1100, -Math.PI / 10);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_1, -800, 1100, -Math.PI / 10);
         addAsteroid(80, EnumAsteroidVariant.ASTEROID_2, -500, 1000, -Math.PI / 10);
         addAsteroid(150, EnumAsteroidVariant.ASTEROID_1, -300, 1200, -Math.PI / 28);
-        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, 1000, 510, -Math.PI / 28);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_1, 1000, 510, -Math.PI / 28);
         addAsteroid(150, EnumAsteroidVariant.ASTEROID_2, 1100, 300, Math.PI / 20);
         addAsteroid(150, EnumAsteroidVariant.ASTEROID_1, 800, 700, -Math.PI / 25);
         addAsteroid(100, EnumAsteroidVariant.ASTEROID_2, 600, 800, Math.PI / 25);
-        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, 650, 700, -Math.PI / 10);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_1, 650, 700, -Math.PI / 10);
+        addAsteroid(60, EnumAsteroidVariant.ASTEROID_2, 890, 550, -Math.PI / 10);
 
         FuelTank basicTank = new FuelTank(100);
-        basicTank.setFuelVolume(40);
+        basicTank.setFuelVolume(30);
         Reactor basicReactor = new Reactor(5, 800_000);
         Rocket  rocket       = new Rocket(this, basicTank, basicReactor);
 
         addEntity(rocket);
         rocket.attachToPlanet(earth);
-    }
-
-    private void addAsteroid(int radius, EnumAsteroidVariant variant, int x, int y, double v) {
-        Asteroid asteroid = new Asteroid(this, radius, variant);
-        asteroid.setPos(x, y);
-        asteroid.setRotationSpeed(v);
-        addEntity(asteroid);
-    }
-
-    private void addFuel(int size, int volume, int x, int y) {
-        ItemFuel itemFuel = new ItemFuel(this, size, volume);
-        itemFuel.setPos(x, y);
-        addEntity(itemFuel);
     }
 
 }

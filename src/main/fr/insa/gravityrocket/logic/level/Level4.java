@@ -2,14 +2,12 @@ package fr.insa.gravityrocket.logic.level;
 
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
-import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.Satellite;
 import fr.insa.gravityrocket.logic.entity.alien.Alien;
 import fr.insa.gravityrocket.logic.entity.alien.OrbitingAlien;
 import fr.insa.gravityrocket.logic.entity.alien.WanderingAlien;
-import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Reactor;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
@@ -62,20 +60,11 @@ public class Level4 extends LandingLevel
 
         setTargetedPlanet(moon);
 
-        ItemFuel itemFuel1 = new ItemFuel(this, 60, 10);
-        ItemFuel itemFuel2 = new ItemFuel(this, 60, 10);
-        ItemFuel itemFuel3 = new ItemFuel(this, 60, 10);
-        ItemFuel itemFuel4 = new ItemFuel(this, 60, 10);
-
-        itemFuel1.setPos(-200, 200);
-        itemFuel2.setPos(1700, 200);
-        itemFuel3.setPos(-200, 800);
-        itemFuel4.setPos(1700, 800);
-
-        addEntity(itemFuel1);
-        addEntity(itemFuel2);
-        addEntity(itemFuel3);
-        addEntity(itemFuel4);
+        addFuel(60, 10, -200, 200);
+        addFuel(60, 10, 1700, 200);
+        addFuel(60, 10, -200, 800);
+        addFuel(60, 10, -200, 800);
+        addFuel(60, 10, 1700, 800);
 
         Alien alien1 = new OrbitingAlien(this, 700, venus, 100, 0.5);
         Alien alien2 = new WanderingAlien(this, 1000, -400, 1000);
@@ -85,17 +74,8 @@ public class Level4 extends LandingLevel
         addEntity(alien2);
         addEntity(alien3);
 
-        Asteroid asteroid1 = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
-        Asteroid asteroid2 = new Asteroid(this, 100, EnumAsteroidVariant.ASTEROID_1);
-
-        asteroid1.setPos(1300, 400);
-        asteroid2.setPos(100, 600);
-
-        asteroid1.setRotationSpeed(-Math.PI / 28);
-        asteroid2.setRotationSpeed(-Math.PI / 28);
-
-        addEntity(asteroid1);
-        addEntity(asteroid2);
+        addAsteroid(95, EnumAsteroidVariant.ASTEROID_1, 1300, 400, -Math.PI / 16);
+        addAsteroid(105, EnumAsteroidVariant.ASTEROID_2, 100, 600, -Math.PI / 18);
 
         FuelTank basicTank = new FuelTank(50);
         basicTank.setFuelVolume(50);

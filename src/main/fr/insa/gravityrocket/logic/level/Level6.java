@@ -2,12 +2,10 @@ package fr.insa.gravityrocket.logic.level;
 
 import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.graphics.renderer.RenderManager;
-import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
 import fr.insa.gravityrocket.logic.entity.alien.Alien;
 import fr.insa.gravityrocket.logic.entity.alien.WanderingAlien;
-import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.FuelTank;
 import fr.insa.gravityrocket.logic.entity.rocket.Reactor;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
@@ -73,17 +71,9 @@ public class Level6 extends ReachingZoneLevel
     public void resetLevel() {
         super.resetLevel();
 
-        ItemFuel itemFuel = new ItemFuel(this, 50, 10);
-        itemFuel.setPos(1100, 90);
-        addEntity(itemFuel);
-
-        ItemFuel itemFuel2 = new ItemFuel(this, 50, 10);
-        itemFuel2.setPos(700, 650);
-        addEntity(itemFuel2);
-
-        ItemFuel itemFuel3 = new ItemFuel(this, 50, 10);
-        itemFuel3.setPos(50, 350);
-        addEntity(itemFuel3);
+        addFuel(50, 10, 1100, 90);
+        addFuel(50, 10, 700, 650);
+        addFuel(50, 10, 50, 350);
 
         addEntity(earth);
         addEntity(uranus);
@@ -99,14 +89,14 @@ public class Level6 extends ReachingZoneLevel
         addEntity(alien2);
         addEntity(alien3);
 
-        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, 1000, 510, -Math.PI / 28);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_1, 1000, 510, -Math.PI / 28);
         addAsteroid(150, EnumAsteroidVariant.ASTEROID_2, 1100, 300, Math.PI / 20);
         addAsteroid(150, EnumAsteroidVariant.ASTEROID_1, 800, 700, -Math.PI / 25);
         addAsteroid(100, EnumAsteroidVariant.ASTEROID_2, 600, 800, Math.PI / 25);
-        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, 10, -100, -Math.PI / 10);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_2, 10, -100, -Math.PI / 10);
         addAsteroid(150, EnumAsteroidVariant.ASTEROID_1, 250, 40, -Math.PI / 25);
         addAsteroid(100, EnumAsteroidVariant.ASTEROID_2, 50, 600, Math.PI / 25);
-        addAsteroid(50, EnumAsteroidVariant.ASTEROID_0, -100, 250, -Math.PI / 10);
+        addAsteroid(50, EnumAsteroidVariant.ASTEROID_1, -100, 250, -Math.PI / 10);
 
         FuelTank basicTank = new FuelTank(100);
         basicTank.setFuelVolume(40);
@@ -115,13 +105,6 @@ public class Level6 extends ReachingZoneLevel
 
         addEntity(rocket);
         rocket.attachToPlanet(earth);
-    }
-
-    private void addAsteroid(int radius, EnumAsteroidVariant variant, int x, int y, double rotationSpeed) {
-        Asteroid asteroid = new Asteroid(this, radius, variant);
-        asteroid.setPos(x, y);
-        asteroid.setRotationSpeed(rotationSpeed);
-        addEntity(asteroid);
     }
 
 

@@ -4,7 +4,9 @@ import fr.insa.gravityrocket.GravityRocket;
 import fr.insa.gravityrocket.logic.EnumLevelState;
 import fr.insa.gravityrocket.logic.entity.Asteroid;
 import fr.insa.gravityrocket.logic.entity.Entity;
+import fr.insa.gravityrocket.logic.entity.EnumAsteroidVariant;
 import fr.insa.gravityrocket.logic.entity.Planet;
+import fr.insa.gravityrocket.logic.entity.item.ItemFuel;
 import fr.insa.gravityrocket.logic.entity.rocket.Rocket;
 import javafx.scene.media.MediaPlayer;
 
@@ -231,6 +233,19 @@ public abstract class Level
         entity.setXAcceleration(0);
         entity.setYAcceleration(0);
         entity.update(dt);
+    }
+
+    protected void addAsteroid(int radius, EnumAsteroidVariant variant, int x, int y, double v) {
+        Asteroid asteroid = new Asteroid(this, radius, variant);
+        asteroid.setPos(x, y);
+        asteroid.setRotationSpeed(v);
+        addEntity(asteroid);
+    }
+
+    protected void addFuel(int size, int volume, int x, int y) {
+        ItemFuel itemFuel = new ItemFuel(this, size, volume);
+        itemFuel.setPos(x, y);
+        addEntity(itemFuel);
     }
 
     public Rectangle getPreferredView() {
